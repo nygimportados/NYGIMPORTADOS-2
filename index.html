@@ -297,7 +297,7 @@
           <a href="#airpods">AirPods</a>
           <a href="#nosotros">Nosotros</a>
           <div class="horario-badge">
-            🕒 Lun-Sab: <strong>10:30-13:30</strong> | <strong>17:00-22:00</strong>
+            🕒 Lun-Vie: <strong>10:30-13:30</strong> | <strong>17:00-22:00</strong>
           </div>
         </nav>
 
@@ -1648,7 +1648,7 @@
     let currentSelectedFlavor = "";
     let currentProduct = null;
 
-    // Filtrado de categoría principal usando el menú de 3 líneas
+    // Filtrado de categoría principal y desplazamiento automático
     function filterMainCategory(category, btn) {
       const parent = btn.parentElement;
       parent.querySelectorAll('button').forEach(b => b.classList.remove('active'));
@@ -1662,6 +1662,16 @@
           sec.style.display = (sec.id === category) ? 'block' : 'none';
         }
       });
+
+      // Desplazamiento automático hacia la sección seleccionada (o al catálogo general si es "todos")
+      if (category === 'todos') {
+        document.getElementById('catalogo-general').scrollIntoView({ behavior: 'smooth' });
+      } else {
+        const targetSection = document.getElementById(category);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
 
       // Cerrar el menú desplegable tras seleccionar
       dropdownMenu.classList.remove('show');
