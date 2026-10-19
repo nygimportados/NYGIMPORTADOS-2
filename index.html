@@ -29,16 +29,83 @@
     a { color: inherit; text-decoration: none; }
     .wrap { width: min(1160px, 92%); margin: auto; }
     
-    /* HEADER */
+    /* HEADER CON MENÚ HAMBURGUESA DE 3 LÍNEAS */
     header { 
       position: sticky; top: 0; z-index: 100; 
       background: rgba(11, 11, 14, 0.92); backdrop-filter: blur(14px); 
       border-bottom: 1px solid var(--line);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
-    .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 20px; position: relative; }
     .brand { font-family: Georgia, serif; font-size: 1.15rem; font-weight: bold; letter-spacing: .13em; }
     .brand span { color: var(--accent-color); text-shadow: 0 0 10px var(--accent-glow); }
+    
+    .nav-right-container { display: flex; align-items: center; gap: 15px; }
+
+    /* BOTÓN HAMBURGUESA DE 3 LÍNEAS */
+    .menu-toggle {
+      background: #15151a;
+      border: 1px solid var(--accent-color);
+      color: var(--text);
+      font-size: 1.5rem;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      transition: 0.3s;
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+    .menu-toggle:hover {
+      background: var(--accent-color);
+    }
+    .menu-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background-color: var(--text);
+      border-radius: 2px;
+    }
+
+    /* MENÚ DESPLEGABLE DESDE LAS 3 LÍNEAS */
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 70px;
+      right: 0;
+      background: var(--panel);
+      border: 1px solid var(--accent-color);
+      border-radius: var(--border-radius);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      width: 220px;
+      padding: 10px 0;
+      z-index: 200;
+    }
+    .dropdown-menu.show {
+      display: block;
+    }
+    .dropdown-menu button {
+      width: 100%;
+      text-align: left;
+      padding: 12px 20px;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .dropdown-menu button:hover, .dropdown-menu button.active {
+      background: rgba(168, 85, 247, 0.2);
+      color: var(--accent-color);
+      font-weight: bold;
+    }
+
     nav { display: flex; gap: 26px; color: var(--muted); font-size: .9rem; align-items: center; }
     nav a:hover { color: var(--accent-color); }
     
@@ -76,41 +143,6 @@
     .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 32px; }
     h2 { font-size: clamp(2.2rem, 4vw, 3.2rem); letter-spacing: -.03em; margin: 10px 0 0; }
     .section-head p { max-width: 460px; color: var(--muted); line-height: 1.7; margin: 0; }
-
-    /* FILTRO DE 3 PUNTOS / CATEGORÍAS PRINCIPALES */
-    .main-category-filter {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin: 30px 0 10px;
-      padding: 12px;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--border-radius);
-    }
-    .main-category-btn {
-      flex: 1;
-      max-width: 200px;
-      padding: 12px 16px;
-      border: 1px solid #2f2f42;
-      background: #0f0f13;
-      color: var(--text);
-      font-weight: bold;
-      font-size: 0.9rem;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    .main-category-btn:hover, .main-category-btn.active {
-      background: var(--accent-color);
-      border-color: var(--accent-color);
-      color: #fff;
-      box-shadow: 0 0 15px var(--accent-glow);
-    }
 
     /* FILTROS GENERALES Y DE VAPERS */
     .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
@@ -195,7 +227,7 @@
     footer { padding: 28px 0; border-top: 1px solid #1c1c27; color: var(--muted); font-size: .82rem; }
     .footer-row { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
 
-    /* AJUSTES RESPONSIVOS PARA CELULARES (DOS PRODUCTOS EN FILA) */
+    /* VISTA CELULAR (2 COLUMNAS Y CUADROS MÁS CHICOS) */
     @media(max-width:760px){
       nav { display: none; }
       .nav { min-height: 68px; }
@@ -206,7 +238,7 @@
       .section-head { display: block; }
       .section-head p { margin-top: 14px; }
       
-      /* Ajuste de grilla para 2 columnas en celulares */
+      /* Grilla de 2 columnas en celulares */
       .products {
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
@@ -246,15 +278,6 @@
         align-items: flex-start;
         gap: 6px;
       }
-      
-      .main-category-filter {
-        padding: 8px;
-        gap: 6px;
-      }
-      .main-category-btn {
-        padding: 8px 4px;
-        font-size: 0.75rem;
-      }
 
       .contact-box { display: block; padding: 26px; }
       .contact-box .actions { margin-top: 22px; }
@@ -266,16 +289,33 @@
   <header>
     <div class="wrap nav">
       <a class="brand" href="#inicio">N&G <span>IMPORTADOS</span></a>
-      <nav aria-label="Navegación principal">
-        <a href="#perfumes">Perfumes</a>
-        <a href="#vapers">Vapers</a>
-        <a href="#airpods">AirPods</a>
-        <a href="#nosotros">Nosotros</a>
-        <div class="horario-badge">
-          🕒 Lun-Vie: <strong>10:30-13:30</strong> | <strong>17:00-22:00</strong>
+      
+      <div class="nav-right-container">
+        <nav aria-label="Navegación principal">
+          <a href="#perfumes">Perfumes</a>
+          <a href="#vapers">Vapers</a>
+          <a href="#airpods">AirPods</a>
+          <a href="#nosotros">Nosotros</a>
+          <div class="horario-badge">
+            🕒 Lun-Vie: <strong>10:30-13:30</strong> | <strong>17:00-22:00</strong>
+          </div>
+        </nav>
+
+        <!-- BOTÓN DE 3 LÍNEAS PARA FILTRAR O NAVEGAR -->
+        <button class="menu-toggle" id="menuBtn" aria-label="Abrir Menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- MENÚ DESPLEGABLE -->
+        <div class="dropdown-menu" id="dropdownMenu">
+          <button class="active" onclick="filterMainCategory('todos', this)">✨ Ver Todos</button>
+          <button onclick="filterMainCategory('perfumes', this)">🧪 Perfumes</button>
+          <button onclick="filterMainCategory('vapers', this)">💨 Vapers</button>
+          <button onclick="filterMainCategory('airpods', this)">🎧 AirPods</button>
         </div>
-      </nav>
-      <a class="btn btn-outline" href="#catalogo-general">Ver catálogo</a>
+      </div>
     </div>
   </header>
 
@@ -301,22 +341,6 @@
 
     <!-- SECCIÓN GENERAL DE CATEGORÍAS -->
     <div id="catalogo-general" class="wrap">
-
-      <!-- INTERFAZ DE FILTRO DE TRES PUNTOS / CATEGORÍAS PRINCIPALES -->
-      <div class="main-category-filter">
-        <button class="main-category-btn active" onclick="filterMainCategory('todos', this)">
-          ✨ Todos
-        </button>
-        <button class="main-category-btn" onclick="filterMainCategory('perfumes', this)">
-          🧪 Perfumes
-        </button>
-        <button class="main-category-btn" onclick="filterMainCategory('vapers', this)">
-          💨 Vapers
-        </button>
-        <button class="main-category-btn" onclick="filterMainCategory('airpods', this)">
-          🎧 AirPods
-        </button>
-      </div>
 
       <!-- 1. PERFUMES -->
       <section id="perfumes" class="main-section">
@@ -923,6 +947,19 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     const WHATSAPP_NUMBER = "5493804148332";
+
+    // TOGGLE MENÚ HAMBURGUESA DE 3 LÍNEAS
+    const menuBtn = document.getElementById('menuBtn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdownMenu.classList.toggle('show');
+    });
+
+    document.addEventListener('click', () => {
+      dropdownMenu.classList.remove('show');
+    });
 
     // Base de datos COMPLETA de Vapers
     const vapersProducts = [
@@ -1611,10 +1648,10 @@
     let currentSelectedFlavor = "";
     let currentProduct = null;
 
-    // Función de filtrado por categoría principal (3 Puntos + Todos)
+    // Filtrado de categoría principal usando el menú de 3 líneas
     function filterMainCategory(category, btn) {
       const parent = btn.parentElement;
-      parent.querySelectorAll('.main-category-btn').forEach(b => b.classList.remove('active'));
+      parent.querySelectorAll('button').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
       const sections = document.querySelectorAll('.main-section');
@@ -1625,6 +1662,9 @@
           sec.style.display = (sec.id === category) ? 'block' : 'none';
         }
       });
+
+      // Cerrar el menú desplegable tras seleccionar
+      dropdownMenu.classList.remove('show');
     }
 
     // Renderizar Vapers
