@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="N&G IMPORTADOS — Perfumes, Vapers y AirPods seleccionados. Envío a domicilio en La Rioja. Consultá disponibilidad y comprá por WhatsApp.">
+  <title>N&G IMPORTADOS | Perfumería, Vapers & Tech</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    :root {
+      --bg: #0b0b0e;
+      --panel: #15151a;
+      --panel2: #121218;
+      --accent-color: #a855f7; /* Morado Neón Brillante */
+      --accent-hover: #9333ea;
+      --accent-glow: rgba(168, 85, 247, 0.4);
+      --gold: #c9a45c;
+      --gold-light: #f0d69a;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --line: rgba(168, 85, 247, 0.25);
+      --whatsapp-color: #22c55e;
+      --whatsapp-hover: #16a34a;
+      --border-radius: 14px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); padding-bottom: 50px; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1160px, 92%); margin: auto; }
+    
+    /* HEADER */
+    header { 
+      position: sticky; top: 0; z-index: 100; 
+      background: rgba(11, 11, 14, 0.92); backdrop-filter: blur(14px); 
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+    .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { font-family: Georgia, serif; font-size: 1.15rem; font-weight: bold; letter-spacing: .13em; }
+    .brand span { color: var(--accent-color); text-shadow: 0 0 10px var(--accent-glow); }
+    nav { display: flex; gap: 26px; color: var(--muted); font-size: .9rem; align-items: center; }
+    nav a:hover { color: var(--accent-color); }
+    
+    .horario-badge {
+      display: inline-block;
+      background-color: #1a1a24;
+      border: 1px solid #2a2a3c;
+      color: var(--muted);
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+    }
+    .horario-badge strong { color: #4ade80; }
+
+    /* BOTONES */
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 20px; border: 1px solid var(--accent-color); background: var(--accent-color); color: #fff; border-radius: 8px; font-weight: bold; font-size: .87rem; transition: .3s; box-shadow: 0 0 10px var(--accent-glow); }
+    .btn:hover { background: var(--accent-hover); border-color: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 0 18px var(--accent-glow); }
+    .btn-outline { background: transparent; color: var(--text); border-color: #2f2f42; }
+    .btn-outline:hover { border-color: var(--accent-color); color: var(--accent-color); background: rgba(168, 85, 247, 0.1); }
+
+    /* HERO */
+    .hero { position: relative; overflow: hidden; padding: 92px 0 86px; background: radial-gradient(ellipse at 77% 45%, rgba(168,85,247,.15), transparent 35%), linear-gradient(120deg, #0b0b0e, #15151a); }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 54px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .23em; color: var(--accent-color); font-size: .72rem; font-weight: bold; }
+    h1, h2, h3 { font-family: Georgia, 'Times New Roman', serif; font-weight: normal; }
+    h1 { font-size: clamp(3.2rem, 7vw, 5.8rem); line-height: .96; letter-spacing: -.045em; margin: 20px 0; }
+    h1 em { font-style: normal; color: var(--accent-color); text-shadow: 0 0 20px var(--accent-glow); }
+    .hero p { max-width: 520px; color: var(--muted); font-size: 1.04rem; line-height: 1.85; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    
+    .hero-visual { min-height: 420px; display: grid; place-items: center; position: relative; border: 1px solid var(--line); background: linear-gradient(140deg, #1c1c27, #0b0b0e 70%); border-radius: var(--border-radius); overflow: hidden; }
+    .hero-caption { position: absolute; bottom: 22px; left: 20px; right: 20px; text-align: center; color: var(--muted); font-size: .7rem; letter-spacing: .22em; text-transform: uppercase; }
+
+    section { padding: 78px 0; border-bottom: 1px solid #1c1c27; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 32px; }
+    h2 { font-size: clamp(2.2rem, 4vw, 3.2rem); letter-spacing: -.03em; margin: 10px 0 0; }
+    .section-head p { max-width: 460px; color: var(--muted); line-height: 1.7; margin: 0; }
+
+    /* FILTROS GENERALES Y DE VAPERS */
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+    .filter { cursor: pointer; background: #15151a; border: 1px solid #2f2f42; color: var(--muted); padding: 9px 16px; font-size: .85rem; border-radius: 20px; transition: .3s; }
+    .filter.active, .filter:hover { background: var(--accent-color); border-color: var(--accent-color); color: #fff; box-shadow: 0 0 10px var(--accent-glow); }
+
+    /* GRILLA PRODUCTOS */
+    .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+    .product { background: var(--panel); border: 1px solid #22222d; border-radius: var(--border-radius); overflow: hidden; transition: transform .3s, border-color .3s; display: flex; flex-direction: column; justify-content: space-between; }
+    .product:hover { transform: translateY(-6px); border-color: var(--accent-color); box-shadow: 0 8px 25px var(--accent-glow); }
+    .product.hidden { display: none; }
+    
+    .product-photo { height: 260px; background: #0f0f13; display: grid; place-items: center; overflow: hidden; position: relative; }
+    .product-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s; }
+    .product:hover .product-photo img { transform: scale(1.05); }
+    
+    .product-info { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+    .tag { color: var(--accent-color); font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; font-weight: bold; }
+    .product h3 { font-size: 1.2rem; margin: 8px 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    .product p { font-size: .88rem; color: var(--muted); line-height: 1.6; margin: 0 0 18px; min-height: 42px; }
+    
+    .product-bottom { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: auto; }
+    .price-container { display: flex; flex-direction: column; align-items: flex-start; }
+    .old-price { text-decoration: line-through; color: #888888; font-size: 0.8em; }
+    .price { font-weight: bold; color: var(--text); font-size: 1.1rem; }
+    
+    .small-btn { padding: 9px 14px; border: 1px solid #2f2f42; background: #1c1c27; color: var(--text); font-size: .8rem; border-radius: 8px; transition: .2s; cursor: pointer; display: inline-flex; align-items: center; }
+    .small-btn:hover { background: var(--accent-color); border-color: var(--accent-color); color: #fff; box-shadow: 0 0 10px var(--accent-glow); }
+
+    /* VAPERS FILTER SECTION */
+    .filter-section-vaper {
+        background-color: var(--panel);
+        padding: 20px;
+        border-radius: var(--border-radius);
+        margin-bottom: 25px;
+        border: 1px solid #22222d;
+    }
+    .filter-title { font-size: 0.8rem; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
+
+    /* SOBRE NOSOTROS & ENVÍOS */
+    .about { background: #0e0e12; }
+    .about-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 55px; align-items: center; }
+    .about-copy { color: var(--muted); line-height: 1.9; }
+    .features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 25px; }
+    .feature { padding: 20px; border: 1px solid #22222d; background: var(--panel); border-radius: 10px; }
+    .feature b { display: block; color: var(--text); margin-bottom: 9px; font-size: 0.95rem; }
+    .feature span { color: var(--muted); font-size: .87rem; line-height: 1.6; }
+
+    /* CONTACTO / CAJA FINAL */
+    .contact-box { display: flex; align-items: center; justify-content: space-between; gap: 25px; padding: 40px; border: 1px solid var(--accent-color); border-radius: var(--border-radius); background: linear-gradient(115deg, rgba(168,85,247,.12), rgba(15,15,19,.9)); box-shadow: 0 0 30px var(--accent-glow); }
+    .contact-box p { color: var(--muted); line-height: 1.7; margin-bottom: 0; }
+
+    /* MODAL VAPERS */
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 20px; }
+    .modal-content { background-color: var(--panel); width: 100%; max-width: 750px; border-radius: var(--border-radius); border: 1px solid var(--accent-color); padding: 30px; position: relative; max-height: 90vh; overflow-y: auto; box-shadow: 0 0 30px var(--accent-glow); }
+    .close-modal { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; color: var(--muted); cursor: pointer; background: none; border: none; transition: color 0.2s; }
+    .close-modal:hover { color: #fff; }
+    .modal-body { display: flex; flex-direction: column; gap: 25px; }
+    @media (min-width: 650px) { .modal-body { flex-direction: row; } }
+    .modal-img-container { flex: 1; background-color: #0f0f13; border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 20px; min-height: 280px; border: 1px solid #22222d; }
+    .modal-img-container img { max-width: 100%; max-height: 240px; object-fit: contain; }
+    .modal-info { flex: 1.2; display: flex; flex-direction: column; gap: 12px; }
+    .modal-title { font-size: 1.5rem; font-weight: bold; font-family: Georgia, serif; }
+    
+    .quantity-control { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+    .qty-btn { background-color: #1c1c27; color: #fff; border: 1px solid #2f2f42; width: 36px; height: 36px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: background-color 0.2s; }
+    .qty-btn:hover { background-color: var(--accent-color); }
+    .qty-input { width: 50px; text-align: center; background-color: #0f0f13; color: #fff; border: 1px solid #2f2f42; border-radius: 8px; padding: 6px; font-size: 1.1rem; }
+    
+    .flavors-container { margin-top: 5px; }
+    .flavor-option-list { display: flex; flex-direction: column; gap: 8px; max-height: 200px; overflow-y: auto; margin-top: 6px; padding-right: 5px; }
+    .flavor-item { display: flex; align-items: center; gap: 12px; background-color: #0f0f13; border: 1px solid #22222d; padding: 8px 12px; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+    .flavor-item:hover { border-color: var(--accent-color); }
+    .flavor-item.selected { border-color: var(--accent-color); background-color: rgba(168, 85, 247, 0.15); box-shadow: 0 0 8px var(--accent-glow); }
+    .flavor-item.soldout { opacity: 0.4; cursor: not-allowed; border-color: #ef4444; }
+    .flavor-thumb { width: 38px; height: 38px; border-radius: 6px; object-fit: cover; background-color: #1c1c27; }
+    .flavor-name { font-size: 0.85rem; flex-grow: 1; }
+    
+    .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 10px; background-color: var(--whatsapp-color); color: #fff; text-decoration: none; padding: 14px; border-radius: 10px; font-weight: bold; font-size: 1rem; margin-top: 10px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3); border:none; cursor:pointer; width:100%; }
+    .btn-whatsapp:hover { background-color: var(--whatsapp-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(34, 197, 94, 0.5); }
+
+    footer { padding: 28px 0; border-top: 1px solid #1c1c27; color: var(--muted); font-size: .82rem; }
+    .footer-row { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+
+    @media(max-width:760px){
+      nav { display: none; }
+      .nav { min-height: 68px; }
+      .hero { padding: 62px 0 52px; }
+      .hero-grid, .about-grid { grid-template-columns: 1fr; gap: 30px; }
+      .hero-visual { min-height: 340px; }
+      section { padding: 58px 0; }
+      .section-head { display: block; }
+      .section-head p { margin-top: 14px; }
+      .products { grid-template-columns: 1fr; }
+      .contact-box { display: block; padding: 26px; }
+      .contact-box .actions { margin-top: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#inicio">N&G <span>IMPORTADOS</span></a>
+      <nav aria-label="Navegación principal">
+        <a href="#perfumes">Perfumes</a>
+        <a href="#vapers">Vapers</a>
+        <a href="#airpods">AirPods</a>
+        <a href="#nosotros">Nosotros</a>
+        <div class="horario-badge">
+          🕒 Lun-Vie: <strong>10:30-13:30</strong> | <strong>17:00-22:00</strong>
+        </div>
+      </nav>
+      <a class="btn btn-outline" href="#catalogo-general">Ver catálogo</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero" id="inicio">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Tienda Multirrubro · N&G Importados</div>
+          <h1>Esencias, Vapers & <em>Tecnología.</em></h1>
+          <p>Descubrí nuestra selección exclusiva de perfumería selecta, vapers de última generación con gran variedad de sabores y AirPods de alta calidad. <strong>¡Envíos a domicilio en toda la ciudad de La Rioja!</strong></p>
+          <div class="actions">
+            <a class="btn" href="#catalogo-general">Explorar productos ↘</a>
+            <a class="btn btn-outline" id="whatsapp-hero" href="https://wa.me/5493804148332" target="_blank" rel="noopener">Pedir por WhatsApp ↗</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img src="ng importados.png" alt="N&G Importados Multirrubro" style="width:100%; height:100%; object-fit:cover; display:block;" onerror="this.src='https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=600&q=80'">
+          <div class="hero-caption">Calidad · Estilo · Envío a Domicilio en La Rioja</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN GENERAL DE CATEGORÍAS -->
+    <div id="catalogo-general">
+
+      <!-- 1. PERFUMES -->
+      <section id="perfumes">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">Colección Selecta</div>
+              <h2>Perfumería Importada</h2>
+            </div>
+            <p>Fragancias árabes e importadas originales. Filtrá por género y consultá directamente por WhatsApp.</p>
+          </div>
+          
+          <div class="filters" aria-label="Filtrar perfumes">
+            <button class="filter active" onclick="filterPerfumes('todos', this)">Todos</button>
+            <button class="filter" onclick="filterPerfumes('masculino', this)">Masculinos</button>
+            <button class="filter" onclick="filterPerfumes('femenino', this)">Femeninos</button>
+            <button class="filter" onclick="filterPerfumes('unisex', this)">Unisex</button>
+          </div>
+
+          <div class="products" id="perfume-grid">
+            <!-- 1. Honor and Glory -->
+            <article class="product perfume-card" data-category="unisex">
+              <div class="product-photo"><img src="honor and glory.png" alt="Honor and Glory" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Unisex · Lattafa</div>
+                  <h3>Honor and Glory</h3>
+                  <p>Notas cálidas, gourmand con piña, crema y especias.</p>
+                </div>
+                <div class="product-bottom">
+                  <div class="price-container">
+                    <span class="old-price">$45.000</span>
+                    <span class="price">$41.000</span>
+                  </div>
+                  <a class="small-btn order-link" data-product="Honor and Glory" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 2. Liquid brun -->
+            <article class="product perfume-card" data-category="unisex">
+              <div class="product-photo"><img src="liquid brun.png" alt="Liquid Brun" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Unisex · French Avenue</div>
+                  <h3>Liquid Brun</h3>
+                  <p>Una bomba avainillada, cálida, dulce y achocolatada.</p>
+                </div>
+                <div class="product-bottom">
+                  <span class="price">$45.000</span>
+                  <a class="small-btn order-link" data-product="Liquid Brun" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 3. 9pm night out -->
+            <article class="product perfume-card" data-category="masculino">
+              <div class="product-photo"><img src="9pm night out.png" alt="9pm night out" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Masculino · Afnan</div>
+                  <h3>9pm Night Out</h3>
+                  <p>Fragancia nocturna, seductora y de gran estela.</p>
+                </div>
+                <div class="product-bottom">
+                  <span class="price">$50.000</span>
+                  <a class="small-btn order-link" data-product="9pm Night Out" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 4. JPG Le Beau Le Parfum -->
+            <article class="product perfume-card" data-category="masculino">
+              <div class="product-photo"><img src="JPG le beau.png" alt="Jean Paul Gaultier Le Beau Le Parfum" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Masculino · Jean Paul Gaultier</div>
+                  <h3>Jean Paul Gaultier Le Beau Le Parfum</h3>
+                  <p>Perfil tropical e intenso con notas de coco y haba tonka.</p>
+                </div>
+                <div class="product-bottom">
+                  <span class="price">$55.000</span>
+                  <a class="small-btn order-link" data-product="JPG Le Beau Le Parfum" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 5. JPG Le Male Le Parfum -->
+            <article class="product perfume-card" data-category="masculino">
+              <div class="product-photo"><img src="JPG le male le parfum.png" alt="Jean Paul Gaultier Le Male Le Parfum" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Masculino · Jean Paul Gaultier</div>
+                  <h3>Jean Paul Gaultier Le Male Le Parfum</h3>
+                  <p>Elegancia oscura con cardamomo, lavanda y iris oriental.</p>
+                </div>
+                <div class="product-bottom">
+                  <span class="price">$55.000</span>
+                  <a class="small-btn order-link" data-product="JPG Le Male Le Parfum" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 6. Erba Pura -->
+            <article class="product perfume-card" data-category="unisex">
+              <div class="product-photo"><img src="erba pura.png" alt="Erba Pura" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Unisex · Xerjoff</div>
+                  <h3>Erba Pura</h3>
+                  <p>Explosión de frutas mediterráneas, cítricos y almizcle blanco.</p>
+                </div>
+                <div class="product-bottom">
+                  <span class="price">$50.000</span>
+                  <a class="small-btn order-link" data-product="Erba Pura" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 7. Odyssey Aqua -->
+            <article class="product perfume-card" data-category="masculino">
+              <div class="product-photo"><img src="odyssey aqua.png" alt="Odyssey Aqua" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Masculino · Armaf</div>
+                  <h3>Odyssey Aqua</h3>
+                  <p>Aroma fresco, marino y vibrante, ideal para uso diario.</p>
+                </div>
+                <div class="product-bottom">
+                  <span class="price">$40.000</span>
+                  <a class="small-btn order-link" data-product="Odyssey Aqua" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 8. Odyssey Homme -->
+            <article class="product perfume-card" data-category="masculino">
+              <div class="product-photo"><img src="odyssey homme.png" alt="Odyssey Homme" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Masculino · Armaf</div>
+                  <h3>Odyssey Homme</h3>
+                  <p>Fragancia ámbar amaderada con toque de iris y vainilla.</p>
+                </div>
+                <div class="product-bottom">
+                  <span class="price">$40.000</span>
+                  <a class="small-btn order-link" data-product="Odyssey Homme" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 9. Barara Rose -->
+            <article class="product perfume-card" data-category="femenino">
+              <div class="product-photo"><img src="barara rose.png" alt="Barara Rose" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Femenino · Barara King</div>
+                  <h3>Barara Rose</h3>
+                  <p>Elegante combinación floral dulce y femenina.</p>
+                </div>
+                <div class="product-bottom">
+                  <div class="price-container">
+                    <span class="old-price">$55.000</span>
+                    <span class="price">$51.000</span>
+                  </div>
+                  <a class="small-btn order-link" data-product="Barara Rose" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 10. Barara King Gold Edición -->
+            <article class="product perfume-card" data-category="masculino">
+              <div class="product-photo"><img src="bharara gold.png" alt="Barara King Gold Edición" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Masculino · Barara King</div>
+                  <h3>Barara King Gold Edición</h3>
+                  <p>Perfume ostentoso, amaderado y especia dorada.</p>
+                </div>
+                <div class="product-bottom">
+                  <span class="price">$55.000</span>
+                  <a class="small-btn order-link" data-product="Barara King Gold Edición" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 11. Khamrah -->
+            <article class="product perfume-card" data-category="unisex">
+              <div class="product-photo"><img src="khamrah.png" alt="Khamrah" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Unisex · Lattafa</div>
+                  <h3>Khamrah</h3>
+                  <p>Especias cálidas, canela, praliné y haba tonka dulce.</p>
+                </div>
+                <div class="product-bottom">
+                  <span class="price">$48.000</span>
+                  <a class="small-btn order-link" data-product="Khamrah" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 12. Khamrah Qahwa -->
+            <article class="product perfume-card" data-category="unisex">
+              <div class="product-photo"><img src="qahwa.png" alt="Khamrah Qahwa" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Unisex · Lattafa</div>
+                  <h3>Khamrah Qahwa</h3>
+                  <p>Gourmand intenso con notas de café arábigo tostado.</p>
+                </div>
+                <div class="product-bottom">
+                  <div class="price-container">
+                    <span class="old-price">$48.000</span>
+                    <span class="price">$44.000</span>
+                  </div>
+                  <a class="small-btn order-link" data-product="Khamrah Qahwa" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 13. Odyssey Mandarín Sky -->
+            <article class="product perfume-card" data-category="masculino">
+              <div class="product-photo"><img src="mandarin sky.png" alt="Odyssey Mandarín Sky" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Masculino · Armaf</div>
+                  <h3>Odyssey Mandarín Sky</h3>
+                  <p>Toques cítricos dulces de mandarina, caramelo y haba tonka.</p>
+                </div>
+                <div class="product-bottom">
+                  <span class="price">$41.000</span>
+                  <a class="small-btn order-link" data-product="Odyssey Mandarín Sky" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 14. Odyssey Mandarín Sky Elíxir -->
+            <article class="product perfume-card" data-category="masculino">
+              <div class="product-photo"><img src="mandarin sky elixir.png" alt="Odyssey Mandarín Sky Elíxir" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Masculino · Armaf</div>
+                  <h3>Odyssey Mandarín Sky Elíxir</h3>
+                  <p>Versión más profunda y concentrada con acordes ambarados y especiados.</p>
+                </div>
+                <div class="product-bottom">
+                  <span class="price">$41.000</span>
+                  <a class="small-btn order-link" data-product="Odyssey Mandarín Sky Elíxir" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 15. Odyssey Candee -->
+            <article class="product perfume-card" data-category="femenino">
+              <div class="product-photo"><img src="candee.png" alt="Odyssey Candee" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Femenino · Armaf</div>
+                  <h3>Odyssey Candee</h3>
+                  <p>Perfil dulce, frutal y jovial con notas acarameladas.</p>
+                </div>
+                <div class="product-bottom">
+                  <div class="price-container">
+                    <span class="old-price">$41.000</span>
+                    <span class="price">$37.000</span>
+                  </div>
+                  <a class="small-btn order-link" data-product="Odyssey Candee" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 16. Hawas Ice -->
+            <article class="product perfume-card" data-category="masculino">
+              <div class="product-photo"><img src="hawas ice.png" alt="Hawas Ice" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Masculino · Rasasi</div>
+                  <h3>Hawas Ice</h3>
+                  <p>Fragancia acuática ultra helada, frutal y enérgica.</p>
+                </div>
+                <div class="product-bottom">
+                  <span class="price">$40.000</span>
+                  <a class="small-btn order-link" data-product="Hawas Ice" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 17. Azzure Aoud -->
+            <article class="product perfume-card" data-category="unisex">
+              <div class="product-photo"><img src="azzure aoud.png" alt="Azzure Aoud" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Unisex · French Avenue</div>
+                  <h3>Azzure Aoud</h3>
+                  <p>Combinación exótica de Oud con toques marinos refrescantes.</p>
+                </div>
+                <div class="product-bottom">
+                  <span class="price">$45.000</span>
+                  <a class="small-btn order-link" data-product="Azzure Aoud" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 18. Yara -->
+            <article class="product perfume-card" data-category="femenino">
+              <div class="product-photo"><img src="yara.png" alt="Yara" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Femenino · Lattafa</div>
+                  <h3>Yara</h3>
+                  <p>Aroma cremoso con notas de orquídea, vainilla y frutas atalcadas.</p>
+                </div>
+                <div class="product-bottom">
+                  <div class="price-container">
+                    <span class="old-price">$30.000</span>
+                    <span class="price">$26.000</span>
+                  </div>
+                  <a class="small-btn order-link" data-product="Yara" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 19. 9am -->
+            <article class="product perfume-card" data-category="unisex">
+              <div class="product-photo"><img src="9am.png" alt="9am" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Unisex · Afnan</div>
+                  <h3>9am</h3>
+                  <p>Fresco, cítrico y enérgico, perfecto para arrancar el día con vitalidad.</p>
+                </div>
+                <div class="product-bottom">
+                  <span class="price">$37.000</span>
+                  <a class="small-btn order-link" data-product="9am" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 20. 9pm -->
+            <article class="product perfume-card" data-category="unisex">
+              <div class="product-photo"><img src="9pm.png" alt="9pm" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Unisex · Afnan</div>
+                  <h3>9pm</h3>
+                  <p>Versatilidad total entre frescura diurna y toque nocturno.</p>
+                </div>
+                <div class="product-bottom">
+                  <span class="price">$37.000</span>
+                  <a class="small-btn order-link" data-product="9pm" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 21. Xerjoff Naxos -->
+            <article class="product perfume-card" data-category="unisex">
+              <div class="product-photo"><img src="naxos.png" alt="Xerjoff Naxos" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Unisex · Xerjoff</div>
+                  <h3>Naxos</h3>
+                  <p>Dulce, frutal y avainillada con un fondo seductor ideal para salidas nocturnas.</p>
+                </div>
+                <div class="product-bottom">
+                  <span class="price">$55.000</span>
+                  <a class="small-btn order-link" data-product="Xerjoff Naxos" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 22. Vulcan -->
+            <article class="product perfume-card" data-category="masculino">
+              <div class="product-photo"><img src="vulcan.png" alt="Vulcan" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Masculino · Maison Alhambra</div>
+                  <h3>Vulcan</h3>
+                  <p>Perfume imponente con notas de cuero, especias y madera.</p>
+                </div>
+                <div class="product-bottom">
+                  <span class="price">$47.000</span>
+                  <a class="small-btn order-link" data-product="Vulcan" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 23. Vulcan Feu -->
+            <article class="product perfume-card" data-category="masculino">
+              <div class="product-photo"><img src="vulcan feu.png" alt="Vulcan Feu" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Masculino · Maison Alhambra</div>
+                  <h3>Vulcan Feu</h3>
+                  <p>Edición cálida e intensa con toques ahumados y resinosos.</p>
+                </div>
+                <div class="product-bottom">
+                  <span class="price">$47.000</span>
+                  <a class="small-btn order-link" data-product="Vulcan Feu" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 24. Asad Bourbon -->
+            <article class="product perfume-card" data-category="masculino">
+              <div class="product-photo"><img src="asad bourbon.png" alt="Asad Bourbon" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Masculino · Lattafa</div>
+                  <h3>Asad Bourbon</h3>
+                  <p>Notas licorosas, vainilla especiada y madera ahumada.</p>
+                </div>
+                <div class="product-bottom">
+                  <span class="price">$37.000</span>
+                  <a class="small-btn order-link" data-product="Asad Bourbon" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 25. Asad -->
+            <article class="product perfume-card" data-category="masculino">
+              <div class="product-photo"><img src="asad.png" alt="Asad" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Masculino · Lattafa</div>
+                  <h3>Asad</h3>
+                  <p>Especias oscuras, pimienta negra, ámbar y café.</p>
+                </div>
+                <div class="product-bottom">
+                  <span class="price">$35.000</span>
+                  <a class="small-btn order-link" data-product="Asad" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 26. Oud for Glory -->
+            <article class="product perfume-card" data-category="unisex">
+              <div class="product-photo"><img src="oud for glory.png" alt="Oud for Glory" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Unisex · Lattafa</div>
+                  <h3>Oud for Glory</h3>
+                  <p>Azafrán, maderas finas y Oud oriental opulento.</p>
+                </div>
+                <div class="product-bottom">
+                  <span class="price">$45.000</span>
+                  <a class="small-btn order-link" data-product="Oud for Glory" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- 27. Fakhar Black -->
+            <article class="product perfume-card" data-category="masculino">
+              <div class="product-photo"><img src="fakhar.png" alt="Fakhar Black" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Masculino · Lattafa</div>
+                  <h3>Fakhar Black</h3>
+                  <p>Perfume elegancia pura, aromático con manzana y salvia.</p>
+                </div>
+                <div class="product-bottom">
+                  <span class="price">$43.000</span>
+                  <a class="small-btn order-link" data-product="Fakhar Black" href="#">Consultar ↗</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. VAPERS -->
+      <section id="vapers">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">Vape Shop Pro</div>
+              <h2>Vapers & Dispositivos Descartables</h2>
+            </div>
+            <p>Explorá nuestra gran variedad de vapers, seleccioná tu marca, puffs preferidos y elegí el sabor disponible mediante nuestro selector interactivo.</p>
+          </div>
+
+          <!-- FILTROS DE VAPERS -->
+          <div class="filter-section-vaper">
+            <div class="filter-title">Filtrar por Marca</div>
+            <div class="filter-group" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;">
+              <button class="filter active" onclick="filterVapers('brand', 'all', this)">Todas</button>
+              <button class="filter" onclick="filterVapers('brand', 'dinner-lady', this)">Dinner Lady</button>
+              <button class="filter" onclick="filterVapers('brand', 'nikbar', this)">Nikbar</button>
+              <button class="filter" onclick="filterVapers('brand', 'maskking', this)">Maskking</button>
+              <button class="filter" onclick="filterVapers('brand', 'ignite', this)">Ignite</button>
+              <button class="filter" onclick="filterVapers('brand', 'elfbar', this)">Elfbar</button>
+              <button class="filter" onclick="filterVapers('brand', 'ebcreate', this)">EBCreate</button>
+              <button class="filter" onclick="filterVapers('brand', 'sex-addict', this)">Sex Addict</button>
+              <button class="filter" onclick="filterVapers('brand', 'blvk', this)">BLVK</button>
+              <button class="filter" onclick="filterVapers('brand', 'lost-mary', this)">Lost Mary</button>
+              <button class="filter" onclick="filterVapers('brand', 'oxbar', this)">OXBAR</button>
+              <button class="filter" onclick="filterVapers('brand', 'nic-king', this)">Nic King</button>
+            </div>
+
+            <div class="filter-title" style="margin-top: 12px;">Filtrar por Puffs</div>
+            <div class="filter-group" style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button class="filter active" onclick="filterVapers('puffs', 'all', this)">Todos</button>
+              <button class="filter" onclick="filterVapers('puffs', '10k', this)">10K</button>
+              <button class="filter" onclick="filterVapers('puffs', '15k', this)">15K</button>
+              <button class="filter" onclick="filterVapers('puffs', '20k', this)">20K</button>
+              <button class="filter" onclick="filterVapers('puffs', '23k', this)">23K</button>
+              <button class="filter" onclick="filterVapers('puffs', '28k', this)">28K</button>
+              <button class="filter" onclick="filterVapers('puffs', '30k', this)">30K</button>
+              <button class="filter" onclick="filterVapers('puffs', '35k', this)">35K</button>
+              <button class="filter" onclick="filterVapers('puffs', '40k', this)">40K</button>
+              <button class="filter" onclick="filterVapers('puffs', '45k', this)">45K</button>
+              <button class="filter" onclick="filterVapers('puffs', '50k', this)">50K</button>
+              <button class="filter" onclick="filterVapers('puffs', '100k', this)">100K</button>
+            </div>
+          </div>
+
+          <!-- GRID DE VAPERS -->
+          <div class="products" id="vaper-grid"></div>
+        </div>
+      </section>
+
+      <!-- 3. AIRPODS -->
+      <section id="airpods">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">Tecnología Audio</div>
+              <h2>Auriculares AirPods</h2>
+            </div>
+            <p>Disfrutá de sonido envolvente, diseño anatómico y máxima comodidad con nuestros AirPods de 3ra Generación.</p>
+          </div>
+
+          <div class="products" style="max-width: 400px; margin: 0 auto;">
+            <!-- AirPods 3 -->
+            <article class="product">
+              <div class="product-photo"><img src="airpods.png" alt="AirPods 3ra Gen" loading="lazy"></div>
+              <div class="product-info">
+                <div>
+                  <div class="tag">Audio · Inalámbrico</div>
+                  <h3>AirPods Pro 2|</h3>
+                  <p>Diseño anatómico, audio espacial con seguimiento dinámico de la cabeza y estuche de carga Lightning/MagSafe.</p>
+                </div>
+                <div class="product-bottom">
+                  <span class="price">$26.000</span>
+                  <a class="small-btn order-link" data-product="AirPods (3ra Gen)" href="#">Encargar ↗</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- NOSOTROS & ENVÍOS -->
+    <section class="about" id="nosotros">
+      <div class="wrap about-grid">
+        <div>
+          <div class="eyebrow">Nuestra esencia</div>
+          <h2>El detalle<br>hace la diferencia.</h2>
+        </div>
+        <div>
+          <p class="about-copy">En N&G IMPORTADOS combinamos perfumería selecta, vapers de máxima duración y tecnología de audio en un solo lugar. Ofrecemos **envío a domicilio en toda la ciudad de La Rioja** para que recibas tu pedido de forma rápida y segura.</p>
+          <div class="features">
+            <div class="feature"><b>◆ Envío a domicilio</b><span>Coordinamos entregas rápidas en toda la ciudad de La Rioja.</span></div>
+            <div class="feature"><b>◆ Atención personalizada</b><span>Te asesoramos por WhatsApp sobre stock, sabores y modelos.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+      <div class="wrap contact-box">
+        <div>
+          <div class="eyebrow">Consultas y pedidos</div>
+          <h2>Tu próximo producto te espera.</h2>
+          <p>Consultá stock, precios y envíos a domicilio en La Rioja antes de realizar tu pedido.</p>
+        </div>
+        <div class="actions">
+          <a class="btn" id="whatsapp-main" href="https://wa.me/5493804148332" target="_blank" rel="noopener">WhatsApp ↗</a>
+          <a class="btn btn-outline" id="instagram-link" href="https://instagram.com/nyg.importados" target="_blank" rel="noopener">Instagram ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL DETALLE VAPER -->
+  <div class="modal-overlay" id="product-modal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal()">&times;</button>
+      <div class="modal-body" id="modal-body-content"></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap footer-row">
+      <span>© <span id="year"></span> N&G IMPORTADOS — Perfumes, Vapers & AirPods</span>
+      <span>Envío a domicilio en La Rioja · Estilo Neón & Dark</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const WHATSAPP_NUMBER = "5493804148332";
+
+    // Base de datos COMPLETA de Vapers
+    const vapersProducts = [
+      {
+        id: "dinner-lady-20k",
+        brandName: "Dinner Lady",
+        brandKey: "dinner-lady",
+        model: "Dinner Lady LUMA 20K",
+        puffsKey: "20k",
+        puffsText: "20.000 Puffs",
+        price: "$25.000",
+        pricePromo: "2X $46.000",
+        defaultImg: "LADY.png",
+        flavors: [
+          { name: "Sandía Fría", soldOut: false },
+          { name: "Menta Azul", soldOut: false },
+          { name: "Uva Fría", soldOut: false },
+          { name: "Ananá Fría", soldOut: false },
+          { name: "Menta Fría", soldOut: false },
+          { name: "Mango Frío", soldOut: false },
+          { name: "Durazno Mango y Sandía", soldOut: false },
+          { name: "Menthol", soldOut: false },
+          { name: "Manzana Durazno", soldOut: false },
+          { name: "Frutilla Fría", soldOut: false },
+          { name: "Cerezas Frías", soldOut: false },
+          { name: "Banana Fría", soldOut: false },
+          { name: "Maracuyá Frío", soldOut: false },
+          { name: "Kiwi con Maracuyá", soldOut: false }
+        ]
+      },
+      {
+        id: "nikbar-10k",
+        brandName: "Nikbar",
+        brandKey: "nikbar",
+        model: "Nikbar 10K",
+        puffsKey: "10k",
+        puffsText: "10.000 Puffs",
+        price: "$22.500",
+        pricePromo: "2X $40.000",
+        defaultImg: "nikbar 10k.png",
+        flavors: [
+          { name: "Cherry Bomb (Cereza y Uva / Cerezas Dulces)", soldOut: true },
+          { name: "Juicy Peach (Durazno)", soldOut: false },
+          { name: "Passion Sour Kiwi (Maracuyá con Kiwi)", soldOut: true },
+          { name: "Aloe Grape (Uva y Aloe)", soldOut: false },
+          { name: "Blueberry Ice (Arándanos Fríos)", soldOut: false },
+          { name: "Grape Ice (Uva Fría)", soldOut: true },
+          { name: "Watermelon Ice (Sandía Fría)", soldOut: false },
+          { name: "Grape Apple Ice (Manzana con Uva)", soldOut: false },
+          { name: "Blueberry Raspberry (Arándanos con Frambuesas)", soldOut: true },
+          { name: "Grape (Uva Frutilla)", soldOut: false },
+          { name: "Tarta de Frutilla", soldOut: false },
+          { name: "Fresh Mint (Menta Fría)", soldOut: true },
+          { name: "Strawberry Kiwi (Frutilla con Kiwi)", soldOut: false },
+          { name: "Frutilla con Frambuesas", soldOut: false },
+          { name: "Frutilla Fría", soldOut: false },
+          { name: "Frutilla, Manzana y Sandía", soldOut: false },
+          { name: "Pineapple Ice (Ananá Fría)", soldOut: true },
+          { name: "Chicle de Sandía", soldOut: false }
+        ]
+      },
+      {
+        id: "maskking-40k",
+        brandName: "Maskking",
+        brandKey: "maskking",
+        model: "Maskking Puff 40K",
+        puffsKey: "40k",
+        puffsText: "40.000 Puffs",
+        price: "$29.000",
+        pricePromo: "2X $55.000",
+        defaultImg: "mk 40k.png",
+        flavors: [
+          { name: "Cereza Negra y Durazno", soldOut: true },
+          { name: "Arándanos con Frambuesas", soldOut: false },
+          { name: "Mango con Maracuyá", soldOut: true },
+          { name: "Frutilla Kiwi", soldOut: false },
+          { name: "Uva Fría", soldOut: false },
+          { name: "Café Expresso", soldOut: false },
+          { name: "Frutos Rojos", soldOut: true },
+          { name: "Café con Menta", soldOut: true },
+          { name: "Frutilla Sandía", soldOut: false },
+          { name: "Helado de Vainilla", soldOut: false },
+          { name: "Manzana Pera", soldOut: true },
+          { name: "Menthol (ICEX)", soldOut: true },
+          { name: "Pomelo Ácido (ICEX)", soldOut: false },
+          { name: "Frutilla Ácida (ICEX)", soldOut: false },
+          { name: "Triple Frutos Rojos (ICEX)", soldOut: false },
+          { name: "Tabaco Rubio (ICEX)", soldOut: false },
+          { name: "Cereza con Cola (ICEX)", soldOut: false },
+          { name: "Chicle de Menta (ICEX)", soldOut: false }
+        ]
+      },
+      {
+        id: "maskking-100k",
+        brandName: "Maskking",
+        brandKey: "maskking",
+        model: "Maskking Puff 100K",
+        puffsKey: "100k",
+        puffsText: "100.000 Puffs",
+        price: "$34.000",
+        pricePromo: "2X $62.000",
+        defaultImg: "mk 100k.png",
+        flavors: [
+          { name: "Taffy Freeze (Banana Dulce Fría)", soldOut: true },
+          { name: "Watermelon Ice (Sandía Fría)", soldOut: false },
+          { name: "Alaska Ice (Menta Fría)", soldOut: false },
+          { name: "Uva Dulce Fría", soldOut: true },
+          { name: "Chicle de Menta", soldOut: true },
+          { name: "Juicy Peach (Jugo de Durazno Frío)", soldOut: false },
+          { name: "Frozen Piña Colada", soldOut: false },
+          { name: "Naranja, Mango y Uva Fría", soldOut: false },
+          { name: "Strawberry (Frutilla Intensa)", soldOut: false },
+          { name: "Gomitas Frías", soldOut: true },
+          { name: "Frutilla con Sandía", soldOut: true },
+          { name: "Mango Mexicano", soldOut: true },
+          { name: "Sour Apple Ice (Manzana Ácida Fría)", soldOut: false },
+          { name: "Arándanos con Frambuesas", soldOut: true },
+          { name: "Fruity Cool Strawberry (Caramelo de Frutilla)", soldOut: false }
+        ]
+      },
+      {
+        id: "ignite-v155",
+        brandName: "Ignite",
+        brandKey: "ignite",
+        model: "Ignite V155",
+        puffsKey: "15k",
+        puffsText: "15.500 Puffs",
+        price: "$24.500",
+        pricePromo: "2X $46.000",
+        defaultImg: "ingnite v155.png",
+        flavors: [
+          { name: "Blueberry Ice (Arándanos Fríos)", soldOut: true },
+          { name: "Strawberry Ice (Frutilla Fría)", soldOut: false },
+          { name: "Passion Fruit Kiwi (Kiwi con Maracuyá)", soldOut: false },
+          { name: "Strawberry Kiwi (Frutilla con Kiwi)", soldOut: false },
+          { name: "Strawberry Banana (Frutilla con Banana)", soldOut: true },
+          { name: "Grape Ice (Uva Fría)", soldOut: false },
+          { name: "Watermelon Ice (Sandía Fría)", soldOut: false },
+          { name: "Strawberry Watermelon (Frutilla con Sandía)", soldOut: true },
+          { name: "Banana Ice (Banana Fría)", soldOut: false },
+          { name: "Sour Apple (Manzana Verde)", soldOut: false },
+          { name: "Menta Fría", soldOut: true },
+          { name: "Menthol", soldOut: false },
+          { name: "Pineapple Ice (Ananá Fría)", soldOut: false }
+        ]
+      },
+      {
+        id: "ignite-v300",
+        brandName: "Ignite",
+        brandKey: "ignite",
+        model: "Ignite V300",
+        puffsKey: "30k",
+        puffsText: "30.000 Puffs",
+        price: "$30.000",
+        pricePromo: "2X $55.000",
+        defaultImg: "ingnite v300.png",
+        flavors: [
+          { name: "Menthol", soldOut: false },
+          { name: "Mix de Sandía", soldOut: false },
+          { name: "Arándanos, Frutilla y Coco", soldOut: false },
+          { name: "Menta Melón", soldOut: false },
+          { name: "Lima y Cactus", soldOut: false },
+          { name: "Uva Fría", soldOut: false },
+          { name: "Ananá Mango", soldOut: true },
+          { name: "Ananá Fría", soldOut: false },
+          { name: "Sandía y Fruta del Dragón", soldOut: true },
+          { name: "Sandía Fría", soldOut: false },
+          { name: "Frutilla con Kiwi", soldOut: false },
+          { name: "Banana Fría", soldOut: false },
+          { name: "Frutilla con Banana", soldOut: false },
+          { name: "Banana Coco", soldOut: false },
+          { name: "Pomelo Ácido", soldOut: false },
+          { name: "Arándanos Fríos", soldOut: false },
+          { name: "Frutilla Fría", soldOut: false },
+          { name: "Menta Fría", soldOut: false },
+          { name: "Ananá, Kiwi y Fruta del Dragón", soldOut: false },
+          { name: "Manzana Verde", soldOut: true },
+          { name: "Uva Aloe", soldOut: false }
+        ]
+      },
+      {
+        id: "ignite-ice-40k",
+        brandName: "Ignite",
+        brandKey: "ignite",
+        model: "Ignite ICE 40K",
+        puffsKey: "40k",
+        puffsText: "40.000 Puffs",
+        price: "$32.000",
+        pricePromo: "2X $58.000",
+        defaultImg: "ingnite 40 ice.png",
+        flavors: [
+          { name: "Grape Peach (Uva Durazno)", soldOut: false },
+          { name: "Strawberry Kiwi (Frutilla Kiwi)", soldOut: false },
+          { name: "Peach (Durazno)", soldOut: true },
+          { name: "Lima Limón", soldOut: true },
+          { name: "Mango", soldOut: true },
+          { name: "Strawberry Watermelon (Frutilla Sandía)", soldOut: false },
+          { name: "Menthol", soldOut: false },
+          { name: "Raspberry (Frambuesas)", soldOut: true },
+          { name: "Menta", soldOut: true },
+          { name: "Blueberry (Arándanos)", soldOut: false },
+          { name: "Strawberry Ice (Frutilla)", soldOut: false },
+          { name: "Watermelon (Sandía)", soldOut: false },
+          { name: "Grape (Uva)", soldOut: false },
+          { name: "Blue Razz Lemon (Frambuesas Azules con Limón)", soldOut: false },
+          { name: "Strawberry Apple Watermelon (Frutilla Manzana y Sandía)", soldOut: false },
+          { name: "Strawberry Banana Ice (Frutilla con Banana)", soldOut: false },
+          { name: "Pineapple Ice (Ananá Fría)", soldOut: false },
+          { name: "Sakura Grape (Cereza con Uva)", soldOut: false },
+          { name: "Passion Fruit Sour Kiwi (Kiwi con Maracuyá)", soldOut: false },
+          { name: "Pineapple Kiwi Dragonfruit (Ananá Kiwi y Fruta del Dragón)", soldOut: false }
+        ]
+      },
+      {
+        id: "ignite-mix-40k",
+        brandName: "Ignite",
+        brandKey: "ignite",
+        model: "Ignite MIX 40K",
+        puffsKey: "40k",
+        puffsText: "40.000 Puffs",
+        price: "$33.000",
+        pricePromo: "2X $60.000",
+        defaultImg: "ingnite 40k mix.png",
+        flavors: [
+          { name: "Banana Ice / Strawberry (Frutilla-Banana)", soldOut: false },
+          { name: "Icy Mint / Peach Grape (Menta-Durazno Uva)", soldOut: false },
+          { name: "Manzana-Sandía Frutilla", soldOut: false },
+          { name: "Blue Grape / Uva-Sandía Frutilla", soldOut: false },
+          { name: "Grape Ice / Strawberry (Uva-Frutilla)", soldOut: false },
+          { name: "Passion Fruit / Pineapple Ice (Ananá-Kiwi con Maracuyá)", soldOut: false },
+          { name: "Grape Ice / Acai Ice (Uva Sandía-Acai)", soldOut: false },
+          { name: "Peach / Mango Ice (Durazno Sandía Mango)", soldOut: false },
+          { name: "Cherry Ice (Sandía-Cereza)", soldOut: false },
+          { name: "Passion Fruit Guava / Mango Ice (Mango-Maracuyá)", soldOut: false },
+          { name: "Pineapple / Mango Ice (Ananá Mango Frutilla)", soldOut: false },
+          { name: "Strawberry Mango Ice / Banana Ice (Frutilla Mango Banana)", soldOut: false },
+          { name: "Grape Pop / Peach Ice (Uva-Durazno)", soldOut: false },
+          { name: "Naranja Frutilla", soldOut: false },
+          { name: "Melón Dulce y Mentol", soldOut: false },
+          { name: "Arándanos Frambuesas con Moras", soldOut: false }
+        ]
+      },
+      {
+        id: "ignite-v500",
+        brandName: "Ignite",
+        brandKey: "ignite",
+        model: "Ignite V500",
+        puffsKey: "50k",
+        puffsText: "50.000 Puffs",
+        price: "$35.000",
+        pricePromo: "2X $65.000",
+        defaultImg: "ingnite v500.png",
+        flavors: [
+          { name: "Mix Sandía", soldOut: false },
+          { name: "Durazno Uva", soldOut: false },
+          { name: "Arándanos Fríos", soldOut: true },
+          { name: "Mango Maracuyá", soldOut: false },
+          { name: "Menta Fría", soldOut: false },
+          { name: "Ananá Fría", soldOut: false },
+          { name: "Sandía Frutilla", soldOut: false },
+          { name: "Sandía Kiwi", soldOut: false },
+          { name: "Ananá Mango", soldOut: false },
+          { name: "Manzana Durazno y Kiwi", soldOut: false },
+          { name: "Kiwi Acai", soldOut: false },
+          { name: "Frutilla Fría", soldOut: false },
+          { name: "Menthol", soldOut: false },
+          { name: "Uva Fría", soldOut: false },
+          { name: "Frutilla Kiwi", soldOut: false },
+          { name: "Frutilla Banana", soldOut: false },
+          { name: "Sandía Fría", soldOut: false },
+          { name: "Manzana Verde", soldOut: false },
+          { name: "Frutilla Manzana y Sandía", soldOut: false },
+          { name: "Banana Cereza", soldOut: false }
+        ]
+      },
+      {
+        id: "elfbar-bc15k",
+        brandName: "Elfbar",
+        brandKey: "elfbar",
+        model: "Elfbar BC15K",
+        puffsKey: "15k",
+        puffsText: "15.000 Puffs",
+        price: "$22.000",
+        pricePromo: "2X $40.000",
+        defaultImg: "eb bc15.png",
+        flavors: [
+          { name: "Uva", soldOut: true },
+          { name: "Chicle de Menta", soldOut: false },
+          { name: "Arándanos con Frambuesas", soldOut: true },
+          { name: "Kiwi Sandía y Manzana", soldOut: false },
+          { name: "Pomelo con Lima", soldOut: false },
+          { name: "Manzana Fría", soldOut: false },
+          { name: "Kiwi con Maracuyá", soldOut: false },
+          { name: "Sandía Fría", soldOut: true },
+          { name: "Menta Fría", soldOut: false },
+          { name: "Durazno Mango y Sandía", soldOut: false },
+          { name: "Frutilla con Kiwi", soldOut: false },
+          { name: "Cereza con Uva", soldOut: false },
+          { name: "Triple Frutos Rojos", soldOut: true },
+          { name: "Chicle de Uva", soldOut: true },
+          { name: "Maracuyá, Naranja y Guava", soldOut: true },
+          { name: "Café Americano Frío", soldOut: false },
+          { name: "Chupetín Tropical", soldOut: true },
+          { name: "Ananá Fría", soldOut: true },
+          { name: "Pera, Sandía y Fruta del Dragón", soldOut: false },
+          { name: "Frutilla con Crema Fría", soldOut: false },
+          { name: "Frutilla Fría", soldOut: false },
+          { name: "Mango", soldOut: false },
+          { name: "Arándanos Frío", soldOut: true },
+          { name: "Limonada Tropical", soldOut: false },
+          { name: "Frutilla y Sandía", soldOut: false }
+        ]
+      },
+      {
+        id: "elfbar-gh23000",
+        brandName: "Elfbar",
+        brandKey: "elfbar",
+        model: "Elfbar GH23000",
+        puffsKey: "23k",
+        puffsText: "23.000 Puffs",
+        price: "$26.000",
+        pricePromo: "2X $48.000",
+        defaultImg: "eb 23.png",
+        flavors: [
+          { name: "Arándanos con Pera", soldOut: true },
+          { name: "Pomelo con Lima", soldOut: true },
+          { name: "Uva con Cerezas", soldOut: false },
+          { name: "Chicle de Menta", soldOut: true },
+          { name: "Frutillas Frías", soldOut: true },
+          { name: "Ananá Lima y Menta", soldOut: true },
+          { name: "Grape Ice (Uva Fría)", soldOut: false },
+          { name: "Kiwi con Fruta del Dragón", soldOut: true },
+          { name: "Arándanos Lima y Menta", soldOut: true },
+          { name: "Watermelon Ice (Sandía Fría)", soldOut: false },
+          { name: "Green Apple Ice (Manzana Fría)", soldOut: false },
+          { name: "Menta Fría", soldOut: true },
+          { name: "Arándanos con Frambuesas", soldOut: true },
+          { name: "Durazno Mango y Sandía", soldOut: true },
+          { name: "Frutilla con Banana", soldOut: true },
+          { name: "Menta", soldOut: false }
+        ]
+      },
+      {
+        id: "elfbar-te30k",
+        brandName: "Elfbar",
+        brandKey: "elfbar",
+        model: "Elfbar TE30K",
+        puffsKey: "30k",
+        puffsText: "30.000 Puffs",
+        price: "$27.000",
+        pricePromo: "2X $50.000",
+        defaultImg: "eb te30.png",
+        flavors: [
+          { name: "Banana con Coco", soldOut: false },
+          { name: "Bubaloo de Tuti Fruti", soldOut: false },
+          { name: "Sandía Fría", soldOut: true },
+          { name: "Frutilla Sandía y Durazno", soldOut: false },
+          { name: "Arándanos Frío", soldOut: false },
+          { name: "Durazno, Mango y Sandía", soldOut: true },
+          { name: "Banana con Acai", soldOut: true },
+          { name: "Ananá Mango", soldOut: true },
+          { name: "Frutilla Fría", soldOut: false },
+          { name: "Kiwi con Maracuyá", soldOut: false },
+          { name: "Fruta del Dragón", soldOut: true },
+          { name: "Frutilla y Banana", soldOut: true },
+          { name: "Cereza con Frutilla", soldOut: false },
+          { name: "Lima Pomelo", soldOut: true },
+          { name: "Bubaloo de Uva", soldOut: true },
+          { name: "Café Americano", soldOut: true },
+          { name: "Sandía con Limón", soldOut: true },
+          { name: "Uva con Limón", soldOut: false },
+          { name: "Coco con Frutilla", soldOut: true },
+          { name: "Manzana con Limón", soldOut: false }
+        ]
+      },
+      {
+        id: "elfbar-duke-35k",
+        brandName: "Elfbar",
+        brandKey: "elfbar",
+        model: "Elfbar DUKE 35K",
+        puffsKey: "35k",
+        puffsText: "35.000 Puffs",
+        price: "$28.500",
+        pricePromo: "2X $52.000",
+        defaultImg: "eb duke.png",
+        flavors: [
+          { name: "Ananá Fría", soldOut: false },
+          { name: "Menta Fría", soldOut: false },
+          { name: "Arándanos con Frambuesas", soldOut: true },
+          { name: "Uva Fría", soldOut: false },
+          { name: "Kiwi con Maracuyá", soldOut: false },
+          { name: "Uva Fanta", soldOut: false },
+          { name: "Coco Frutilla Fría", soldOut: false },
+          { name: "Arándanos Fríos", soldOut: false },
+          { name: "Frutilla con Kiwi", soldOut: false },
+          { name: "Durazno Mango y Sandía", soldOut: false },
+          { name: "Mango", soldOut: false },
+          { name: "Sandía Limón", soldOut: false },
+          { name: "Chicle Tuti Fruti", soldOut: false },
+          { name: "Sandía Fría", soldOut: false },
+          { name: "Menthol", soldOut: false }
+        ]
+      },
+      {
+        id: "elfbar-trio-40k",
+        brandName: "Elfbar",
+        brandKey: "elfbar",
+        model: "Elfbar TRIO 40K",
+        puffsKey: "40k",
+        puffsText: "40.000 Puffs",
+        price: "$30.000",
+        pricePromo: "2X $55.000",
+        defaultImg: "eb trio.png",
+        flavors: [
+          { name: "Arándanos", soldOut: true },
+          { name: "Uva", soldOut: false },
+          { name: "Naranja", soldOut: true },
+          { name: "Manzana Ácida", soldOut: false },
+          { name: "Uva Cereza", soldOut: false },
+          { name: "Arándanos con Frambuesas", soldOut: true },
+          { name: "Frutilla con Fruta del Dragón", soldOut: true },
+          { name: "Durazno", soldOut: false },
+          { name: "Frambuesas con Sandía", soldOut: false },
+          { name: "Granada Dulce", soldOut: false },
+          { name: "Frutilla, Lima, Naranja", soldOut: false },
+          { name: "Lima con Ananá", soldOut: false },
+          { name: "Frutos Rojos", soldOut: true },
+          { name: "Menta Negra", soldOut: false },
+          { name: "Sandía Fría", soldOut: false },
+          { name: "Mentol Frío", soldOut: false }
+        ]
+      },
+      {
+        id: "elfbar-iceking-40k",
+        brandName: "Elfbar",
+        brandKey: "elfbar",
+        model: "Elfbar Iceking 40K",
+        puffsKey: "40k",
+        puffsText: "40.000 Puffs",
+        price: "$27.500",
+        pricePromo: "2X $48.000",
+        defaultImg: "eb iceking.png",
+        flavors: [
+          { name: "Gomita dulces", soldOut: false },
+          { name: "Frambuesas azules", soldOut: false },
+          { name: "Cerezas acidas", soldOut: false },
+          { name: "Frutilla, sandia y coco", soldOut: false },
+          { name: "Frutilla con fruta del dragon", soldOut: true },
+          { name: "Sandia fria", soldOut: false },
+          { name: "Mango", soldOut: false },
+          { name: "Sandia, limon y frutos del bosque", soldOut: false },
+          { name: "Durazno", soldOut: false },
+          { name: "Frutilla fria", soldOut: false },
+          { name: "Manzana verde fria", soldOut: false },
+          { name: "Cereza con frutilla", soldOut: false },
+          { name: "Sandia frutilla", soldOut: false },
+          { name: "Uva fria", soldOut: false },
+          { name: "Manzana roja fria", soldOut: false },
+          { name: "Frutilla, banana y fruta del dragon", soldOut: true },
+          { name: "Chicle de menta", soldOut: false },
+          { name: "Arandanos, menta y lima", soldOut: false },
+          { name: "Durazno, mango y sandia", soldOut: true },
+          { name: "Moras con anana", soldOut: false },
+          { name: "Arandanos frios", soldOut: false },
+          { name: "Chicle tutti frutti", soldOut: false },
+          { name: "Melon, uva y mentol", soldOut: false }
+        ]
+      },
+      {
+        id: "elfbar-summer-40k",
+        brandName: "Elfbar",
+        brandKey: "elfbar",
+        model: "Elfbar 40K Edición Verano",
+        puffsKey: "40k",
+        puffsText: "40.000 Puffs",
+        price: "$28.000",
+        pricePromo: "2X $50.000",
+        defaultImg: "eb sum.png",
+        flavors: [
+          { name: "Maracuya", soldOut: true },
+          { name: "Frutos silvestres", soldOut: true },
+          { name: "Giro de neon", soldOut: false },
+          { name: "Durazno y arandanos", soldOut: false },
+          { name: "Granizado hawaiano", soldOut: true },
+          { name: "Frutos rojos", soldOut: true },
+          { name: "Chispa de fresa", soldOut: true },
+          { name: "Granizado de cola", soldOut: false },
+          { name: "Manzana verde", soldOut: false },
+          { name: "Menta negra", soldOut: false }
+        ]
+      },
+      {
+        id: "ebcreate-40k",
+        brandName: "Elfbar",
+        brandKey: "elfbar",
+        model: "EBCreate 40K Puffs",
+        puffsKey: "40k",
+        puffsText: "40.000 Puffs",
+        price: "$28.000",
+        pricePromo: "2X $50.000",
+        defaultImg: "ebcreate.png",
+        flavors: [
+          { name: "Mix de Uvas", soldOut: false },
+          { name: "Arándanos con Frambuesas", soldOut: false },
+          { name: "Moras con Uva", soldOut: false },
+          { name: "Frutos Tropicales", soldOut: false },
+          { name: "Frutos Rojos", soldOut: true },
+          { name: "Frambuesas Dulce", soldOut: false },
+          { name: "Frutilla y Frambuesas", soldOut: false },
+          { name: "Sandía Fría", soldOut: false },
+          { name: "Caramelos Ácidos", soldOut: false },
+          { name: "Mix de Frutilla", soldOut: false },
+          { name: "Ananá Tostado", soldOut: false },
+          { name: "Triple Frutos Rojos", soldOut: false },
+          { name: "Frutilla Kiwi", soldOut: false },
+          { name: "Ananá con Granada", soldOut: false }
+        ]
+      },
+      {
+        id: "sex-addict-28k",
+        brandName: "Sex Addict",
+        brandKey: "sex-addict",
+        model: "Sex Addict (Dan Bilzerian 28K)",
+        puffsKey: "28k",
+        puffsText: "28.000 Puffs",
+        price: "$27.000",
+        pricePromo: "2X $50.000",
+        defaultImg: "sex.png",
+        flavors: [
+          { name: "Arándanos Fríos", soldOut: true },
+          { name: "Menthol", soldOut: true },
+          { name: "Kiwi con Maracuyá", soldOut: true },
+          { name: "Uva con Kiwi", soldOut: true },
+          { name: "Manzana Verde", soldOut: true },
+          { name: "Menta Fría", soldOut: true },
+          { name: "Uva con Acai", soldOut: true },
+          { name: "Uva Fría", soldOut: true },
+          { name: "Banana Fría", soldOut: true }
+        ]
+      },
+      {
+        id: "blvk-bar-45k",
+        brandName: "BLVK Bar",
+        brandKey: "blvk",
+        model: "BLVK Bar 45K",
+        puffsKey: "45k",
+        puffsText: "45.000 Puffs",
+        price: "$30.000",
+        pricePromo: "2X $58.000",
+        defaultImg: "blvk.png",
+        flavors: [
+          { name: "Frutilla con Kiwi", soldOut: false },
+          { name: "Uva Fría", soldOut: false },
+          { name: "Manzana Dulce", soldOut: true },
+          { name: "Menthol", soldOut: false },
+          { name: "Arándanos con Menta", soldOut: false },
+          { name: "Frutilla, Banana y Fruta del Dragón", soldOut: true },
+          { name: "Kiwi con Maracuyá", soldOut: true },
+          { name: "Menta Fría", soldOut: false },
+          { name: "Frutilla con Mango", soldOut: true },
+          { name: "Sandía Fría", soldOut: false },
+          { name: "Manzana Verde", soldOut: false },
+          { name: "Frutilla Fría", soldOut: false },
+          { name: "Sandía con Frutilla", soldOut: false }
+        ]
+      },
+      {
+        id: "lost-mary-20k",
+        brandName: "Lost Mary",
+        brandKey: "lost-mary",
+        model: "Lost Mary Puff 20K",
+        puffsKey: "20k",
+        puffsText: "20.000 Puffs",
+        price: "$28.000",
+        pricePromo: "2X $50.000",
+        defaultImg: "LM.png",
+        flavors: [
+          { name: "Sandía Fría", soldOut: false },
+          { name: "Ananá Limón", soldOut: false },
+          { name: "Frutilla, Sandía y Durazno", soldOut: false },
+          { name: "Frutilla con Kiwi", soldOut: false },
+          { name: "Frutos Rojos", soldOut: false },
+          { name: "Uva Fría", soldOut: true },
+          { name: "Frutilla y Fruta del Dragón", soldOut: false },
+          { name: "Banana", soldOut: false },
+          { name: "Mix de Uvas", soldOut: false },
+          { name: "Chicle de Menta", soldOut: false },
+          { name: "Arándanos Frambuesas Frías", soldOut: false },
+          { name: "Frutos Hawaianos", soldOut: true },
+          { name: "Chupetín Cereza Frutilla", soldOut: false },
+          { name: "Frutas Hawaianas", soldOut: false }
+        ]
+      },
+      {
+        id: "oxbar-30k",
+        brandName: "OXBAR",
+        brandKey: "oxbar",
+        model: "OXBAR Puff 30K / Magic Mazer / G30K PRO",
+        puffsKey: "30k",
+        puffsText: "30.000 Puffs",
+        price: "$25.000",
+        pricePromo: "2X $45.000",
+        defaultImg: "oxbar.png",
+        flavors: [
+          { name: "Arándanos Frambuesa Limón", soldOut: false },
+          { name: "Uva Blanca Fría", soldOut: true },
+          { name: "Frutilla con Frambuesas y Limón Frío", soldOut: true },
+          { name: "Uva Durazno", soldOut: false },
+          { name: "Gomitas de Sandía", soldOut: true },
+          { name: "Frutilla Sandía y Durazno", soldOut: true },
+          { name: "Gomitas Frías", soldOut: true },
+          { name: "Kiwi con Lima Fría", soldOut: true },
+          { name: "Maracuyá con Pomelo", soldOut: true },
+          { name: "Frutilla, Sandía y Fruta del Dragón", soldOut: true },
+          { name: "Mango Durazno", soldOut: true },
+          { name: "Soda de Frutilla", soldOut: false },
+          { name: "Doble Manzana", soldOut: false },
+          { name: "Moras con Limón", soldOut: false },
+          { name: "Frutos Rojos", soldOut: false },
+          { name: "Sandía con Frutilla", soldOut: false },
+          { name: "Uva con Frambuesa", soldOut: false },
+          { name: "Kiwi con Maracuyá", soldOut: false },
+          { name: "Mango Dulce", soldOut: false },
+          { name: "Sandía con Maracuyá", soldOut: true },
+          { name: "Menta Fría", soldOut: true },
+          { name: "Uva Mixta", soldOut: true },
+          { name: "Sandía con Frambuesa", soldOut: false }
+        ]
+      },
+      {
+        id: "oxbar-50k",
+        brandName: "OXBAR",
+        brandKey: "oxbar",
+        model: "OXBAR 50K (3 en 1)",
+        puffsKey: "50k",
+        puffsText: "50.000 Puffs",
+        price: "$35.000",
+        pricePromo: "2X $63.000",
+        defaultImg: "oxbar 50k.png",
+        flavors: [
+          { name: "Ananá, Kiwi y Fruta del Dragón", soldOut: true },
+          { name: "Uva Fría", soldOut: true },
+          { name: "Sandía Fría", soldOut: false },
+          { name: "Frutilla Fría", soldOut: false },
+          { name: "Menthol", soldOut: false },
+          { name: "Kiwi con Maracuyá", soldOut: false },
+          { name: "Frutilla con Kiwi", soldOut: false },
+          { name: "Ananá Fría", soldOut: false },
+          { name: "Frutilla y Uva", soldOut: true },
+          { name: "Menta Fría", soldOut: false }
+        ]
+      },
+      {
+        id: "nic-king-40k",
+        brandName: "Elfbar",
+        brandKey: "elfbar",
+        model: "Nic King 40K Puffs",
+        puffsKey: "40k",
+        puffsText: "40.000 Puffs",
+        price: "$28.000",
+        pricePromo: "2X $50.000",
+        defaultImg: "eb nk.png",
+        flavors: [
+          { name: "Gomitas de mora", soldOut: true },
+          { name: "Granada dulce", soldOut: true },
+          { name: "Mango y anana", soldOut: true },
+          { name: "Sandia y cereza", soldOut: true },
+          { name: "Frutilla con fruta del dragon", soldOut: true },
+          { name: "Sandia fria", soldOut: true },
+          { name: "Pera fria", soldOut: false },
+          { name: "Anana, pomelo y fruta del dragon", soldOut: true },
+          { name: "Arandanos con rosas", soldOut: false },
+          { name: "Frutilla con frambuesas", soldOut: true },
+          { name: "Arandanos con frambuesas", soldOut: true },
+          { name: "Moras frias", soldOut: true },
+          { name: "Uva con arandanos", soldOut: true },
+          { name: "Gomitas de cereza", soldOut: true },
+          { name: "Lima fria", soldOut: false },
+          { name: "Manzana con sandia", soldOut: true },
+          { name: "Mix de frutos rojos", soldOut: true }
+        ]
+      }
+    ];
+
+    let activeVaperFilters = { brand: 'all', puffs: 'all' };
+    let currentSelectedFlavor = "";
+    let currentProduct = null;
+
+    // Renderizar Vapers
+    function renderVapers() {
+      const grid = document.getElementById('vaper-grid');
+      grid.innerHTML = '';
+
+      vapersProducts.forEach(p => {
+        const card = document.createElement('article');
+        card.className = 'product vaper-card';
+        card.setAttribute('data-brand', p.brandKey);
+        card.setAttribute('data-puffs', p.puffsKey);
+        card.onclick = () => openProductModal(p);
+
+        card.innerHTML = `
+          <div class="product-photo">
+            <img src="${p.defaultImg}" alt="${p.model}">
+          </div>
+          <div class="product-info">
+            <div>
+              <span class="tag">${p.brandName}</span>
+              <h3 style="font-size:1.15rem; margin:6px 0;">${p.model}</h3>
+              <p style="margin-bottom:10px; min-height:auto;">${p.puffsText}</p>
+            </div>
+            <div class="product-bottom">
+              <div>
+                <div class="price">${p.price}</div>
+                <div style="font-size: 0.78rem; color: #4ade80; font-weight: 600;">${p.pricePromo}</div>
+              </div>
+              <button class="small-btn">Elegir sabor ↗</button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function openProductModal(p) {
+      currentProduct = p;
+      currentSelectedFlavor = "";
+      const modal = document.getElementById('product-modal');
+      const content = document.getElementById('modal-body-content');
+
+      let flavorsHTML = '';
+      p.flavors.forEach((f, index) => {
+        if (f.soldOut) {
+          flavorsHTML += `
+            <div class="flavor-item soldout">
+              <span class="flavor-name" style="color: #9ca3af;">🚫 ${f.name} (Sold Out)</span>
+            </div>
+          `;
+        } else {
+          flavorsHTML += `
+            <div class="flavor-item" id="flavor-item-${index}" onclick="selectFlavor('${f.name}', ${index})">
+              <span class="flavor-name">${f.name}</span>
+            </div>
+          `;
+        }
+      });
+
+      content.innerHTML = `
+        <div class="modal-img-container">
+          <img src="${p.defaultImg}" alt="${p.model}">
+        </div>
+        <div class="modal-info">
+          <span class="tag">${p.brandName}</span>
+          <h2 class="modal-title">${p.model}</h2>
+          <p style="color:var(--muted); font-size:0.9rem; min-height:auto;">${p.puffsText}</p>
+          <div class="price">${p.price} <span style="font-size:0.85rem; color:#4ade80; font-weight:normal; margin-left:8px;">(${p.pricePromo})</span></div>
+
+          <div style="margin-top: 5px;">
+            <label style="font-size: 0.85rem; color: var(--muted);">Cantidad (Máx. 10):</label>
+            <div class="quantity-control">
+              <button class="qty-btn" onclick="changeQty(-1)">-</button>
+              <input type="number" id="qty-number" class="qty-input" value="1" min="1" max="10" readonly>
+              <button class="qty-btn" onclick="changeQty(1)">+</button>
+            </div>
+          </div>
+
+          <div class="flavors-container">
+            <label style="font-size: 0.85rem; color: var(--muted); font-weight: bold;">Elige tu sabor:</label>
+            <div class="flavor-option-list">
+              ${flavorsHTML}
+            </div>
+          </div>
+
+          <button class="btn-whatsapp" onclick="sendWhatsAppModal()">
+            Pedir por WhatsApp
+          </button>
+        </div>
+      `;
+
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('product-modal').style.display = 'none';
+    }
+
+    function changeQty(amount) {
+      const input = document.getElementById('qty-number');
+      let val = parseInt(input.value) + amount;
+      if (val < 1) val = 1;
+      if (val > 10) val = 10;
+      input.value = val;
+    }
+
+    function selectFlavor(name, index) {
+      currentSelectedFlavor = name;
+      const items = document.querySelectorAll('.flavor-item');
+      items.forEach(item => item.classList.remove('selected'));
+      document.getElementById(`flavor-item-${index}`).classList.add('selected');
+    }
+
+    function sendWhatsAppModal() {
+      if (!currentSelectedFlavor) {
+        alert("Por favor selecciona un sabor disponible antes de encargar.");
+        return;
+      }
+      const qty = document.getElementById('qty-number').value;
+      const message = `Hola, N&G IMPORTADOS. Quisiera encargar:\n- Producto: ${currentProduct.model}\n- Sabor: ${currentSelectedFlavor}\n- Cantidad: ${qty} unidad(es)\n- Precio unitario: ${currentProduct.price}`;
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }
+
+    // Filtrar Perfumes
+    function filterPerfumes(category, btn) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.querySelectorAll('.perfume-card').forEach(card => {
+        card.classList.toggle('hidden', category !== 'todos' && card.dataset.category !== category);
+      });
+    }
+
+    // Filtrar Vapers
+    function filterVapers(type, value, btn) {
+      activeVaperFilters[type] = value;
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.querySelectorAll('.vaper-card').forEach(card => {
+        const b = card.getAttribute('data-brand');
+        const p = card.getAttribute('data-puffs');
+        const brandMatch = (activeVaperFilters.brand === 'all' || activeVaperFilters.brand === b);
+        const puffsMatch = (activeVaperFilters.puffs === 'all' || activeVaperFilters.puffs === p);
+
+        card.style.display = (brandMatch && puffsMatch) ? 'flex' : 'none';
+      });
+    }
+
+    // Enlaces directos a WhatsApp para Perfumes y AirPods
+    document.querySelectorAll('.order-link').forEach(link => {
+      const productName = link.getAttribute('data-product');
+      link.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, N&G IMPORTADOS. Quería consultar por ' + productName + '. ¿Tienen disponibilidad?')}`;
+      link.target = '_blank';
+      link.rel = 'noopener';
+    });
+
+    document.addEventListener('DOMContentLoaded', renderVapers);
+  </script>
+</body>
+</html>
