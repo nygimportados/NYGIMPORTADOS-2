@@ -203,7 +203,7 @@
     .modal-body { display: flex; flex-direction: column; gap: 25px; }
     @media (min-width: 650px) { .modal-body { flex-direction: row; } }
     .modal-img-container { flex: 1; background-color: #0f0f13; border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 20px; min-height: 280px; border: 1px solid #22222d; }
-    .modal-img-container img { max-width: 100%; max-height: 240px; object-fit: contain; }
+    .modal-img-container img { max-width: 100%; max-height: 240px; object-fit: contain; transition: opacity 0.2s ease-in-out; }
     .modal-info { flex: 1.2; display: flex; flex-direction: column; gap: 12px; }
     .modal-title { font-size: 1.5rem; font-weight: bold; font-family: Georgia, serif; }
     
@@ -218,14 +218,65 @@
     .flavor-item:hover { border-color: var(--accent-color); }
     .flavor-item.selected { border-color: var(--accent-color); background-color: rgba(168, 85, 247, 0.15); box-shadow: 0 0 8px var(--accent-glow); }
     .flavor-item.soldout { opacity: 0.4; cursor: not-allowed; border-color: #ef4444; }
-    .flavor-thumb { width: 38px; height: 38px; border-radius: 6px; object-fit: cover; background-color: #1c1c27; }
     .flavor-name { font-size: 0.85rem; flex-grow: 1; }
     
     .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 10px; background-color: var(--whatsapp-color); color: #fff; text-decoration: none; padding: 14px; border-radius: 10px; font-weight: bold; font-size: 1rem; margin-top: 10px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3); border:none; cursor:pointer; width:100%; }
     .btn-whatsapp:hover { background-color: var(--whatsapp-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(34, 197, 94, 0.5); }
 
+    /* BOTÓN DISCRETO EN EL FOOTER PARA ADMIN */
+    .admin-footer-btn {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 0.82rem;
+      transition: color 0.3s;
+      margin-left: 10px;
+    }
+    .admin-footer-btn:hover {
+      color: var(--accent-color);
+    }
+
+    /* MODAL DEL PANEL DE CONTROL (ADMIN) */
+    .admin-modal {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.92); backdrop-filter: blur(8px); z-index: 2000;
+      display: none; justify-content: center; align-items: center; padding: 20px;
+    }
+    .admin-container {
+      background: #121218; border: 1px solid var(--accent-color);
+      width: 100%; max-width: 950px; height: 88vh; border-radius: 16px;
+      display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 0 40px var(--accent-glow);
+    }
+    .admin-header {
+      padding: 20px; background: #191922; border-bottom: 1px solid #2a2a3a;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .admin-header h3 { color: var(--accent-color); font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
+    .admin-body { padding: 20px; flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; }
+    .admin-card { background: #1a1a24; border: 1px solid #282838; border-radius: 10px; padding: 15px; }
+    .admin-card-title { font-weight: bold; color: var(--gold-light); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2a2a3a; padding-bottom: 8px; flex-wrap: wrap; gap: 10px; }
+
+    /* SWITCH INTERRUPTOR CUSTOM */
+    .switch { position: relative; display: inline-block; width: 44px; height: 22px; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider-switch {
+      position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #374151; transition: .3s; border-radius: 34px;
+    }
+    .slider-switch:before {
+      position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px;
+      background-color: white; transition: .3s; border-radius: 50%;
+    }
+    input:checked + .slider-switch { background-color: #22c55e; }
+    input:checked + .slider-switch:before { transform: translateX(22px); }
+
+    .flavor-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-bottom: 1px solid #222230; background: #13131b; border-radius: 6px; margin-bottom: 6px; }
+    .flavor-row-name { font-size: 0.9rem; }
+    .input-field { background: #0b0b0e; border: 1px solid #2f2f42; color: #fff; padding: 6px 10px; border-radius: 6px; font-size: 0.85rem; }
+
     footer { padding: 28px 0; border-top: 1px solid #1c1c27; color: var(--muted); font-size: .82rem; }
-    .footer-row { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+    .footer-row { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; align-items: center; }
 
     /* VISTA CELULAR (2 COLUMNAS Y CUADROS MÁS CHICOS) */
     @media(max-width:760px){
@@ -880,7 +931,7 @@
               <div class="product-info">
                 <div>
                   <div class="tag">Audio · Inalámbrico</div>
-                  <h3>AirPods Pro 2|</h3>
+                  <h3>AirPods Pro 2</h3>
                   <p>Diseño anatómico, audio espacial con seguimiento dinámico de la cabeza y estuche de carga Lightning/MagSafe.</p>
                 </div>
                 <div class="product-bottom">
@@ -936,10 +987,25 @@
     </div>
   </div>
 
+  <!-- CONSOLA / PANEL DE CONTROL (ADMIN) -->
+  <div class="admin-modal" id="adminModal">
+    <div class="admin-container">
+      <div class="admin-header">
+        <h3>⚡ Panel de Control Privado (Stock & Precios)</h3>
+        <button class="small-btn" onclick="closeAdminPanel()">✕ Cerrar</button>
+      </div>
+      <div class="admin-body" id="adminBodyContent"></div>
+    </div>
+  </div>
+
   <footer>
     <div class="wrap footer-row">
       <span>© <span id="year"></span> N&G IMPORTADOS — Perfumes, Vapers & AirPods</span>
-      <span>Envío a domicilio en La Rioja · Estilo Neón & Dark</span>
+      <div>
+        <span>Envío a domicilio en La Rioja</span>
+        <!-- BOTÓN SECRETO EN EL FOOTER -->
+        <button class="admin-footer-btn" onclick="openAdminPanel()">⚙️ Admin</button>
+      </div>
     </div>
   </footer>
 
@@ -961,8 +1027,8 @@
       dropdownMenu.classList.remove('show');
     });
 
-    // Base de datos COMPLETA de Vapers
-    const vapersProducts = [
+    // Base de datos COMPLETA de Vapers con soporte para la propiedad 'img'
+    const defaultVapers = [
       {
         id: "dinner-lady-20k",
         brandName: "Dinner Lady",
@@ -974,20 +1040,20 @@
         pricePromo: "2X $46.000",
         defaultImg: "LADY.png",
         flavors: [
-          { name: "Sandía Fría", soldOut: false },
-          { name: "Menta Azul", soldOut: false },
-          { name: "Uva Fría", soldOut: false },
-          { name: "Ananá Fría", soldOut: false },
-          { name: "Menta Fría", soldOut: false },
-          { name: "Mango Frío", soldOut: false },
-          { name: "Durazno Mango y Sandía", soldOut: false },
-          { name: "Menthol", soldOut: false },
-          { name: "Manzana Durazno", soldOut: false },
-          { name: "Frutilla Fría", soldOut: false },
-          { name: "Cerezas Frías", soldOut: false },
-          { name: "Banana Fría", soldOut: false },
-          { name: "Maracuyá Frío", soldOut: false },
-          { name: "Kiwi con Maracuyá", soldOut: false }
+          { name: "Sandía Fría", soldOut: false, img: "sandia.png" },
+          { name: "Menta Azul", soldOut: false, img: "menta.png" },
+          { name: "Uva Fría", soldOut: false, img: "uva.png" },
+          { name: "Ananá Fría", soldOut: false, img: "anana.png" },
+          { name: "Menta Fría", soldOut: false, img: "mentafria.png" },
+          { name: "Mango Frío", soldOut: false, img: "mango.png" },
+          { name: "Durazno Mango y Sandía", soldOut: false, img: "duraznomangosandia.png" },
+          { name: "Menthol", soldOut: false, img: "menthol.png" },
+          { name: "Manzana Durazno", soldOut: false, img: "manzanadurazno.png" },
+          { name: "Frutilla Fría", soldOut: false, img: "frutillafria.png" },
+          { name: "Cerezas Frías", soldOut: false, img: "cereza.png" },
+          { name: "Banana Fría", soldOut: false, img: "banana.png" },
+          { name: "Maracuyá Frío", soldOut: false, img: "maracuya.png" },
+          { name: "Kiwi con Maracuyá", soldOut: false, img: "kiwimaracuya.png" }
         ]
       },
       {
@@ -1001,24 +1067,23 @@
         pricePromo: "2X $40.000",
         defaultImg: "nikbar 10k.png",
         flavors: [
-          { name: "Cherry Bomb (Cereza y Uva / Cerezas Dulces)", soldOut: true },
-          { name: "Juicy Peach (Durazno)", soldOut: false },
-          { name: "Passion Sour Kiwi (Maracuyá con Kiwi)", soldOut: true },
-          { name: "Aloe Grape (Uva y Aloe)", soldOut: false },
-          { name: "Blueberry Ice (Arándanos Fríos)", soldOut: false },
-          { name: "Grape Ice (Uva Fría)", soldOut: true },
-          { name: "Watermelon Ice (Sandía Fría)", soldOut: false },
-          { name: "Grape Apple Ice (Manzana con Uva)", soldOut: false },
-          { name: "Blueberry Raspberry (Arándanos con Frambuesas)", soldOut: true },
-          { name: "Grape (Uva Frutilla)", soldOut: false },
-          { name: "Tarta de Frutilla", soldOut: false },
-          { name: "Fresh Mint (Menta Fría)", soldOut: true },
-          { name: "Strawberry Kiwi (Frutilla con Kiwi)", soldOut: false },
-          { name: "Frutilla con Frambuesas", soldOut: false },
-          { name: "Frutilla Fría", soldOut: false },
-          { name: "Frutilla, Manzana y Sandía", soldOut: false },
-          { name: "Pineapple Ice (Ananá Fría)", soldOut: true },
-          { name: "Chicle de Sandía", soldOut: false }
+          { name: "Cherry Bomb (Cereza y Uva / Cerezas Dulces)", soldOut: true, img: "cherrybomb.png" },
+          { name: "Juicy Peach (Durazno)", soldOut: false, img: "juicypeach.png" },
+          { name: "Passion Sour Kiwi (Maracuyá con Kiwi)", soldOut: false, img: "passionsourkiwi.png" },
+          { name: "Aloe Grape (Uva y Aloe)", soldOut: false, img: "aloegrape.png" },
+          { name: "Blueberry Ice (Arándanos Fríos)", soldOut: false, img: "blueberryice.png" },
+          { name: "Grape Ice (Uva Fría)", soldOut: true, img: "grapeice.png" },
+          { name: "Watermelon Ice (Sandía Fría)", soldOut: false, img: "watermelonice.png" },
+          { name: "Blueberry Raspberry (Arándanos con Frambuesas)", soldOut: true, img: "blueberryraspberry.png" },
+          { name: "Grape (Uva Frutilla)", soldOut: false, img: "grapefrutilla.png" },
+          { name: "Tarta de Frutilla", soldOut: false, img: "tartadefrutilla.png" },
+          { name: "Fresh Mint (Menta Fría)", soldOut: false, img: "freshmint.png" },
+          { name: "Strawberry Kiwi (Frutilla con Kiwi)", soldOut: false, img: "strawberrykiwi.png" },
+          { name: "Frutilla con Frambuesas", soldOut: false, img: "frutillaframbuesas.png" },
+          { name: "Frutilla Fría", soldOut: false, img: "frutillanik.png" },
+          { name: "Frutilla, Manzana y Sandía", soldOut: false, img: "frutillamanzanasandia.png" },
+          { name: "Pineapple Ice (Ananá Fría)", soldOut: true, img: "pineappleice.png" },
+          { name: "Chicle de Sandía", soldOut: false, img: "chicledesandia.png" }
         ]
       },
       {
@@ -1032,24 +1097,24 @@
         pricePromo: "2X $55.000",
         defaultImg: "mk 40k.png",
         flavors: [
-          { name: "Cereza Negra y Durazno", soldOut: true },
-          { name: "Arándanos con Frambuesas", soldOut: false },
-          { name: "Mango con Maracuyá", soldOut: true },
-          { name: "Frutilla Kiwi", soldOut: false },
-          { name: "Uva Fría", soldOut: false },
-          { name: "Café Expresso", soldOut: false },
-          { name: "Frutos Rojos", soldOut: true },
-          { name: "Café con Menta", soldOut: true },
-          { name: "Frutilla Sandía", soldOut: false },
-          { name: "Helado de Vainilla", soldOut: false },
-          { name: "Manzana Pera", soldOut: true },
-          { name: "Menthol (ICEX)", soldOut: true },
-          { name: "Pomelo Ácido (ICEX)", soldOut: false },
-          { name: "Frutilla Ácida (ICEX)", soldOut: false },
-          { name: "Triple Frutos Rojos (ICEX)", soldOut: false },
-          { name: "Tabaco Rubio (ICEX)", soldOut: false },
-          { name: "Cereza con Cola (ICEX)", soldOut: false },
-          { name: "Chicle de Menta (ICEX)", soldOut: false }
+          { name: "Cereza Negra y Durazno", soldOut: false, img: "cerezanegradurazno.png" },
+          { name: "Arándanos con Frambuesas", soldOut: true, img: "arandanosframbuesas.png" },
+          { name: "Mango con Maracuyá", soldOut: true, img: "mangomaracuya.png" },
+          { name: "Frutilla Kiwi", soldOut: true, img: "frutillakiwi.png" },
+          { name: "Uva Fría", soldOut: true , img: "uvafria.png" },
+          { name: "Café Expresso", soldOut: false, img: "cafeexpresso.png" },
+          { name: "Frutos Rojos", soldOut: true, img: "frutosrojos.png" },
+          { name: "Café con Menta", soldOut: true, img: "cafeconmenta.png" },
+          { name: "Frutilla Sandía", soldOut: true, img: "frutillasandia.png" },
+          { name: "Helado de Vainilla", soldOut: false, img: "heladovainilla.png" },
+          { name: "Manzana Pera", soldOut: true, img: "manzanapera.png" },
+          { name: "Menthol (ICEX)", soldOut: true, img: "mentholicex.png" },
+          { name: "Pomelo Ácido (ICEX)", soldOut: false, img: "pomeloacidoicex.png" },
+          { name: "Frutilla Ácida (ICEX)", soldOut: false, img: "frutillaacidaicex.png" },
+          { name: "Triple Frutos Rojos (ICEX)", soldOut: false, img: "triplefrutosicex.png" },
+          { name: "Tabaco Rubio (ICEX)", soldOut: false, img: "tabacorubioicex.png" },
+          { name: "Cereza con Cola (ICEX)", soldOut: false, img: "cerezacolaicex.png" },
+          { name: "Chicle de Menta (ICEX)", soldOut: false, img: "chiclementaicex.png" }
         ]
       },
       {
@@ -1063,21 +1128,21 @@
         pricePromo: "2X $62.000",
         defaultImg: "mk 100k.png",
         flavors: [
-          { name: "Taffy Freeze (Banana Dulce Fría)", soldOut: true },
-          { name: "Watermelon Ice (Sandía Fría)", soldOut: false },
-          { name: "Alaska Ice (Menta Fría)", soldOut: false },
-          { name: "Uva Dulce Fría", soldOut: true },
-          { name: "Chicle de Menta", soldOut: true },
-          { name: "Juicy Peach (Jugo de Durazno Frío)", soldOut: false },
-          { name: "Frozen Piña Colada", soldOut: false },
-          { name: "Naranja, Mango y Uva Fría", soldOut: false },
-          { name: "Strawberry (Frutilla Intensa)", soldOut: false },
-          { name: "Gomitas Frías", soldOut: true },
-          { name: "Frutilla con Sandía", soldOut: true },
-          { name: "Mango Mexicano", soldOut: true },
-          { name: "Sour Apple Ice (Manzana Ácida Fría)", soldOut: false },
-          { name: "Arándanos con Frambuesas", soldOut: true },
-          { name: "Fruity Cool Strawberry (Caramelo de Frutilla)", soldOut: false }
+          { name: "Taffy Freeze (Banana Dulce Fría)", soldOut: true, img: "taffyfreeze.png" },
+          { name: "Watermelon Ice (Sandía Fría)", soldOut: false, img: "watermelonicee.png" },
+          { name: "Alaska Ice (Menta Fría)", soldOut: false, img: "alaskaice.png" },
+          { name: "Uva Dulce Fría", soldOut: true, img: "uvadulcefria.png" },
+          { name: "Chicle de Menta", soldOut: true, img: "chiclementa.png" },
+          { name: "Juicy Peach (Jugo de Durazno Frío)", soldOut: false, img: "juicypeachh.png" },
+          { name: "Frozen Piña Colada", soldOut: false, img: "frozenpinacolada.png" },
+          { name: "Naranja, Mango y Uva Fría", soldOut: false, img: "naranjamangouva.png" },
+          { name: "Strawberry (Frutilla Intensa)", soldOut: false, img: "strawberry.png" },
+          { name: "Gomitas Frías", soldOut: true, img: "gomitasfrias.png" },
+          { name: "Frutilla con Sandía", soldOut: true, img: "frutillasandia.png" },
+          { name: "Mango Mexicano", soldOut: true, img: "mangomexicano.png" },
+          { name: "Sour Apple Ice (Manzana Ácida Fría)", soldOut: false, img: "sourappleice.png" },
+          { name: "Arándanos con Frambuesas", soldOut: true, img: "arandanosframbuesasmk.png" },
+          { name: "Fruity Cool Strawberry (Caramelo de Frutilla)", soldOut: false, img: "fruitystrawberry.png" }
         ]
       },
       {
@@ -1091,19 +1156,19 @@
         pricePromo: "2X $46.000",
         defaultImg: "ingnite v155.png",
         flavors: [
-          { name: "Blueberry Ice (Arándanos Fríos)", soldOut: true },
-          { name: "Strawberry Ice (Frutilla Fría)", soldOut: false },
-          { name: "Passion Fruit Kiwi (Kiwi con Maracuyá)", soldOut: false },
-          { name: "Strawberry Kiwi (Frutilla con Kiwi)", soldOut: false },
-          { name: "Strawberry Banana (Frutilla con Banana)", soldOut: true },
-          { name: "Grape Ice (Uva Fría)", soldOut: false },
-          { name: "Watermelon Ice (Sandía Fría)", soldOut: false },
-          { name: "Strawberry Watermelon (Frutilla con Sandía)", soldOut: true },
-          { name: "Banana Ice (Banana Fría)", soldOut: false },
-          { name: "Sour Apple (Manzana Verde)", soldOut: false },
-          { name: "Menta Fría", soldOut: true },
-          { name: "Menthol", soldOut: false },
-          { name: "Pineapple Ice (Ananá Fría)", soldOut: false }
+          { name: "Blueberry Ice (Arándanos Fríos)", soldOut: true, img: "blueberryiceig.png" },
+          { name: "Strawberry Ice (Frutilla Fría)", soldOut: false, img: "blueberryiceig.png" },
+          { name: "Passion Fruit Kiwi (Kiwi con Maracuyá)", soldOut: false, img: "blueberryiceig.png" },
+          { name: "Strawberry Kiwi (Frutilla con Kiwi)", soldOut: false, img: "blueberryiceig.png" },
+          { name: "Strawberry Banana (Frutilla con Banana)", soldOut: true, img: "blueberryiceig.png" },
+          { name: "Grape Ice (Uva Fría)", soldOut: false, img: "blueberryiceig.png" },
+          { name: "Watermelon Ice (Sandía Fría)", soldOut: false, img: "blueberryiceig.png" },
+          { name: "Strawberry Watermelon (Frutilla con Sandía)", soldOut: true, img: "blueberryiceig.png" },
+          { name: "Banana Ice (Banana Fría)", soldOut: false, img: "blueberryiceig.png" },
+          { name: "Sour Apple (Manzana Verde)", soldOut: false, img: "blueberryiceig.png" },
+          { name: "Menta Fría", soldOut: true, img: "blueberryiceig.png" },
+          { name: "Menthol", soldOut: false, img: "blueberryiceig.png" },
+          { name: "Pineapple Ice (Ananá Fría)", soldOut: false, img: "blueberryiceig.png" }
         ]
       },
       {
@@ -1117,27 +1182,27 @@
         pricePromo: "2X $55.000",
         defaultImg: "ingnite v300.png",
         flavors: [
-          { name: "Menthol", soldOut: false },
-          { name: "Mix de Sandía", soldOut: false },
-          { name: "Arándanos, Frutilla y Coco", soldOut: false },
-          { name: "Menta Melón", soldOut: false },
-          { name: "Lima y Cactus", soldOut: false },
-          { name: "Uva Fría", soldOut: false },
-          { name: "Ananá Mango", soldOut: true },
-          { name: "Ananá Fría", soldOut: false },
-          { name: "Sandía y Fruta del Dragón", soldOut: true },
-          { name: "Sandía Fría", soldOut: false },
-          { name: "Frutilla con Kiwi", soldOut: false },
-          { name: "Banana Fría", soldOut: false },
-          { name: "Frutilla con Banana", soldOut: false },
-          { name: "Banana Coco", soldOut: false },
-          { name: "Pomelo Ácido", soldOut: false },
-          { name: "Arándanos Fríos", soldOut: false },
-          { name: "Frutilla Fría", soldOut: false },
-          { name: "Menta Fría", soldOut: false },
-          { name: "Ananá, Kiwi y Fruta del Dragón", soldOut: false },
-          { name: "Manzana Verde", soldOut: true },
-          { name: "Uva Aloe", soldOut: false }
+          { name: "Menthol", soldOut: false, img: "igv300sab.png" },
+          { name: "Mix de Sandía", soldOut: false, img: "igv300sab.png" },
+          { name: "Arándanos, Frutilla y Coco", soldOut: false, img: "igv300sab.png" },
+          { name: "Menta Melón", soldOut: false, img: "igv300sab.png" },
+          { name: "Lima y Cactus", soldOut: false, img: "igv300sab.png" },
+          { name: "Uva Fría", soldOut: false, img: "igv300sab.png" },
+          { name: "Ananá Mango", soldOut: true, img: "igv300sab.png" },
+          { name: "Ananá Fría", soldOut: false, img: "igv300sab.png" },
+          { name: "Sandía y Fruta del Dragón", soldOut: true, img: "igv300sab.png" },
+          { name: "Sandía Fría", soldOut: false, img: "igv300sab.png" },
+          { name: "Frutilla con Kiwi", soldOut: false, img: "igv300sab.png" },
+          { name: "Banana Fría", soldOut: false, img: "igv300sab.png" },
+          { name: "Frutilla con Banana", soldOut: false, img: "igv300sab.png" },
+          { name: "Banana Coco", soldOut: false, img: "igv300sab.png" },
+          { name: "Pomelo Ácido", soldOut: false, img: "igv300sab.png" },
+          { name: "Arándanos Fríos", soldOut: false, img: "igv300sab.png" },
+          { name: "Frutilla Fría", soldOut: false, img: "igv300sab.png" },
+          { name: "Menta Fría", soldOut: false, img: "igv300sab.png" },
+          { name: "Ananá, Kiwi y Fruta del Dragón", soldOut: false, img: "igv300sab.png" },
+          { name: "Manzana Verde", soldOut: true, img: "igv300sab.png" },
+          { name: "Uva Aloe", soldOut: false, img: "ig40ksab.png" }
         ]
       },
       {
@@ -1151,26 +1216,26 @@
         pricePromo: "2X $58.000",
         defaultImg: "ingnite 40 ice.png",
         flavors: [
-          { name: "Grape Peach (Uva Durazno)", soldOut: false },
-          { name: "Strawberry Kiwi (Frutilla Kiwi)", soldOut: false },
-          { name: "Peach (Durazno)", soldOut: true },
-          { name: "Lima Limón", soldOut: true },
-          { name: "Mango", soldOut: true },
-          { name: "Strawberry Watermelon (Frutilla Sandía)", soldOut: false },
-          { name: "Menthol", soldOut: false },
-          { name: "Raspberry (Frambuesas)", soldOut: true },
-          { name: "Menta", soldOut: true },
-          { name: "Blueberry (Arándanos)", soldOut: false },
-          { name: "Strawberry Ice (Frutilla)", soldOut: false },
-          { name: "Watermelon (Sandía)", soldOut: false },
-          { name: "Grape (Uva)", soldOut: false },
-          { name: "Blue Razz Lemon (Frambuesas Azules con Limón)", soldOut: false },
-          { name: "Strawberry Apple Watermelon (Frutilla Manzana y Sandía)", soldOut: false },
-          { name: "Strawberry Banana Ice (Frutilla con Banana)", soldOut: false },
-          { name: "Pineapple Ice (Ananá Fría)", soldOut: false },
-          { name: "Sakura Grape (Cereza con Uva)", soldOut: false },
-          { name: "Passion Fruit Sour Kiwi (Kiwi con Maracuyá)", soldOut: false },
-          { name: "Pineapple Kiwi Dragonfruit (Ananá Kiwi y Fruta del Dragón)", soldOut: false }
+          { name: "Grape Peach (Uva Durazno)", soldOut: false, img: "ig40ksab.png" },
+          { name: "Strawberry Kiwi (Frutilla Kiwi)", soldOut: false, img: "ig40ksab.png" },
+          { name: "Peach (Durazno)", soldOut: true, img: "ig40ksab.png" },
+          { name: "Lima Limón", soldOut: true, img: "ig40ksab.png" },
+          { name: "Mango", soldOut: true, img: "ig40ksab.png" },
+          { name: "Strawberry Watermelon (Frutilla Sandía)", soldOut: false, img: "ig40ksab.png" },
+          { name: "Menthol", soldOut: false, img: "ig40ksab.png" },
+          { name: "Raspberry (Frambuesas)", soldOut: true, img: "ig40ksab.png" },
+          { name: "Menta", soldOut: true, img: "ig40ksab.png" },
+          { name: "Blueberry (Arándanos)", soldOut: false, img: "ig40ksab.png" },
+          { name: "Strawberry Ice (Frutilla)", soldOut: false, img: "ig40ksab.png" },
+          { name: "Watermelon (Sandía)", soldOut: false, img: "ig40ksab.png" },
+          { name: "Grape (Uva)", soldOut: false, img: "ig40ksab.png" },
+          { name: "Blue Razz Lemon (Frambuesas Azules con Limón)", soldOut: false, img: "ig40ksab.png" },
+          { name: "Strawberry Apple Watermelon (Frutilla Manzana y Sandía)", soldOut: false, img: "ig40ksab.png" },
+          { name: "Strawberry Banana Ice (Frutilla con Banana)", soldOut: false, img: "ig40ksab.png" },
+          { name: "Pineapple Ice (Ananá Fría)", soldOut: false, img: "ig40ksab.png" },
+          { name: "Sakura Grape (Cereza con Uva)", soldOut: false, img: "ig40ksab.png" },
+          { name: "Passion Fruit Sour Kiwi (Kiwi con Maracuyá)", soldOut: false, img: "ig40ksab.png" },
+          { name: "Pineapple Kiwi Dragonfruit (Ananá Kiwi y Fruta del Dragón)", soldOut: false, img: "ig40ksab.png" }
         ]
       },
       {
@@ -1184,22 +1249,22 @@
         pricePromo: "2X $60.000",
         defaultImg: "ingnite 40k mix.png",
         flavors: [
-          { name: "Banana Ice / Strawberry (Frutilla-Banana)", soldOut: false },
-          { name: "Icy Mint / Peach Grape (Menta-Durazno Uva)", soldOut: false },
-          { name: "Manzana-Sandía Frutilla", soldOut: false },
-          { name: "Blue Grape / Uva-Sandía Frutilla", soldOut: false },
-          { name: "Grape Ice / Strawberry (Uva-Frutilla)", soldOut: false },
-          { name: "Passion Fruit / Pineapple Ice (Ananá-Kiwi con Maracuyá)", soldOut: false },
-          { name: "Grape Ice / Acai Ice (Uva Sandía-Acai)", soldOut: false },
-          { name: "Peach / Mango Ice (Durazno Sandía Mango)", soldOut: false },
-          { name: "Cherry Ice (Sandía-Cereza)", soldOut: false },
-          { name: "Passion Fruit Guava / Mango Ice (Mango-Maracuyá)", soldOut: false },
-          { name: "Pineapple / Mango Ice (Ananá Mango Frutilla)", soldOut: false },
-          { name: "Strawberry Mango Ice / Banana Ice (Frutilla Mango Banana)", soldOut: false },
-          { name: "Grape Pop / Peach Ice (Uva-Durazno)", soldOut: false },
-          { name: "Naranja Frutilla", soldOut: false },
-          { name: "Melón Dulce y Mentol", soldOut: false },
-          { name: "Arándanos Frambuesas con Moras", soldOut: false }
+          { name: "Banana Ice / Strawberry (Frutilla-Banana)", soldOut: false, img: "igmix40kamarillo.png" },
+          { name: "Icy Mint / Peach Grape (Menta-Durazno Uva)", soldOut: false, img: "icymintpeach.png" },
+          { name: "Manzana-Sandía Frutilla", soldOut: false, img: "igmix40krosafuerte.png" },
+          { name: "Blue Grape / Uva-Sandía Frutilla", soldOut: false, img: "igmix40krosafuerte.png" },
+          { name: "Grape Ice / Strawberry (Uva-Frutilla)", soldOut: false, img: "igmix40kmorado.png" },
+          { name: "Passion Fruit / Pineapple Ice (Ananá-Kiwi con Maracuyá)", soldOut: false, img: "igmix40kceleste.png" },
+          { name: "Grape Ice / Acai Ice (Uva Sandía-Acai)", soldOut: false, img: "igmix40kmorado.png" },
+          { name: "Peach / Mango Ice (Durazno Sandía Mango)", soldOut: false, img: "igmix40krosafuerte.png" },
+          { name: "Cherry Ice (Sandía-Cereza)", soldOut: false, img: "igmix40krosafuerte.png" },
+          { name: "Passion Fruit Guava / Mango Ice (Mango-Maracuyá)", soldOut: false, img: "igmix40knaranja.png" },
+          { name: "Pineapple / Mango Ice (Ananá Mango Frutilla)", soldOut: false, img: "igmix40kamarillo.png" },
+          { name: "Strawberry Mango Ice / Banana Ice (Frutilla Mango Banana)", soldOut: false, img: "igmix40kamarillo.png" },
+          { name: "Grape Pop / Peach Ice (Uva-Durazno)", soldOut: false, img: "igmix40kmorado.png" },
+          { name: "Naranja Frutilla", soldOut: false, img: "igmix40knaranja.png" },
+          { name: "Melón Dulce y Mentol", soldOut: false, img: "igmix40kceleste.png" },
+          { name: "Arándanos Frambuesas con Moras", soldOut: false, img: "igmix40kazul.png" }
         ]
       },
       {
@@ -1213,26 +1278,26 @@
         pricePromo: "2X $65.000",
         defaultImg: "ingnite v500.png",
         flavors: [
-          { name: "Mix Sandía", soldOut: false },
-          { name: "Durazno Uva", soldOut: false },
-          { name: "Arándanos Fríos", soldOut: true },
-          { name: "Mango Maracuyá", soldOut: false },
-          { name: "Menta Fría", soldOut: false },
-          { name: "Ananá Fría", soldOut: false },
-          { name: "Sandía Frutilla", soldOut: false },
-          { name: "Sandía Kiwi", soldOut: false },
-          { name: "Ananá Mango", soldOut: false },
-          { name: "Manzana Durazno y Kiwi", soldOut: false },
-          { name: "Kiwi Acai", soldOut: false },
-          { name: "Frutilla Fría", soldOut: false },
-          { name: "Menthol", soldOut: false },
-          { name: "Uva Fría", soldOut: false },
-          { name: "Frutilla Kiwi", soldOut: false },
-          { name: "Frutilla Banana", soldOut: false },
-          { name: "Sandía Fría", soldOut: false },
-          { name: "Manzana Verde", soldOut: false },
-          { name: "Frutilla Manzana y Sandía", soldOut: false },
-          { name: "Banana Cereza", soldOut: false }
+          { name: "Mix Sandía", soldOut: false, img: "mixsandia.png" },
+          { name: "Durazno Uva", soldOut: false, img: "duraznouva.png" },
+          { name: "Arándanos Fríos", soldOut: true, img: "arandanosfrios.png" },
+          { name: "Mango Maracuyá", soldOut: false, img: "mangomaracuya.png" },
+          { name: "Menta Fría", soldOut: false, img: "mentafria.png" },
+          { name: "Ananá Fría", soldOut: false, img: "ananafria.png" },
+          { name: "Sandía Frutilla", soldOut: false, img: "sandiafrutilla.png" },
+          { name: "Sandía Kiwi", soldOut: false, img: "sandiakiwi.png" },
+          { name: "Ananá Mango", soldOut: false, img: "ananamango.png" },
+          { name: "Manzana Durazno y Kiwi", soldOut: false, img: "manzanaduraznokiwi.png" },
+          { name: "Kiwi Acai", soldOut: false, img: "kiwiacai.png" },
+          { name: "Frutilla Fría", soldOut: false, img: "frutillafria.png" },
+          { name: "Menthol", soldOut: false, img: "menthol.png" },
+          { name: "Uva Fría", soldOut: false, img: "uvafria.png" },
+          { name: "Frutilla Kiwi", soldOut: false, img: "frutillakiwi.png" },
+          { name: "Frutilla Banana", soldOut: false, img: "frutillabanana.png" },
+          { name: "Sandía Fría", soldOut: false, img: "sandiafria.png" },
+          { name: "Manzana Verde", soldOut: false, img: "manzanaverde.png" },
+          { name: "Frutilla Manzana y Sandía", soldOut: false, img: "frutillamanzanasandia.png" },
+          { name: "Banana Cereza", soldOut: false, img: "bananacereza.png" }
         ]
       },
       {
@@ -1246,31 +1311,31 @@
         pricePromo: "2X $40.000",
         defaultImg: "eb bc15.png",
         flavors: [
-          { name: "Uva", soldOut: true },
-          { name: "Chicle de Menta", soldOut: false },
-          { name: "Arándanos con Frambuesas", soldOut: true },
-          { name: "Kiwi Sandía y Manzana", soldOut: false },
-          { name: "Pomelo con Lima", soldOut: false },
-          { name: "Manzana Fría", soldOut: false },
-          { name: "Kiwi con Maracuyá", soldOut: false },
-          { name: "Sandía Fría", soldOut: true },
-          { name: "Menta Fría", soldOut: false },
-          { name: "Durazno Mango y Sandía", soldOut: false },
-          { name: "Frutilla con Kiwi", soldOut: false },
-          { name: "Cereza con Uva", soldOut: false },
-          { name: "Triple Frutos Rojos", soldOut: true },
-          { name: "Chicle de Uva", soldOut: true },
-          { name: "Maracuyá, Naranja y Guava", soldOut: true },
-          { name: "Café Americano Frío", soldOut: false },
-          { name: "Chupetín Tropical", soldOut: true },
-          { name: "Ananá Fría", soldOut: true },
-          { name: "Pera, Sandía y Fruta del Dragón", soldOut: false },
-          { name: "Frutilla con Crema Fría", soldOut: false },
-          { name: "Frutilla Fría", soldOut: false },
-          { name: "Mango", soldOut: false },
-          { name: "Arándanos Frío", soldOut: true },
-          { name: "Limonada Tropical", soldOut: false },
-          { name: "Frutilla y Sandía", soldOut: false }
+          { name: "Uva", soldOut: true, img: "uva.png" },
+          { name: "Chicle de Menta", soldOut: false, img: "chiclementa.png" },
+          { name: "Arándanos con Frambuesas", soldOut: true, img: "arandanosframbuesas.png" },
+          { name: "Kiwi Sandía y Manzana", soldOut: false, img: "kiwisandiamanzana.png" },
+          { name: "Pomelo con Lima", soldOut: false, img: "pomelolima.png" },
+          { name: "Manzana Fría", soldOut: false, img: "manzanafria.png" },
+          { name: "Kiwi con Maracuyá", soldOut: false, img: "kiwimaracuya.png" },
+          { name: "Sandía Fría", soldOut: true, img: "sandiafria.png" },
+          { name: "Menta Fría", soldOut: false, img: "mentafria.png" },
+          { name: "Durazno Mango y Sandía", soldOut: false, img: "duraznomangosandia.png" },
+          { name: "Frutilla con Kiwi", soldOut: false, img: "frutillakiwi.png" },
+          { name: "Cereza con Uva", soldOut: false, img: "cerezauva.png" },
+          { name: "Triple Frutos Rojos", soldOut: true, img: "triplefrutos.png" },
+          { name: "Chicle de Uva", soldOut: true, img: "chicleuva.png" },
+          { name: "Maracuyá, Naranja y Guava", soldOut: true, img: "maracuyanaranjaguava.png" },
+          { name: "Café Americano Frío", soldOut: false, img: "cafeamericano.png" },
+          { name: "Chupetín Tropical", soldOut: true, img: "chupetintropical.png" },
+          { name: "Ananá Fría", soldOut: true, img: "ananafria.png" },
+          { name: "Pera, Sandía y Fruta del Dragón", soldOut: false, img: "perasandiadragon.png" },
+          { name: "Frutilla con Crema Fría", soldOut: false, img: "frutillacrema.png" },
+          { name: "Frutilla Fría", soldOut: false, img: "frutillafria.png" },
+          { name: "Mango", soldOut: false, img: "mango.png" },
+          { name: "Arándanos Frío", soldOut: true, img: "arandanosfrio.png" },
+          { name: "Limonada Tropical", soldOut: false, img: "limonadatropical.png" },
+          { name: "Frutilla y Sandía", soldOut: false, img: "frutillasandia.png" }
         ]
       },
       {
@@ -1284,22 +1349,22 @@
         pricePromo: "2X $48.000",
         defaultImg: "eb 23.png",
         flavors: [
-          { name: "Arándanos con Pera", soldOut: true },
-          { name: "Pomelo con Lima", soldOut: true },
-          { name: "Uva con Cerezas", soldOut: false },
-          { name: "Chicle de Menta", soldOut: true },
-          { name: "Frutillas Frías", soldOut: true },
-          { name: "Ananá Lima y Menta", soldOut: true },
-          { name: "Grape Ice (Uva Fría)", soldOut: false },
-          { name: "Kiwi con Fruta del Dragón", soldOut: true },
-          { name: "Arándanos Lima y Menta", soldOut: true },
-          { name: "Watermelon Ice (Sandía Fría)", soldOut: false },
-          { name: "Green Apple Ice (Manzana Fría)", soldOut: false },
-          { name: "Menta Fría", soldOut: true },
-          { name: "Arándanos con Frambuesas", soldOut: true },
-          { name: "Durazno Mango y Sandía", soldOut: true },
-          { name: "Frutilla con Banana", soldOut: true },
-          { name: "Menta", soldOut: false }
+          { name: "Arándanos con Pera", soldOut: true, img: "arandanospera.png" },
+          { name: "Pomelo con Lima", soldOut: true, img: "pomelolima.png" },
+          { name: "Uva con Cerezas", soldOut: false, img: "uvacerezas.png" },
+          { name: "Chicle de Menta", soldOut: true, img: "chiclementa.png" },
+          { name: "Frutillas Frías", soldOut: true, img: "frutillasfrias.png" },
+          { name: "Ananá Lima y Menta", soldOut: true, img: "ananalimamenta.png" },
+          { name: "Grape Ice (Uva Fría)", soldOut: false, img: "grapeice.png" },
+          { name: "Kiwi con Fruta del Dragón", soldOut: true, img: "kiwidragon.png" },
+          { name: "Arándanos Lima y Menta", soldOut: true, img: "arandanoslimamenta.png" },
+          { name: "Watermelon Ice (Sandía Fría)", soldOut: false, img: "watermelonice.png" },
+          { name: "Green Apple Ice (Manzana Fría)", soldOut: false, img: "greenappleice.png" },
+          { name: "Menta Fría", soldOut: true, img: "mentafria.png" },
+          { name: "Arándanos con Frambuesas", soldOut: true, img: "arandanosframbuesas.png" },
+          { name: "Durazno Mango y Sandía", soldOut: true, img: "duraznomangosandia.png" },
+          { name: "Frutilla con Banana", soldOut: true, img: "frutillabanana.png" },
+          { name: "Menta", soldOut: false, img: "menta.png" }
         ]
       },
       {
@@ -1313,26 +1378,26 @@
         pricePromo: "2X $48.000",
         defaultImg: "eb te30.png",
         flavors: [
-          { name: "Banana con Coco", soldOut: false },
-          { name: "Bubaloo de Tuti Fruti", soldOut: false },
-          { name: "Sandía Fría", soldOut: true },
-          { name: "Frutilla Sandía y Durazno", soldOut: false },
-          { name: "Arándanos Frío", soldOut: false },
-          { name: "Durazno, Mango y Sandía", soldOut: true },
-          { name: "Banana con Acai", soldOut: true },
-          { name: "Ananá Mango", soldOut: true },
-          { name: "Frutilla Fría", soldOut: false },
-          { name: "Kiwi con Maracuyá", soldOut: false },
-          { name: "Fruta del Dragón", soldOut: true },
-          { name: "Frutilla y Banana", soldOut: true },
-          { name: "Cereza con Frutilla", soldOut: false },
-          { name: "Lima Pomelo", soldOut: true },
-          { name: "Bubaloo de Uva", soldOut: true },
-          { name: "Café Americano", soldOut: true },
-          { name: "Sandía con Limón", soldOut: true },
-          { name: "Uva con Limón", soldOut: false },
-          { name: "Coco con Frutilla", soldOut: true },
-          { name: "Manzana con Limón", soldOut: false }
+          { name: "Banana con Coco", soldOut: false, img: "bananacoco.png" },
+          { name: "Bubaloo de Tuti Fruti", soldOut: false, img: "bubalootuti.png" },
+          { name: "Sandía Fría", soldOut: true, img: "sandiafria.png" },
+          { name: "Frutilla Sandía y Durazno", soldOut: false, img: "frutillasandiadurazno.png" },
+          { name: "Arándanos Frío", soldOut: false, img: "arandanosfrio.png" },
+          { name: "Durazno, Mango y Sandía", soldOut: true, img: "duraznomangosandia.png" },
+          { name: "Banana con Acai", soldOut: true, img: "bananaacai.png" },
+          { name: "Ananá Mango", soldOut: true, img: "ananamango.png" },
+          { name: "Frutilla Fría", soldOut: false, img: "frutillafria.png" },
+          { name: "Kiwi con Maracuyá", soldOut: false, img: "kiwimaracuya.png" },
+          { name: "Fruta del Dragón", soldOut: true, img: "frutadragon.png" },
+          { name: "Frutilla y Banana", soldOut: true, img: "frutillabanana.png" },
+          { name: "Cereza con Frutilla", soldOut: false, img: "cerezafrutilla.png" },
+          { name: "Lima Pomelo", soldOut: true, img: "limapomelo.png" },
+          { name: "Bubaloo de Uva", soldOut: true, img: "bubalouva.png" },
+          { name: "Café Americano", soldOut: true, img: "cafeamericano.png" },
+          { name: "Sandía con Limón", soldOut: true, img: "sandialimon.png" },
+          { name: "Uva con Limón", soldOut: false, img: "uvalimon.png" },
+          { name: "Coco con Frutilla", soldOut: true, img: "cocofrutilla.png" },
+          { name: "Manzana con Limón", soldOut: false, img: "manzanalimon.png" }
         ]
       },
       {
@@ -1346,21 +1411,21 @@
         pricePromo: "2X $52.000",
         defaultImg: "eb duke.png",
         flavors: [
-          { name: "Ananá Fría", soldOut: false },
-          { name: "Menta Fría", soldOut: false },
-          { name: "Arándanos con Frambuesas", soldOut: true },
-          { name: "Uva Fría", soldOut: false },
-          { name: "Kiwi con Maracuyá", soldOut: false },
-          { name: "Uva Fanta", soldOut: false },
-          { name: "Coco Frutilla Fría", soldOut: false },
-          { name: "Arándanos Fríos", soldOut: false },
-          { name: "Frutilla con Kiwi", soldOut: false },
-          { name: "Durazno Mango y Sandía", soldOut: false },
-          { name: "Mango", soldOut: false },
-          { name: "Sandía Limón", soldOut: false },
-          { name: "Chicle Tuti Fruti", soldOut: false },
-          { name: "Sandía Fría", soldOut: false },
-          { name: "Menthol", soldOut: false }
+          { name: "Ananá Fría", soldOut: false, img: "ananafria.png" },
+          { name: "Menta Fría", soldOut: false, img: "mentafria.png" },
+          { name: "Arándanos con Frambuesas", soldOut: true, img: "arandanosframbuesas.png" },
+          { name: "Uva Fría", soldOut: false, img: "uvafria.png" },
+          { name: "Kiwi con Maracuyá", soldOut: false, img: "kiwimaracuya.png" },
+          { name: "Uva Fanta", soldOut: false, img: "uvafanta.png" },
+          { name: "Coco Frutilla Fría", soldOut: false, img: "cocofrutillafria.png" },
+          { name: "Arándanos Fríos", soldOut: false, img: "arandanosfrios.png" },
+          { name: "Frutilla con Kiwi", soldOut: false, img: "frutillakiwi.png" },
+          { name: "Durazno Mango y Sandía", soldOut: false, img: "duraznomangosandia.png" },
+          { name: "Mango", soldOut: false, img: "mango.png" },
+          { name: "Sandía Limón", soldOut: false, img: "sandialimon.png" },
+          { name: "Chicle Tuti Fruti", soldOut: false, img: "chicletuti.png" },
+          { name: "Sandía Fría", soldOut: false, img: "sandiafria.png" },
+          { name: "Menthol", soldOut: false, img: "menthol.png" }
         ]
       },
       {
@@ -1374,22 +1439,22 @@
         pricePromo: "2X $55.000",
         defaultImg: "eb trio.png",
         flavors: [
-          { name: "Arándanos", soldOut: true },
-          { name: "Uva", soldOut: false },
-          { name: "Naranja", soldOut: true },
-          { name: "Manzana Ácida", soldOut: false },
-          { name: "Uva Cereza", soldOut: false },
-          { name: "Arándanos con Frambuesas", soldOut: true },
-          { name: "Frutilla con Fruta del Dragón", soldOut: true },
-          { name: "Durazno", soldOut: false },
-          { name: "Frambuesas con Sandía", soldOut: false },
-          { name: "Granada Dulce", soldOut: false },
-          { name: "Frutilla, Lima, Naranja", soldOut: false },
-          { name: "Lima con Ananá", soldOut: false },
-          { name: "Frutos Rojos", soldOut: true },
-          { name: "Menta Negra", soldOut: false },
-          { name: "Sandía Fría", soldOut: false },
-          { name: "Mentol Frío", soldOut: false }
+          { name: "Arándanos", soldOut: true, img: "arandanos.png" },
+          { name: "Uva", soldOut: false, img: "uva.png" },
+          { name: "Naranja", soldOut: true, img: "naranja.png" },
+          { name: "Manzana Ácida", soldOut: false, img: "manzanaacida.png" },
+          { name: "Uva Cereza", soldOut: false, img: "uvacereza.png" },
+          { name: "Arándanos con Frambuesas", soldOut: true, img: "arandanosframbuesas.png" },
+          { name: "Frutilla con Fruta del Dragón", soldOut: true, img: "frutilladragon.png" },
+          { name: "Durazno", soldOut: false, img: "durazno.png" },
+          { name: "Frambuesas con Sandía", soldOut: false, img: "frambuesassandia.png" },
+          { name: "Granada Dulce", soldOut: false, img: "granadadulce.png" },
+          { name: "Frutilla, Lima, Naranja", soldOut: false, img: "frutillalimanaranja.png" },
+          { name: "Lima con Ananá", soldOut: false, img: "limaanana.png" },
+          { name: "Frutos Rojos", soldOut: true, img: "frutosrojos.png" },
+          { name: "Menta Negra", soldOut: false, img: "mentanegra.png" },
+          { name: "Sandía Fría", soldOut: false, img: "sandiafria.png" },
+          { name: "Mentol Frío", soldOut: false, img: "mentolfrio.png" }
         ]
       },
       {
@@ -1403,29 +1468,29 @@
         pricePromo: "2X $48.000",
         defaultImg: "eb iceking.png",
         flavors: [
-          { name: "Gomita dulces", soldOut: false },
-          { name: "Frambuesas azules", soldOut: false },
-          { name: "Cerezas acidas", soldOut: false },
-          { name: "Frutilla, sandia y coco", soldOut: false },
-          { name: "Frutilla con fruta del dragon", soldOut: true },
-          { name: "Sandia fria", soldOut: false },
-          { name: "Mango", soldOut: false },
-          { name: "Sandia, limon y frutos del bosque", soldOut: false },
-          { name: "Durazno", soldOut: false },
-          { name: "Frutilla fria", soldOut: false },
-          { name: "Manzana verde fria", soldOut: false },
-          { name: "Cereza con frutilla", soldOut: false },
-          { name: "Sandia frutilla", soldOut: false },
-          { name: "Uva fria", soldOut: false },
-          { name: "Manzana roja fria", soldOut: false },
-          { name: "Frutilla, banana y fruta del dragon", soldOut: true },
-          { name: "Chicle de menta", soldOut: false },
-          { name: "Arandanos, menta y lima", soldOut: false },
-          { name: "Durazno, mango y sandia", soldOut: true },
-          { name: "Moras con anana", soldOut: false },
-          { name: "Arandanos frios", soldOut: false },
-          { name: "Chicle tutti frutti", soldOut: false },
-          { name: "Melon, uva y mentol", soldOut: false }
+          { name: "Gomita dulces", soldOut: false, img: "gomitadulces.png" },
+          { name: "Frambuesas azules", soldOut: false, img: "frambuesasazules.png" },
+          { name: "Cerezas acidas", soldOut: false, img: "cerezasacidas.png" },
+          { name: "Frutilla, sandia y coco", soldOut: false, img: "frutillasandiacoco.png" },
+          { name: "Frutilla con fruta del dragon", soldOut: true, img: "frutilladragon.png" },
+          { name: "Sandia fria", soldOut: false, img: "sandiafria.png" },
+          { name: "Mango", soldOut: false, img: "mango.png" },
+          { name: "Sandia, limon y frutos del bosque", soldOut: false, img: "sandialimonfrutos.png" },
+          { name: "Durazno", soldOut: false, img: "durazno.png" },
+          { name: "Frutilla fria", soldOut: false, img: "frutillafria.png" },
+          { name: "Manzana verde fria", soldOut: false, img: "manzanaverdefria.png" },
+          { name: "Cereza con frutilla", soldOut: false, img: "cerezafrutilla.png" },
+          { name: "Sandia frutilla", soldOut: false, img: "sandiafrutilla.png" },
+          { name: "Uva fria", soldOut: false, img: "uvafria.png" },
+          { name: "Manzana roja fria", soldOut: false, img: "manzanarojafria.png" },
+          { name: "Frutilla, banana y fruta del dragon", soldOut: true, img: "frutillabananadragon.png" },
+          { name: "Chicle de menta", soldOut: false, img: "chiclementa.png" },
+          { name: "Arandanos, menta y lima", soldOut: false, img: "arandanosmentalima.png" },
+          { name: "Durazno, mango y sandia", soldOut: true, img: "duraznomangosandia.png" },
+          { name: "Moras con anana", soldOut: false, img: "morasanana.png" },
+          { name: "Arandanos frios", soldOut: false, img: "arandanosfrios.png" },
+          { name: "Chicle tutti frutti", soldOut: false, img: "chicletutti.png" },
+          { name: "Melon, uva y mentol", soldOut: false, img: "melonuvamentol.png" }
         ]
       },
       {
@@ -1439,16 +1504,16 @@
         pricePromo: "2X $50.000",
         defaultImg: "eb sum.png",
         flavors: [
-          { name: "Maracuya", soldOut: true },
-          { name: "Frutos silvestres", soldOut: true },
-          { name: "Giro de neon", soldOut: false },
-          { name: "Durazno y arandanos", soldOut: false },
-          { name: "Granizado hawaiano", soldOut: true },
-          { name: "Frutos rojos", soldOut: true },
-          { name: "Chispa de fresa", soldOut: true },
-          { name: "Granizado de cola", soldOut: false },
-          { name: "Manzana verde", soldOut: false },
-          { name: "Menta negra", soldOut: false }
+          { name: "Maracuya", soldOut: true, img: "maracuya.png" },
+          { name: "Frutos silvestres", soldOut: true, img: "frutossilvestres.png" },
+          { name: "Giro de neon", soldOut: false, img: "gironeon.png" },
+          { name: "Durazno y arandanos", soldOut: false, img: "duraznoarandanos.png" },
+          { name: "Granizado hawaiano", soldOut: true, img: "granizadohawaiano.png" },
+          { name: "Frutos rojos", soldOut: true, img: "frutosrojos.png" },
+          { name: "Chispa de fresa", soldOut: true, img: "chispafresa.png" },
+          { name: "Granizado de cola", soldOut: false, img: "granizadocola.png" },
+          { name: "Manzana verde", soldOut: false, img: "manzanaverde.png" },
+          { name: "Menta negra", soldOut: false, img: "mentanegra.png" }
         ]
       },
       {
@@ -1462,20 +1527,20 @@
         pricePromo: "2X $50.000",
         defaultImg: "ebcreate.png",
         flavors: [
-          { name: "Mix de Uvas", soldOut: false },
-          { name: "Arándanos con Frambuesas", soldOut: false },
-          { name: "Moras con Uva", soldOut: false },
-          { name: "Frutos Tropicales", soldOut: false },
-          { name: "Frutos Rojos", soldOut: true },
-          { name: "Frambuesas Dulce", soldOut: false },
-          { name: "Frutilla y Frambuesas", soldOut: false },
-          { name: "Sandía Fría", soldOut: false },
-          { name: "Caramelos Ácidos", soldOut: false },
-          { name: "Mix de Frutilla", soldOut: false },
-          { name: "Ananá Tostado", soldOut: false },
-          { name: "Triple Frutos Rojos", soldOut: false },
-          { name: "Frutilla Kiwi", soldOut: false },
-          { name: "Ananá con Granada", soldOut: false }
+          { name: "Mix de Uvas", soldOut: false, img: "mixuvas.png" },
+          { name: "Arándanos con Frambuesas", soldOut: false, img: "arandanosframbuesas.png" },
+          { name: "Moras con Uva", soldOut: false, img: "morasuva.png" },
+          { name: "Frutos Tropicales", soldOut: false, img: "frutostropicales.png" },
+          { name: "Frutos Rojos", soldOut: true, img: "frutosrojos.png" },
+          { name: "Frambuesas Dulce", soldOut: false, img: "frambuesasdulce.png" },
+          { name: "Frutilla y Frambuesas", soldOut: false, img: "frutillaframbuesas.png" },
+          { name: "Sandía Fría", soldOut: false, img: "sandiafria.png" },
+          { name: "Caramelos Ácidos", soldOut: false, img: "caramelosacidos.png" },
+          { name: "Mix de Frutilla", soldOut: false, img: "mixfrutilla.png" },
+          { name: "Ananá Tostado", soldOut: false, img: "ananatostado.png" },
+          { name: "Triple Frutos Rojos", soldOut: false, img: "triplefrutos.png" },
+          { name: "Frutilla Kiwi", soldOut: false, img: "frutillakiwi.png" },
+          { name: "Ananá con Granada", soldOut: false, img: "ananagranada.png" }
         ]
       },
       {
@@ -1489,15 +1554,15 @@
         pricePromo: "2X $50.000",
         defaultImg: "sex.png",
         flavors: [
-          { name: "Arándanos Fríos", soldOut: true },
-          { name: "Menthol", soldOut: true },
-          { name: "Kiwi con Maracuyá", soldOut: true },
-          { name: "Uva con Kiwi", soldOut: true },
-          { name: "Manzana Verde", soldOut: true },
-          { name: "Menta Fría", soldOut: true },
-          { name: "Uva con Acai", soldOut: true },
-          { name: "Uva Fría", soldOut: true },
-          { name: "Banana Fría", soldOut: true }
+          { name: "Arándanos Fríos", soldOut: true, img: "arandanosfrios.png" },
+          { name: "Menthol", soldOut: true, img: "menthol.png" },
+          { name: "Kiwi con Maracuyá", soldOut: true, img: "kiwimaracuya.png" },
+          { name: "Uva con Kiwi", soldOut: true, img: "uvakiwi.png" },
+          { name: "Manzana Verde", soldOut: true, img: "manzanaverde.png" },
+          { name: "Menta Fría", soldOut: true, img: "mentafria.png" },
+          { name: "Uva con Acai", soldOut: true, img: "uvaacai.png" },
+          { name: "Uva Fría", soldOut: true, img: "uvafria.png" },
+          { name: "Banana Fría", soldOut: true, img: "bananafria.png" }
         ]
       },
       {
@@ -1511,19 +1576,19 @@
         pricePromo: "2X $58.000",
         defaultImg: "blvk.png",
         flavors: [
-          { name: "Frutilla con Kiwi", soldOut: false },
-          { name: "Uva Fría", soldOut: false },
-          { name: "Manzana Dulce", soldOut: true },
-          { name: "Menthol", soldOut: false },
-          { name: "Arándanos con Menta", soldOut: false },
-          { name: "Frutilla, Banana y Fruta del Dragón", soldOut: true },
-          { name: "Kiwi con Maracuyá", soldOut: true },
-          { name: "Menta Fría", soldOut: false },
-          { name: "Frutilla con Mango", soldOut: true },
-          { name: "Sandía Fría", soldOut: false },
-          { name: "Manzana Verde", soldOut: false },
-          { name: "Frutilla Fría", soldOut: false },
-          { name: "Sandía con Frutilla", soldOut: false }
+          { name: "Frutilla con Kiwi", soldOut: false, img: "frutillakiwi.png" },
+          { name: "Uva Fría", soldOut: false, img: "uvafria.png" },
+          { name: "Manzana Dulce", soldOut: true, img: "manzanadulce.png" },
+          { name: "Menthol", soldOut: false, img: "menthol.png" },
+          { name: "Arándanos con Menta", soldOut: false, img: "arandanosmenta.png" },
+          { name: "Frutilla, Banana y Fruta del Dragón", soldOut: true, img: "frutillabananadragon.png" },
+          { name: "Kiwi con Maracuyá", soldOut: true, img: "kiwimaracuya.png" },
+          { name: "Menta Fría", soldOut: false, img: "mentafria.png" },
+          { name: "Frutilla con Mango", soldOut: true, img: "frutillamango.png" },
+          { name: "Sandía Fría", soldOut: false, img: "sandiafria.png" },
+          { name: "Manzana Verde", soldOut: false, img: "manzanaverde.png" },
+          { name: "Frutilla Fría", soldOut: false, img: "frutillafria.png" },
+          { name: "Sandía con Frutilla", soldOut: false, img: "sandiafrutilla.png" }
         ]
       },
       {
@@ -1537,20 +1602,20 @@
         pricePromo: "2X $50.000",
         defaultImg: "LM.png",
         flavors: [
-          { name: "Sandía Fría", soldOut: false },
-          { name: "Ananá Limón", soldOut: false },
-          { name: "Frutilla, Sandía y Durazno", soldOut: false },
-          { name: "Frutilla con Kiwi", soldOut: false },
-          { name: "Frutos Rojos", soldOut: false },
-          { name: "Uva Fría", soldOut: true },
-          { name: "Frutilla y Fruta del Dragón", soldOut: false },
-          { name: "Banana", soldOut: false },
-          { name: "Mix de Uvas", soldOut: false },
-          { name: "Chicle de Menta", soldOut: false },
-          { name: "Arándanos Frambuesas Frías", soldOut: false },
-          { name: "Frutos Hawaianos", soldOut: true },
-          { name: "Chupetín Cereza Frutilla", soldOut: false },
-          { name: "Frutas Hawaianas", soldOut: false }
+          { name: "Sandía Fría", soldOut: false, img: "sandiafria.png" },
+          { name: "Ananá Limón", soldOut: false, img: "ananalimon.png" },
+          { name: "Frutilla, Sandía y Durazno", soldOut: false, img: "frutillasandiadurazno.png" },
+          { name: "Frutilla con Kiwi", soldOut: false, img: "frutillakiwi.png" },
+          { name: "Frutos Rojos", soldOut: false, img: "frutosrojos.png" },
+          { name: "Uva Fría", soldOut: true, img: "uvafria.png" },
+          { name: "Frutilla y Fruta del Dragón", soldOut: false, img: "frutilladragon.png" },
+          { name: "Banana", soldOut: false, img: "banana.png" },
+          { name: "Mix de Uvas", soldOut: false, img: "mixuvas.png" },
+          { name: "Chicle de Menta", soldOut: false, img: "chiclementa.png" },
+          { name: "Arándanos Frambuesas Frías", soldOut: false, img: "arandanosframbuesas.png" },
+          { name: "Frutos Hawaianos", soldOut: true, img: "frutoshawaianos.png" },
+          { name: "Chupetín Cereza Frutilla", soldOut: false, img: "chupetincereza.png" },
+          { name: "Frutas Hawaianas", soldOut: false, img: "frutashawaianas.png" }
         ]
       },
       {
@@ -1564,29 +1629,29 @@
         pricePromo: "2X $45.000",
         defaultImg: "oxbar.png",
         flavors: [
-          { name: "Arándanos Frambuesa Limón", soldOut: false },
-          { name: "Uva Blanca Fría", soldOut: true },
-          { name: "Frutilla con Frambuesas y Limón Frío", soldOut: true },
-          { name: "Uva Durazno", soldOut: false },
-          { name: "Gomitas de Sandía", soldOut: true },
-          { name: "Frutilla Sandía y Durazno", soldOut: true },
-          { name: "Gomitas Frías", soldOut: true },
-          { name: "Kiwi con Lima Fría", soldOut: true },
-          { name: "Maracuyá con Pomelo", soldOut: true },
-          { name: "Frutilla, Sandía y Fruta del Dragón", soldOut: true },
-          { name: "Mango Durazno", soldOut: true },
-          { name: "Soda de Frutilla", soldOut: false },
-          { name: "Doble Manzana", soldOut: false },
-          { name: "Moras con Limón", soldOut: false },
-          { name: "Frutos Rojos", soldOut: false },
-          { name: "Sandía con Frutilla", soldOut: false },
-          { name: "Uva con Frambuesa", soldOut: false },
-          { name: "Kiwi con Maracuyá", soldOut: false },
-          { name: "Mango Dulce", soldOut: false },
-          { name: "Sandía con Maracuyá", soldOut: true },
-          { name: "Menta Fría", soldOut: true },
-          { name: "Uva Mixta", soldOut: true },
-          { name: "Sandía con Frambuesa", soldOut: false }
+          { name: "Arándanos Frambuesa Limón", soldOut: false, img: "arandanosframbuesalimon.png" },
+          { name: "Uva Blanca Fría", soldOut: true, img: "uvablanca.png" },
+          { name: "Frutilla con Frambuesas y Limón Frío", soldOut: true, img: "frutillaframbuesalimon.png" },
+          { name: "Uva Durazno", soldOut: false, img: "uvadurazno.png" },
+          { name: "Gomitas de Sandía", soldOut: true, img: "gomitassandia.png" },
+          { name: "Frutilla Sandía y Durazno", soldOut: true, img: "frutillasandiadurazno.png" },
+          { name: "Gomitas Frías", soldOut: true, img: "gomitasfrias.png" },
+          { name: "Kiwi con Lima Fría", soldOut: true, img: "kiwilima.png" },
+          { name: "Maracuyá con Pomelo", soldOut: true, img: "maracuyapomelo.png" },
+          { name: "Frutilla, Sandía y Fruta del Dragón", soldOut: true, img: "frutillasandiadragon.png" },
+          { name: "Mango Durazno", soldOut: true, img: "mangodurazno.png" },
+          { name: "Soda de Frutilla", soldOut: false, img: "sodafrutilla.png" },
+          { name: "Doble Manzana", soldOut: false, img: "doblemanzana.png" },
+          { name: "Moras con Limón", soldOut: false, img: "moraslimon.png" },
+          { name: "Frutos Rojos", soldOut: false, img: "frutosrojos.png" },
+          { name: "Sandía con Frutilla", soldOut: false, img: "sandiafrutilla.png" },
+          { name: "Uva con Frambuesa", soldOut: false, img: "uvaframbuesa.png" },
+          { name: "Kiwi con Maracuyá", soldOut: false, img: "kiwimaracuya.png" },
+          { name: "Mango Dulce", soldOut: false, img: "mangodulce.png" },
+          { name: "Sandía con Maracuyá", soldOut: true, img: "sandiamaracuya.png" },
+          { name: "Menta Fría", soldOut: true, img: "mentafria.png" },
+          { name: "Uva Mixta", soldOut: true, img: "uvamixta.png" },
+          { name: "Sandía con Frambuesa", soldOut: false, img: "sandiaframbuesa.png" }
         ]
       },
       {
@@ -1600,16 +1665,16 @@
         pricePromo: "2X $63.000",
         defaultImg: "oxbar 50k.png",
         flavors: [
-          { name: "Ananá, Kiwi y Fruta del Dragón", soldOut: true },
-          { name: "Uva Fría", soldOut: true },
-          { name: "Sandía Fría", soldOut: false },
-          { name: "Frutilla Fría", soldOut: false },
-          { name: "Menthol", soldOut: false },
-          { name: "Kiwi con Maracuyá", soldOut: false },
-          { name: "Frutilla con Kiwi", soldOut: false },
-          { name: "Ananá Fría", soldOut: false },
-          { name: "Frutilla y Uva", soldOut: true },
-          { name: "Menta Fría", soldOut: false }
+          { name: "Ananá, Kiwi y Fruta del Dragón", soldOut: true, img: "ananakiwidragon.png" },
+          { name: "Uva Fría", soldOut: true, img: "uvafria.png" },
+          { name: "Sandía Fría", soldOut: false, img: "sandiafria.png" },
+          { name: "Frutilla Fría", soldOut: false, img: "frutillafria.png" },
+          { name: "Menthol", soldOut: false, img: "menthol.png" },
+          { name: "Kiwi con Maracuyá", soldOut: false, img: "kiwimaracuya.png" },
+          { name: "Frutilla con Kiwi", soldOut: false, img: "frutillakiwi.png" },
+          { name: "Ananá Fría", soldOut: false, img: "ananafria.png" },
+          { name: "Frutilla y Uva", soldOut: true, img: "frutillauva.png" },
+          { name: "Menta Fría", soldOut: false, img: "mentafria.png" }
         ]
       },
       {
@@ -1623,26 +1688,34 @@
         pricePromo: "2X $50.000",
         defaultImg: "eb nk.png",
         flavors: [
-          { name: "Gomitas de mora", soldOut: true },
-          { name: "Granada dulce", soldOut: true },
-          { name: "Mango y anana", soldOut: true },
-          { name: "Sandia y cereza", soldOut: true },
-          { name: "Frutilla con fruta del dragon", soldOut: true },
-          { name: "Sandia fria", soldOut: true },
-          { name: "Pera fria", soldOut: false },
-          { name: "Anana, pomelo y fruta del dragon", soldOut: true },
-          { name: "Arandanos con rosas", soldOut: false },
-          { name: "Frutilla con frambuesas", soldOut: true },
-          { name: "Arandanos con frambuesas", soldOut: true },
-          { name: "Moras frias", soldOut: true },
-          { name: "Uva con arandanos", soldOut: true },
-          { name: "Gomitas de cereza", soldOut: true },
-          { name: "Lima fria", soldOut: false },
-          { name: "Manzana con sandia", soldOut: true },
-          { name: "Mix de frutos rojos", soldOut: true }
+          { name: "Gomitas de mora", soldOut: true, img: "gomitasmora.png" },
+          { name: "Granada dulce", soldOut: true, img: "granadadulce.png" },
+          { name: "Mango y anana", soldOut: true, img: "mangoanana.png" },
+          { name: "Sandia y cereza", soldOut: true, img: "sandiacereza.png" },
+          { name: "Frutilla con fruta del dragon", soldOut: true, img: "frutilladragon.png" },
+          { name: "Sandia fria", soldOut: true, img: "sandiafria.png" },
+          { name: "Pera fria", soldOut: false, img: "perafria.png" },
+          { name: "Anana, pomelo y fruta del dragon", soldOut: true, img: "ananapomelodragon.png" },
+          { name: "Arandanos con rosas", soldOut: false, img: "arandanosrosas.png" },
+          { name: "Frutilla con frambuesas", soldOut: true, img: "frutillaframbuesas.png" },
+          { name: "Arandanos con frambuesas", soldOut: true, img: "arandanosframbuesas.png" },
+          { name: "Moras frias", soldOut: true, img: "morasfrias.png" },
+          { name: "Uva con arandanos", soldOut: true, img: "uvaarandanos.png" },
+          { name: "Gomitas de cereza", soldOut: true, img: "gomitascereza.png" },
+          { name: "Lima fria", soldOut: false, img: "limafria.png" },
+          { name: "Manzana con sandia", soldOut: true, img: "manzanasandia.png" },
+          { name: "Mix de frutos rojos", soldOut: true, img: "mixfrutosrojos.png" }
         ]
       }
     ];
+
+    // Forzamos la lectura directa de los cambios del código evitando bloqueos de caché antigua
+    let vapersProducts = defaultVapers;
+
+    function saveState() {
+      localStorage.setItem('ng_vapers_full_data', JSON.stringify(vapersProducts));
+      renderVapers();
+    }
 
     let activeVaperFilters = { brand: 'all', puffs: 'all' };
     let currentSelectedFlavor = "";
@@ -1663,7 +1736,6 @@
         }
       });
 
-      // Desplazamiento automático hacia la sección seleccionada (o al catálogo general si es "todos")
       if (category === 'todos') {
         document.getElementById('catalogo-general').scrollIntoView({ behavior: 'smooth' });
       } else {
@@ -1673,7 +1745,6 @@
         }
       }
 
-      // Cerrar el menú desplegable tras seleccionar
       dropdownMenu.classList.remove('show');
     }
 
@@ -1723,12 +1794,13 @@
         if (f.soldOut) {
           flavorsHTML += `
             <div class="flavor-item soldout">
-              <span class="flavor-name" style="color: #9ca3af;">🚫 ${f.name} (Sold Out)</span>
+              <span class="flavor-name" style="color: #9ca3af;">🚫 ${f.name} (Agotado)</span>
             </div>
           `;
         } else {
+          const flavorImgParam = f.img ? `'${f.img}'` : 'null';
           flavorsHTML += `
-            <div class="flavor-item" id="flavor-item-${index}" onclick="selectFlavor('${f.name}', ${index})">
+            <div class="flavor-item" id="flavor-item-${index}" onclick="selectFlavor('${f.name}', ${index}, ${flavorImgParam})">
               <span class="flavor-name">${f.name}</span>
             </div>
           `;
@@ -1737,7 +1809,7 @@
 
       content.innerHTML = `
         <div class="modal-img-container">
-          <img src="${p.defaultImg}" alt="${p.model}">
+          <img id="modal-vaper-img" src="${p.defaultImg}" alt="${p.model}">
         </div>
         <div class="modal-info">
           <span class="tag">${p.brandName}</span>
@@ -1782,11 +1854,29 @@
       input.value = val;
     }
 
-    function selectFlavor(name, index) {
+    // Seleccionar sabor y cambiar la foto de forma dinámica
+    function selectFlavor(name, index, flavorImg) {
       currentSelectedFlavor = name;
       const items = document.querySelectorAll('.flavor-item');
       items.forEach(item => item.classList.remove('selected'));
-      document.getElementById(`flavor-item-${index}`).classList.add('selected');
+      
+      const selectedItem = document.getElementById(`flavor-item-${index}`);
+      if(selectedItem) {
+        selectedItem.classList.add('selected');
+      }
+
+      // Cambiar imagen del modal de forma animada
+      const modalImg = document.getElementById('modal-vaper-img');
+      if (modalImg) {
+        const newSrc = flavorImg ? flavorImg : (currentProduct ? currentProduct.defaultImg : '');
+        if (newSrc && modalImg.src !== newSrc) {
+          modalImg.style.opacity = '0.3';
+          setTimeout(() => {
+            modalImg.src = newSrc;
+            modalImg.style.opacity = '1';
+          }, 150);
+        }
+      }
     }
 
     function sendWhatsAppModal() {
@@ -1798,6 +1888,80 @@
       const message = `Hola, N&G IMPORTADOS. Quisiera encargar:\n- Producto: ${currentProduct.model}\n- Sabor: ${currentSelectedFlavor}\n- Cantidad: ${qty} unidad(es)\n- Precio unitario: ${currentProduct.price}`;
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank');
+    }
+
+    // ==========================================
+    // ⚙️ CONSOLA DE ADMINISTRACIÓN / PANEL PRIVADO
+    // ==========================================
+
+    function openAdminPanel() {
+      const CONTRASEÑA_CORRECTA = "4212"; 
+      const pass = prompt("🔐 Ingresa tu contraseña de creador:");
+      if (pass !== CONTRASEÑA_CORRECTA) {
+        alert("Contraseña incorrecta.");
+        return;
+      }
+      renderAdminContent();
+      document.getElementById('adminModal').style.display = 'flex';
+    }
+
+    function closeAdminPanel() {
+      document.getElementById('adminModal').style.display = 'none';
+    }
+
+    // COMBINACIÓN SECRETA DE TECLAS: Ctrl + Shift + A
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+        e.preventDefault();
+        openAdminPanel();
+      }
+    });
+
+    function renderAdminContent() {
+      const body = document.getElementById('adminBodyContent');
+      body.innerHTML = '';
+
+      vapersProducts.forEach((p, pIdx) => {
+        let flavorRows = '';
+        p.flavors.forEach((f, fIdx) => {
+          flavorRows += `
+            <div class="flavor-row">
+              <span class="flavor-row-name">${f.name}</span>
+              <label class="switch">
+                <input type="checkbox" ${!f.soldOut ? 'checked' : ''} onchange="toggleStock(${pIdx}, ${fIdx})">
+                <span class="slider-switch"></span>
+              </label>
+            </div>
+          `;
+        });
+
+        const card = document.createElement('div');
+        card.className = 'admin-card';
+        card.innerHTML = `
+          <div class="admin-card-title">
+            <span>📦 ${p.model} (${p.puffsText})</span>
+            <div style="display:flex; gap:8px;">
+              <input class="input-field" value="${p.price}" onchange="updatePrice(${pIdx}, 'price', this.value)" placeholder="Precio">
+              <input class="input-field" value="${p.pricePromo}" onchange="updatePrice(${pIdx}, 'pricePromo', this.value)" placeholder="Promo">
+            </div>
+          </div>
+          <p style="font-size:0.8rem; color:var(--muted); margin-bottom:8px;">Interruptor de Stock (Verde = En Stock / Gris = Agotado):</p>
+          <div style="max-height:160px; overflow-y:auto; display:flex; flex-direction:column; gap:4px;">
+            ${flavorRows}
+          </div>
+        `;
+        body.appendChild(card);
+      });
+    }
+
+    function toggleStock(pIdx, fIdx) {
+      vapersProducts[pIdx].flavors[fIdx].soldOut = !vapersProducts[pIdx].flavors[fIdx].soldOut;
+      saveState();
+    }
+
+    function updatePrice(pIdx, field, val) {
+      vapersProducts[pIdx][field] = val;
+      saveState();
     }
 
     // Filtrar Perfumes
