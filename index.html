@@ -8,20 +8,21 @@
   <link rel="icon" type="image/png" href="favicon.png">
   <style>
     :root {
-      --bg: #0b0b0e;
-      --panel: #15151a;
-      --panel2: #121218;
-      --accent-color: #a855f7; /* Morado Neón Brillante */
-      --accent-hover: #9333ea;
-      --accent-glow: rgba(168, 85, 247, 0.4);
-      --gold: #c9a45c;
-      --gold-light: #f0d69a;
-      --text: #f3f4f6;
-      --muted: #9ca3af;
-      --line: rgba(168, 85, 247, 0.25);
+      --bg: #faf9f6; /* Blanco cálido moderno */
+      --panel: #ffffff;
+      --panel2: #f4f2ee;
+      --accent-color: #b59a72; /* Beige elegante / Taupe */
+      --accent-hover: #9c815b;
+      --accent-glow: rgba(181, 154, 114, 0.25);
+      --gold: #b59a72;
+      --gold-light: #d6c4a8;
+      --text: #2c2c2e;
+      --muted: #6e6e73;
+      --line: rgba(181, 154, 114, 0.2);
       --whatsapp-color: #22c55e;
       --whatsapp-hover: #16a34a;
       --border-radius: 14px;
+      --danger: #ef4444;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     html { scroll-behavior: smooth; }
@@ -32,19 +33,19 @@
     /* HEADER CON MENÚ HAMBURGUESA DE 3 LÍNEAS */
     header { 
       position: sticky; top: 0; z-index: 100; 
-      background: rgba(11, 11, 14, 0.92); backdrop-filter: blur(14px); 
+      background: rgba(250, 249, 246, 0.92); backdrop-filter: blur(14px); 
       border-bottom: 1px solid var(--line);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
     }
     .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 20px; position: relative; }
-    .brand { font-family: Georgia, serif; font-size: 1.15rem; font-weight: bold; letter-spacing: .13em; }
-    .brand span { color: var(--accent-color); text-shadow: 0 0 10px var(--accent-glow); }
+    .brand { font-family: Georgia, serif; font-size: 1.15rem; font-weight: bold; letter-spacing: .13em; color: #1c1c1e; }
+    .brand span { color: var(--accent-color); text-shadow: none; }
     
     .nav-right-container { display: flex; align-items: center; gap: 15px; }
 
     /* BOTÓN HAMBURGUESA DE 3 LÍNEAS */
     .menu-toggle {
-      background: #15151a;
+      background: #ffffff;
       border: 1px solid var(--accent-color);
       color: var(--text);
       font-size: 1.5rem;
@@ -56,213 +57,198 @@
       justify-content: center;
       gap: 4px;
       transition: 0.3s;
-      box-shadow: 0 0 10px var(--accent-glow);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
-    .menu-toggle:hover {
-      background: var(--accent-color);
-    }
+    .menu-toggle:hover { background: var(--accent-color); color: #fff; }
+    .menu-toggle:hover span { background-color: #fff; }
     .menu-toggle span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background-color: var(--text);
-      border-radius: 2px;
+      display: block; width: 22px; height: 2px;
+      background-color: var(--text); border-radius: 2px;
     }
 
     /* MENÚ DESPLEGABLE DESDE LAS 3 LÍNEAS */
     .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: 70px;
-      right: 0;
-      background: var(--panel);
-      border: 1px solid var(--accent-color);
-      border-radius: var(--border-radius);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-      width: 220px;
-      padding: 10px 0;
-      z-index: 200;
+      display: none; position: absolute; top: 70px; right: 0;
+      background: var(--panel); border: 1px solid var(--accent-color);
+      border-radius: var(--border-radius); box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      width: 220px; padding: 10px 0; z-index: 200;
     }
-    .dropdown-menu.show {
-      display: block;
-    }
+    .dropdown-menu.show { display: block; }
     .dropdown-menu button {
-      width: 100%;
-      text-align: left;
-      padding: 12px 20px;
-      background: none;
-      border: none;
-      color: var(--text);
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      width: 100%; text-align: left; padding: 12px 20px;
+      background: none; border: none; color: var(--text);
+      font-size: 0.95rem; cursor: pointer; transition: background 0.2s, color 0.2s;
+      display: flex; align-items: center; gap: 10px;
     }
     .dropdown-menu button:hover, .dropdown-menu button.active {
-      background: rgba(168, 85, 247, 0.2);
-      color: var(--accent-color);
-      font-weight: bold;
+      background: #f4f2ee; color: var(--accent-color); font-weight: bold;
     }
 
     nav { display: flex; gap: 26px; color: var(--muted); font-size: .9rem; align-items: center; }
     nav a:hover { color: var(--accent-color); }
     
     .horario-badge {
-      display: inline-block;
-      background-color: #1a1a24;
-      border: 1px solid #2a2a3c;
-      color: var(--muted);
-      padding: 6px 14px;
-      border-radius: 30px;
-      font-size: 0.8rem;
+      display: inline-block; background-color: #f4f2ee;
+      border: 1px solid var(--line); color: var(--muted);
+      padding: 6px 14px; border-radius: 30px; font-size: 0.8rem;
     }
-    .horario-badge strong { color: #4ade80; }
+    .horario-badge strong { color: #16a34a; }
 
     /* BOTONES */
-    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 20px; border: 1px solid var(--accent-color); background: var(--accent-color); color: #fff; border-radius: 8px; font-weight: bold; font-size: .87rem; transition: .3s; box-shadow: 0 0 10px var(--accent-glow); }
-    .btn:hover { background: var(--accent-hover); border-color: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 0 18px var(--accent-glow); }
-    .btn-outline { background: transparent; color: var(--text); border-color: #2f2f42; }
-    .btn-outline:hover { border-color: var(--accent-color); color: var(--accent-color); background: rgba(168, 85, 247, 0.1); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 20px; border: 1px solid var(--accent-color); background: var(--accent-color); color: #fff; border-radius: 8px; font-weight: bold; font-size: .87rem; transition: .3s; box-shadow: 0 4px 12px var(--accent-glow); cursor: pointer; }
+    .btn:hover { background: var(--accent-hover); border-color: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 16px var(--accent-glow); }
+    .btn-outline { background: transparent; color: var(--text); border-color: #d1cbd5; }
+    .btn-outline:hover { border-color: var(--accent-color); color: var(--accent-color); background: rgba(181, 154, 114, 0.08); }
 
     /* HERO */
-    .hero { position: relative; overflow: hidden; padding: 92px 0 86px; background: radial-gradient(ellipse at 77% 45%, rgba(168,85,247,.15), transparent 35%), linear-gradient(120deg, #0b0b0e, #15151a); }
+    .hero { position: relative; overflow: hidden; padding: 92px 0 86px; background: radial-gradient(ellipse at 77% 45%, rgba(181,154,114,.12), transparent 40%), linear-gradient(120deg, #faf9f6, #f2efe9); }
     .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 54px; }
     .eyebrow { text-transform: uppercase; letter-spacing: .23em; color: var(--accent-color); font-size: .72rem; font-weight: bold; }
-    h1, h2, h3 { font-family: Georgia, 'Times New Roman', serif; font-weight: normal; }
+    h1, h2, h3 { font-family: Georgia, 'Times New Roman', serif; font-weight: normal; color: #1c1c1e; }
     h1 { font-size: clamp(3.2rem, 7vw, 5.8rem); line-height: .96; letter-spacing: -.045em; margin: 20px 0; }
-    h1 em { font-style: normal; color: var(--accent-color); text-shadow: 0 0 20px var(--accent-glow); }
+    h1 em { font-style: normal; color: var(--accent-color); }
     .hero p { max-width: 520px; color: var(--muted); font-size: 1.04rem; line-height: 1.85; }
     .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
     
-    .hero-visual { min-height: 420px; display: grid; place-items: center; position: relative; border: 1px solid var(--line); background: linear-gradient(140deg, #1c1c27, #0b0b0e 70%); border-radius: var(--border-radius); overflow: hidden; }
+    .hero-visual { min-height: 420px; display: grid; place-items: center; position: relative; border: 1px solid var(--line); background: linear-gradient(140deg, #ffffff, #f0ece6 70%); border-radius: var(--border-radius); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
     .hero-caption { position: absolute; bottom: 22px; left: 20px; right: 20px; text-align: center; color: var(--muted); font-size: .7rem; letter-spacing: .22em; text-transform: uppercase; }
 
-    section { padding: 78px 0; border-bottom: 1px solid #1c1c27; }
+    section { padding: 78px 0; border-bottom: 1px solid #eae5df; }
     .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 32px; }
     h2 { font-size: clamp(2.2rem, 4vw, 3.2rem); letter-spacing: -.03em; margin: 10px 0 0; }
     .section-head p { max-width: 460px; color: var(--muted); line-height: 1.7; margin: 0; }
 
     /* FILTROS GENERALES Y DE VAPERS */
     .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
-    .filter { cursor: pointer; background: #15151a; border: 1px solid #2f2f42; color: var(--muted); padding: 9px 16px; font-size: .85rem; border-radius: 20px; transition: .3s; }
-    .filter.active, .filter:hover { background: var(--accent-color); border-color: var(--accent-color); color: #fff; box-shadow: 0 0 10px var(--accent-glow); }
+    .filter { cursor: pointer; background: #ffffff; border: 1px solid #dcd6ce; color: var(--muted); padding: 9px 16px; font-size: .85rem; border-radius: 20px; transition: .3s; }
+    .filter.active, .filter:hover { background: var(--accent-color); border-color: var(--accent-color); color: #fff; box-shadow: 0 4px 10px var(--accent-glow); }
 
     /* GRILLA PRODUCTOS */
     .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
-    .product { background: var(--panel); border: 1px solid #22222d; border-radius: var(--border-radius); overflow: hidden; transition: transform .3s, border-color .3s; display: flex; flex-direction: column; justify-content: space-between; }
-    .product:hover { transform: translateY(-6px); border-color: var(--accent-color); box-shadow: 0 8px 25px var(--accent-glow); }
+    .product { background: var(--panel); border: 1px solid #eae5df; border-radius: var(--border-radius); overflow: hidden; transition: transform .3s, border-color .3s, box-shadow .3s; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+    .product:hover { transform: translateY(-6px); border-color: var(--accent-color); box-shadow: 0 12px 30px var(--accent-glow); }
     .product.hidden { display: none; }
     
-    .product-photo { height: 260px; background: #0f0f13; display: grid; place-items: center; overflow: hidden; position: relative; }
+    .product-photo { height: 260px; background: #f4f2ee; display: grid; place-items: center; overflow: hidden; position: relative; }
     .product-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s; }
     .product:hover .product-photo img { transform: scale(1.05); }
     
     .product-info { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
     .tag { color: var(--accent-color); font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; font-weight: bold; }
-    .product h3 { font-size: 1.2rem; margin: 8px 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    .product h3 { font-size: 1.2rem; margin: 8px 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #1c1c1e; }
     .product p { font-size: .88rem; color: var(--muted); line-height: 1.6; margin: 0 0 18px; min-height: 42px; }
     
     .product-bottom { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: auto; }
     .price-container { display: flex; flex-direction: column; align-items: flex-start; }
     .old-price { display: none; }
-    .price { font-weight: bold; color: var(--text); font-size: 1.1rem; }
+    .price { font-weight: bold; color: #1c1c1e; font-size: 1.1rem; }
     
-    .small-btn { padding: 9px 14px; border: 1px solid #2f2f42; background: #1c1c27; color: var(--text); font-size: .8rem; border-radius: 8px; transition: .2s; cursor: pointer; display: inline-flex; align-items: center; }
-    .small-btn:hover { background: var(--accent-color); border-color: var(--accent-color); color: #fff; box-shadow: 0 0 10px var(--accent-glow); }
+    .small-btn { padding: 9px 14px; border: 1px solid #dcd6ce; background: #ffffff; color: var(--text); font-size: .8rem; border-radius: 8px; transition: .2s; cursor: pointer; display: inline-flex; align-items: center; }
+    .small-btn:hover { background: var(--accent-color); border-color: var(--accent-color); color: #fff; box-shadow: 0 4px 10px var(--accent-glow); }
 
     /* VAPERS FILTER SECTION */
     .filter-section-vaper {
-        background-color: var(--panel);
-        padding: 20px;
-        border-radius: var(--border-radius);
-        margin-bottom: 25px;
-        border: 1px solid #22222d;
+        background-color: var(--panel); padding: 20px;
+        border-radius: var(--border-radius); margin-bottom: 25px; border: 1px solid #eae5df;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.02);
     }
     .filter-title { font-size: 0.8rem; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
 
     /* SOBRE NOSOTROS & ENVÍOS */
-    .about { background: #0e0e12; }
+    .about { background: #f2efe9; }
     .about-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 55px; align-items: center; }
     .about-copy { color: var(--muted); line-height: 1.9; }
     .features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 25px; }
-    .feature { padding: 20px; border: 1px solid #22222d; background: var(--panel); border-radius: 10px; }
-    .feature b { display: block; color: var(--text); margin-bottom: 9px; font-size: 0.95rem; }
+    .feature { padding: 20px; border: 1px solid #eae5df; background: var(--panel); border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+    .feature b { display: block; color: #1c1c1e; margin-bottom: 9px; font-size: 0.95rem; }
     .feature span { color: var(--muted); font-size: .87rem; line-height: 1.6; }
 
     /* CONTACTO / CAJA FINAL */
-    .contact-box { display: flex; align-items: center; justify-content: space-between; gap: 25px; padding: 40px; border: 1px solid var(--accent-color); border-radius: var(--border-radius); background: linear-gradient(115deg, rgba(168,85,247,.12), rgba(15,15,19,.9)); box-shadow: 0 0 30px var(--accent-glow); }
+    .contact-box { display: flex; align-items: center; justify-content: space-between; gap: 25px; padding: 40px; border: 1px solid var(--accent-color); border-radius: var(--border-radius); background: linear-gradient(115deg, rgba(181,154,114,.12), rgba(255,255,255,.9)); box-shadow: 0 10px 30px var(--accent-glow); }
     .contact-box p { color: var(--muted); line-height: 1.7; margin-bottom: 0; }
 
     /* MODAL VAPERS */
-    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 20px; }
-    .modal-content { background-color: var(--panel); width: 100%; max-width: 750px; border-radius: var(--border-radius); border: 1px solid var(--accent-color); padding: 30px; position: relative; max-height: 90vh; overflow-y: auto; box-shadow: 0 0 30px var(--accent-glow); }
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.45); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 20px; }
+    .modal-content { background-color: var(--panel); width: 100%; max-width: 750px; border-radius: var(--border-radius); border: 1px solid var(--accent-color); padding: 30px; position: relative; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
     .close-modal { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; color: var(--muted); cursor: pointer; background: none; border: none; transition: color 0.2s; }
-    .close-modal:hover { color: #fff; }
+    .close-modal:hover { color: #1c1c1e; }
     .modal-body { display: flex; flex-direction: column; gap: 25px; }
     @media (min-width: 650px) { .modal-body { flex-direction: row; } }
-    .modal-img-container { flex: 1; background-color: #0f0f13; border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 20px; min-height: 280px; border: 1px solid #22222d; }
+    .modal-img-container { flex: 1; background-color: #f4f2ee; border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 20px; min-height: 280px; border: 1px solid #eae5df; }
     .modal-img-container img { max-width: 100%; max-height: 240px; object-fit: contain; transition: opacity 0.2s ease-in-out; }
     .modal-info { flex: 1.2; display: flex; flex-direction: column; gap: 12px; }
-    .modal-title { font-size: 1.5rem; font-weight: bold; font-family: Georgia, serif; }
+    .modal-title { font-size: 1.5rem; font-weight: bold; font-family: Georgia, serif; color: #1c1c1e; }
     
     .quantity-control { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
-    .qty-btn { background-color: #1c1c27; color: #fff; border: 1px solid #2f2f42; width: 36px; height: 36px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: background-color 0.2s; }
-    .qty-btn:hover { background-color: var(--accent-color); }
-    .qty-input { width: 50px; text-align: center; background-color: #0f0f13; color: #fff; border: 1px solid #2f2f42; border-radius: 8px; padding: 6px; font-size: 1.1rem; }
+    .qty-btn { background-color: #f4f2ee; color: #1c1c1e; border: 1px solid #dcd6ce; width: 36px; height: 36px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: background-color 0.2s; }
+    .qty-btn:hover { background-color: var(--accent-color); color: #fff; }
+    .qty-input { width: 50px; text-align: center; background-color: #ffffff; color: #1c1c1e; border: 1px solid #dcd6ce; border-radius: 8px; padding: 6px; font-size: 1.1rem; }
     
     .flavors-container { margin-top: 5px; }
     .flavor-option-list { display: flex; flex-direction: column; gap: 8px; max-height: 200px; overflow-y: auto; margin-top: 6px; padding-right: 5px; }
-    .flavor-item { display: flex; align-items: center; gap: 12px; background-color: #0f0f13; border: 1px solid #22222d; padding: 8px 12px; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
-    .flavor-item:hover { border-color: var(--accent-color); }
-    .flavor-item.selected { border-color: var(--accent-color); background-color: rgba(168, 85, 247, 0.15); box-shadow: 0 0 8px var(--accent-glow); }
-    .flavor-item.soldout { opacity: 0.4; cursor: not-allowed; border-color: #ef4444; }
-    .flavor-name { font-size: 0.85rem; flex-grow: 1; }
+    .flavor-item { display: flex; align-items: center; gap: 12px; background-color: #f9f8f6; border: 1px solid #eae5df; padding: 8px 12px; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+    .flavor-item:hover { border-color: var(--accent-color); background-color: #f4f2ee; }
+    .flavor-item.selected { border-color: var(--accent-color); background-color: rgba(181, 154, 114, 0.12); box-shadow: 0 0 8px var(--accent-glow); }
+    .flavor-item.soldout { opacity: 0.4; cursor: not-allowed; border-color: #fca5a5; }
+    .flavor-name { font-size: 0.85rem; flex-grow: 1; color: #1c1c1e; }
     
     .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 10px; background-color: var(--whatsapp-color); color: #fff; text-decoration: none; padding: 14px; border-radius: 10px; font-weight: bold; font-size: 1rem; margin-top: 10px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3); border:none; cursor:pointer; width:100%; }
     .btn-whatsapp:hover { background-color: var(--whatsapp-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(34, 197, 94, 0.5); }
 
     /* BOTÓN DISCRETO EN EL FOOTER PARA ADMIN */
     .admin-footer-btn {
-      background: transparent;
-      border: none;
-      color: var(--muted);
-      cursor: pointer;
-      font-size: 0.82rem;
-      transition: color 0.3s;
-      margin-left: 10px;
+      background: transparent; border: none; color: var(--muted);
+      cursor: pointer; font-size: 0.82rem; transition: color 0.3s; margin-left: 10px;
     }
-    .admin-footer-btn:hover {
-      color: var(--accent-color);
-    }
+    .admin-footer-btn:hover { color: var(--accent-color); }
 
-    /* MODAL DEL PANEL DE CONTROL (ADMIN) */
+    /* MODAL DEL PANEL DE CONTROL (ADMIN MULTIRRUBRO) */
     .admin-modal {
       position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-      background: rgba(0,0,0,0.92); backdrop-filter: blur(8px); z-index: 2000;
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); z-index: 2000;
       display: none; justify-content: center; align-items: center; padding: 20px;
     }
     .admin-container {
-      background: #121218; border: 1px solid var(--accent-color);
-      width: 100%; max-width: 950px; height: 88vh; border-radius: 16px;
-      display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 0 40px var(--accent-glow);
+      background: #ffffff; border: 1px solid var(--accent-color);
+      width: 100%; max-width: 950px; height: 90vh; border-radius: 16px;
+      display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.15);
     }
     .admin-header {
-      padding: 20px; background: #191922; border-bottom: 1px solid #2a2a3a;
+      padding: 18px 20px; background: #f4f2ee; border-bottom: 1px solid #eae5df;
       display: flex; justify-content: space-between; align-items: center;
     }
-    .admin-header h3 { color: var(--accent-color); font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
-    .admin-body { padding: 20px; flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; }
-    .admin-card { background: #1a1a24; border: 1px solid #282838; border-radius: 10px; padding: 15px; }
-    .admin-card-title { font-weight: bold; color: var(--gold-light); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2a2a3a; padding-bottom: 8px; flex-wrap: wrap; gap: 10px; }
+    .admin-header h3 { color: var(--accent-color); font-size: 1.25rem; display: flex; align-items: center; gap: 10px; }
+    
+    .admin-tabs { display: flex; gap: 10px; background: #faf9f6; padding: 10px 20px; border-bottom: 1px solid #eae5df; }
+    .admin-tab { padding: 8px 16px; background: transparent; border: 1px solid #dcd6ce; color: var(--muted); border-radius: 8px; cursor: pointer; font-size: 0.85rem; transition: 0.2s; }
+    .admin-tab.active { background: var(--accent-color); color: #fff; border-color: var(--accent-color); font-weight: bold; }
+
+    .admin-body { padding: 20px; flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; background: #faf9f6; }
+    .admin-card { background: #ffffff; border: 1px solid #eae5df; border-radius: 10px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+    .admin-card-title { font-weight: bold; color: var(--accent-color); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eae5df; padding-bottom: 8px; flex-wrap: wrap; gap: 10px; }
+
+    /* FORMULARIOS ADMIN */
+    .admin-form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+    .admin-form-group label { font-size: 0.82rem; color: var(--muted); font-weight: 600; }
+    .input-field, .select-field, .textarea-field {
+      background: #ffffff; border: 1px solid #dcd6ce; color: #1c1c1e;
+      padding: 9px 12px; border-radius: 6px; font-size: 0.88rem; outline: none; transition: border-color 0.2s;
+    }
+    .input-field:focus, .select-field:focus, .textarea-field:focus { border-color: var(--accent-color); }
+    .textarea-field { resize: vertical; min-height: 70px; }
+    .admin-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .file-input-wrapper { display: flex; flex-direction: column; gap: 6px; }
+    .file-input-btn { background: #f4f2ee; border: 1px dashed var(--accent-color); color: var(--text); padding: 10px; border-radius: 6px; text-align: center; cursor: pointer; font-size: 0.85rem; transition: 0.2s; }
+    .file-input-btn:hover { background: rgba(181, 154, 114, 0.1); }
+    .file-preview { max-height: 80px; object-fit: contain; margin-top: 6px; border-radius: 6px; display: none; }
 
     /* SWITCH INTERRUPTOR CUSTOM */
     .switch { position: relative; display: inline-block; width: 44px; height: 22px; }
     .switch input { opacity: 0; width: 0; height: 0; }
     .slider-switch {
       position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
-      background-color: #374151; transition: .3s; border-radius: 34px;
+      background-color: #d1cbd5; transition: .3s; border-radius: 34px;
     }
     .slider-switch:before {
       position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px;
@@ -271,11 +257,10 @@
     input:checked + .slider-switch { background-color: #22c55e; }
     input:checked + .slider-switch:before { transform: translateX(22px); }
 
-    .flavor-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-bottom: 1px solid #222230; background: #13131b; border-radius: 6px; margin-bottom: 6px; }
-    .flavor-row-name { font-size: 0.9rem; }
-    .input-field { background: #0b0b0e; border: 1px solid #2f2f42; color: #fff; padding: 6px 10px; border-radius: 6px; font-size: 0.85rem; }
+    .flavor-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-bottom: 1px solid #eae5df; background: #f9f8f6; border-radius: 6px; margin-bottom: 6px; gap: 10px; }
+    .flavor-row-name { font-size: 0.9rem; flex-grow: 1; color: #1c1c1e; }
 
-    footer { padding: 28px 0; border-top: 1px solid #1c1c27; color: var(--muted); font-size: .82rem; }
+    footer { padding: 28px 0; border-top: 1px solid #eae5df; color: var(--muted); font-size: .82rem; background: #f4f2ee; }
     .footer-row { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; align-items: center; }
 
     /* VISTA CELULAR (2 COLUMNAS Y CUADROS MÁS CHICOS) */
@@ -289,49 +274,20 @@
       .section-head { display: block; }
       .section-head p { margin-top: 14px; }
       
-      /* Grilla de 2 columnas en celulares */
-      .products {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-      }
-      .product-photo {
-        height: 140px;
-      }
-      .product-info {
-        padding: 10px;
-      }
-      .product h3 {
-        font-size: 0.88rem;
-        line-height: 1.2;
-        margin: 4px 0;
-      }
-      .product p {
-        font-size: 0.72rem;
-        line-height: 1.3;
-        margin: 0 0 8px;
-        min-height: auto;
-      }
-      .tag {
-        font-size: 0.6rem;
-      }
-      .price {
-        font-size: 0.88rem;
-      }
-      .old-price {
-        font-size: 0.7em;
-      }
-      .small-btn {
-        padding: 6px 8px;
-        font-size: 0.7rem;
-      }
-      .product-bottom {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-      }
+      .products { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .product-photo { height: 140px; }
+      .product-info { padding: 10px; }
+      .product h3 { font-size: 0.88rem; line-height: 1.2; margin: 4px 0; }
+      .product p { font-size: 0.72rem; line-height: 1.3; margin: 0 0 8px; min-height: auto; }
+      .tag { font-size: 0.6rem; }
+      .price { font-size: 0.88rem; }
+      .old-price { font-size: 0.7em; }
+      .small-btn { padding: 6px 8px; font-size: 0.7rem; }
+      .product-bottom { flex-direction: column; align-items: flex-start; gap: 6px; }
 
       .contact-box { display: block; padding: 26px; }
       .contact-box .actions { margin-top: 22px; }
+      .admin-row-2 { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -345,7 +301,7 @@
         <nav aria-label="Navegación principal">
           <a href="#perfumes">Perfumes</a>
           <a href="#vapers">Vapers</a>
-          <a href="#airpods">AirPods</a>
+          <a href="#airpods">AirPods & Tech</a>
           <a href="#nosotros">Nosotros</a>
           <div class="horario-badge">
             🕒 Lun-Sáb: <strong>10:30-13:30</strong> | <strong>17:00-22:00</strong>
@@ -364,7 +320,7 @@
           <button class="active" onclick="filterMainCategory('todos', this)">✨ Ver Todos</button>
           <button onclick="filterMainCategory('perfumes', this)">🧪 Perfumes</button>
           <button onclick="filterMainCategory('vapers', this)">💨 Vapers</button>
-          <button onclick="filterMainCategory('airpods', this)">🎧 AirPods</button>
+          <button onclick="filterMainCategory('airpods', this)">🎧 AirPods & Tech</button>
         </div>
       </div>
     </div>
@@ -377,14 +333,14 @@
         <div>
           <div class="eyebrow">Tienda Multirrubro · N&G Importados</div>
           <h1>Esencias, Vapers & <em>Tecnología.</em></h1>
-          <p>Descubrí nuestra selección exclusiva de perfumería selecta, vapers de última generación con gran variedad de sabores y AirPods de alta calidad. <strong>¡Envíos a domicilio en toda la ciudad de La Rioja!</strong></p>
+          <p>Descubrí nuestra selección exclusiva de perfumería selecta, vapers de última generación con gran variedad de sabores y productos tecnológicos de alta calidad. <strong>¡Envíos a domicilio en toda la ciudad de La Rioja!</strong></p>
           <div class="actions">
             <a class="btn" href="#catalogo-general">Explorar productos ↘</a>
             <a class="btn btn-outline" id="whatsapp-hero" href="https://wa.me/5493804148332" target="_blank" rel="noopener">Pedir por WhatsApp ↗</a>
           </div>
         </div>
         <div class="hero-visual">
-          <img src="ng importados.png" alt="N&G Importados Multirrubro" style="width:100%; height:100%; object-fit:cover; display:block;" onerror="this.src='https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=600&q=80'">
+          <img src="favicon.png" alt="N&G Importados Multirrubro" style="width:100%; height:100%; object-fit:cover; display:block;" onerror="this.src='https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=600&q=80'">
           <div class="hero-caption">Calidad · Estilo · Envío a Domicilio en La Rioja</div>
         </div>
       </div>
@@ -412,447 +368,7 @@
           </div>
 
           <div class="products" id="perfume-grid">
-            <!-- 1. Honor and Glory -->
-            <article class="product perfume-card" data-category="unisex">
-              <div class="product-photo"><img src="honor and glory.png" alt="Honor and Glory" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Unisex · Lattafa</div>
-                  <h3>Honor and Glory</h3>
-                  <p>Notas cálidas, gourmand con piña, crema y especias.</p>
-                </div>
-                <div class="product-bottom">
-                  <div class="price-container">
-                    <span class="price">$45.000</span>
-                  </div>
-                  <a class="small-btn order-link" data-product="Honor and Glory" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 2. Liquid brun -->
-            <article class="product perfume-card" data-category="unisex">
-              <div class="product-photo"><img src="liquid brun.png" alt="Liquid Brun" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Unisex · French Avenue</div>
-                  <h3>Liquid Brun</h3>
-                  <p>Una bomba avainillada, cálida, dulce y achocolatada.</p>
-                </div>
-                <div class="product-bottom">
-                  <span class="price">$45.000</span>
-                  <a class="small-btn order-link" data-product="Liquid Brun" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 3. 9pm night out -->
-            <article class="product perfume-card" data-category="masculino">
-              <div class="product-photo"><img src="9pm night out.png" alt="9pm night out" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Masculino · Afnan</div>
-                  <h3>9pm Night Out</h3>
-                  <p>Fragancia nocturna, seductora y de gran estela.</p>
-                </div>
-                <div class="product-bottom">
-                  <span class="price">$50.000</span>
-                  <a class="small-btn order-link" data-product="9pm Night Out" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 4. JPG Le Beau Le Parfum -->
-            <article class="product perfume-card" data-category="masculino">
-              <div class="product-photo"><img src="JPG le beau.png" alt="Jean Paul Gaultier Le Beau Le Parfum" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Masculino · Jean Paul Gaultier</div>
-                  <h3>Jean Paul Gaultier Le Beau Le Parfum</h3>
-                  <p>Perfil tropical e intenso con notas de coco y haba tonka.</p>
-                </div>
-                <div class="product-bottom">
-                  <span class="price">$55.000</span>
-                  <a class="small-btn order-link" data-product="JPG Le Beau Le Parfum" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 5. JPG Le Male Le Parfum -->
-            <article class="product perfume-card" data-category="masculino">
-              <div class="product-photo"><img src="JPG le male le parfum.png" alt="Jean Paul Gaultier Le Male Le Parfum" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Masculino · Jean Paul Gaultier</div>
-                  <h3>Jean Paul Gaultier Le Male Le Parfum</h3>
-                  <p>Elegancia oscura con cardamomo, lavanda y iris oriental.</p>
-                </div>
-                <div class="product-bottom">
-                  <span class="price">$55.000</span>
-                  <a class="small-btn order-link" data-product="JPG Le Male Le Parfum" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 6. Erba Pura -->
-            <article class="product perfume-card" data-category="unisex">
-              <div class="product-photo"><img src="erba pura.png" alt="Erba Pura" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Unisex · Xerjoff</div>
-                  <h3>Erba Pura</h3>
-                  <p>Explosión de frutas mediterráneas, cítricos y almizcle blanco.</p>
-                </div>
-                <div class="product-bottom">
-                  <span class="price">$50.000</span>
-                  <a class="small-btn order-link" data-product="Erba Pura" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 7. Odyssey Aqua -->
-            <article class="product perfume-card" data-category="masculino">
-              <div class="product-photo"><img src="odyssey aqua.png" alt="Odyssey Aqua" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Masculino · Armaf</div>
-                  <h3>Odyssey Aqua</h3>
-                  <p>Aroma fresco, marino y vibrante, ideal para uso diario.</p>
-                </div>
-                <div class="product-bottom">
-                  <span class="price">$40.000</span>
-                  <a class="small-btn order-link" data-product="Odyssey Aqua" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 8. Odyssey Homme -->
-            <article class="product perfume-card" data-category="masculino">
-              <div class="product-photo"><img src="odyssey homme.png" alt="Odyssey Homme" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Masculino · Armaf</div>
-                  <h3>Odyssey Homme</h3>
-                  <p>Fragancia ámbar amaderada con toque de iris y vainilla.</p>
-                </div>
-                <div class="product-bottom">
-                  <span class="price">$40.000</span>
-                  <a class="small-btn order-link" data-product="Odyssey Homme" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 9. Barara Rose -->
-            <article class="product perfume-card" data-category="femenino">
-              <div class="product-photo"><img src="barara rose.png" alt="Barara Rose" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Femenino · Barara King</div>
-                  <h3>Barara Rose</h3>
-                  <p>Elegante combinación floral dulce y femenina.</p>
-                </div>
-                <div class="product-bottom">
-                  <div class="price-container">
-                    <span class="price">$55.000</span>
-                  </div>
-                  <a class="small-btn order-link" data-product="Barara Rose" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 10. Barara King Gold Edición -->
-            <article class="product perfume-card" data-category="masculino">
-              <div class="product-photo"><img src="bharara gold.png" alt="Barara King Gold Edición" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Masculino · Barara King</div>
-                  <h3>Barara King Gold Edición</h3>
-                  <p>Perfume ostentoso, amaderado y especia dorada.</p>
-                </div>
-                <div class="product-bottom">
-                  <span class="price">$55.000</span>
-                  <a class="small-btn order-link" data-product="Barara King Gold Edición" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 11. Khamrah -->
-            <article class="product perfume-card" data-category="unisex">
-              <div class="product-photo"><img src="khamrah.png" alt="Khamrah" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Unisex · Lattafa</div>
-                  <h3>Khamrah</h3>
-                  <p>Especias cálidas, canela, praliné y haba tonka dulce.</p>
-                </div>
-                <div class="product-bottom">
-                  <span class="price">$48.000</span>
-                  <a class="small-btn order-link" data-product="Khamrah" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 12. Khamrah Qahwa -->
-            <article class="product perfume-card" data-category="unisex">
-              <div class="product-photo"><img src="qahwa.png" alt="Khamrah Qahwa" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Unisex · Lattafa</div>
-                  <h3>Khamrah Qahwa</h3>
-                  <p>Gourmand intenso con notas de café arábigo tostado.</p>
-                </div>
-                <div class="product-bottom">
-                  <div class="price-container">
-                    <span class="price">$48.000</span>
-                  </div>
-                  <a class="small-btn order-link" data-product="Khamrah Qahwa" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 13. Odyssey Mandarín Sky -->
-            <article class="product perfume-card" data-category="masculino">
-              <div class="product-photo"><img src="mandarin sky.png" alt="Odyssey Mandarín Sky" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Masculino · Armaf</div>
-                  <h3>Odyssey Mandarín Sky</h3>
-                  <p>Toques cítricos dulces de mandarina, caramelo y haba tonka.</p>
-                </div>
-                <div class="product-bottom">
-                  <span class="price">$41.000</span>
-                  <a class="small-btn order-link" data-product="Odyssey Mandarín Sky" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 14. Odyssey Mandarín Sky Elíxir -->
-            <article class="product perfume-card" data-category="masculino">
-              <div class="product-photo"><img src="mandarin sky elixir.png" alt="Odyssey Mandarín Sky Elíxir" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Masculino · Armaf</div>
-                  <h3>Odyssey Mandarín Sky Elíxir</h3>
-                  <p>Versión más profunda y concentrada con acordes ambarados y especiados.</p>
-                </div>
-                <div class="product-bottom">
-                  <span class="price">$41.000</span>
-                  <a class="small-btn order-link" data-product="Odyssey Mandarín Sky Elíxir" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 15. Odyssey Candee -->
-            <article class="product perfume-card" data-category="femenino">
-              <div class="product-photo"><img src="candee.png" alt="Odyssey Candee" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Femenino · Armaf</div>
-                  <h3>Odyssey Candee</h3>
-                  <p>Perfil dulce, frutal y jovial con notas acarameladas.</p>
-                </div>
-                <div class="product-bottom">
-                  <div class="price-container">
-                    <span class="price">$41.000</span>
-                  </div>
-                  <a class="small-btn order-link" data-product="Odyssey Candee" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 16. Hawas Ice -->
-            <article class="product perfume-card" data-category="masculino">
-              <div class="product-photo"><img src="hawas ice.png" alt="Hawas Ice" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Masculino · Rasasi</div>
-                  <h3>Hawas Ice</h3>
-                  <p>Fragancia acuática ultra helada, frutal y enérgica.</p>
-                </div>
-                <div class="product-bottom">
-                  <span class="price">$40.000</span>
-                  <a class="small-btn order-link" data-product="Hawas Ice" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 17. Azzure Aoud -->
-            <article class="product perfume-card" data-category="unisex">
-              <div class="product-photo"><img src="azzure aoud.png" alt="Azzure Aoud" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Unisex · French Avenue</div>
-                  <h3>Azzure Aoud</h3>
-                  <p>Combinación exótica de Oud con toques marinos refrescantes.</p>
-                </div>
-                <div class="product-bottom">
-                  <span class="price">$45.000</span>
-                  <a class="small-btn order-link" data-product="Azzure Aoud" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 18. Yara -->
-            <article class="product perfume-card" data-category="femenino">
-              <div class="product-photo"><img src="yara.png" alt="Yara" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Femenino · Lattafa</div>
-                  <h3>Yara</h3>
-                  <p>Aroma cremoso con notas de orquídea, vainilla y frutas atalcadas.</p>
-                </div>
-                <div class="product-bottom">
-                  <div class="price-container">
-                    <span class="price">$30.000</span>
-                  </div>
-                  <a class="small-btn order-link" data-product="Yara" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 19. 9am -->
-            <article class="product perfume-card" data-category="unisex">
-              <div class="product-photo"><img src="9am.png" alt="9am" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Unisex · Afnan</div>
-                  <h3>9am</h3>
-                  <p>Fresco, cítrico y enérgico, perfecto para arrancar el día con vitalidad.</p>
-                </div>
-                <div class="product-bottom">
-                  <span class="price">$37.000</span>
-                  <a class="small-btn order-link" data-product="9am" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 20. 9pm -->
-            <article class="product perfume-card" data-category="unisex">
-              <div class="product-photo"><img src="9pm.png" alt="9pm" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Unisex · Afnan</div>
-                  <h3>9pm</h3>
-                  <p>Versatilidad total entre frescura diurna y toque nocturno.</p>
-                </div>
-                <div class="product-bottom">
-                  <span class="price">$37.000</span>
-                  <a class="small-btn order-link" data-product="9pm" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 21. Xerjoff Naxos -->
-            <article class="product perfume-card" data-category="unisex">
-              <div class="product-photo"><img src="naxos.png" alt="Xerjoff Naxos" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Unisex · Xerjoff</div>
-                  <h3>Naxos</h3>
-                  <p>Dulce, frutal y avainillada con un fondo seductor ideal para salidas nocturnas.</p>
-                </div>
-                <div class="product-bottom">
-                  <span class="price">$55.000</span>
-                  <a class="small-btn order-link" data-product="Xerjoff Naxos" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 22. Vulcan -->
-            <article class="product perfume-card" data-category="masculino">
-              <div class="product-photo"><img src="vulcan.png" alt="Vulcan" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Masculino · Maison Alhambra</div>
-                  <h3>Vulcan</h3>
-                  <p>Perfume imponente con notas de cuero, especias y madera.</p>
-                </div>
-                <div class="product-bottom">
-                  <span class="price">$47.000</span>
-                  <a class="small-btn order-link" data-product="Vulcan" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 23. Vulcan Feu -->
-            <article class="product perfume-card" data-category="masculino">
-              <div class="product-photo"><img src="vulcan feu.png" alt="Vulcan Feu" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Masculino · Maison Alhambra</div>
-                  <h3>Vulcan Feu</h3>
-                  <p>Edición cálida e intensa con toques ahumados y resinosos.</p>
-                </div>
-                <div class="product-bottom">
-                  <span class="price">$47.000</span>
-                  <a class="small-btn order-link" data-product="Vulcan Feu" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 24. Asad Bourbon -->
-            <article class="product perfume-card" data-category="masculino">
-              <div class="product-photo"><img src="asad bourbon.png" alt="Asad Bourbon" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Masculino · Lattafa</div>
-                  <h3>Asad Bourbon</h3>
-                  <p>Notas licorosas, vainilla especiada y madera ahumada.</p>
-                </div>
-                <div class="product-bottom">
-                  <span class="price">$37.000</span>
-                  <a class="small-btn order-link" data-product="Asad Bourbon" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 25. Asad -->
-            <article class="product perfume-card" data-category="masculino">
-              <div class="product-photo"><img src="asad.png" alt="Asad" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Masculino · Lattafa</div>
-                  <h3>Asad</h3>
-                  <p>Especias oscuras, pimienta negra, ámbar y café.</p>
-                </div>
-                <div class="product-bottom">
-                  <span class="price">$35.000</span>
-                  <a class="small-btn order-link" data-product="Asad" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 26. Oud for Glory -->
-            <article class="product perfume-card" data-category="unisex">
-              <div class="product-photo"><img src="oud for glory.png" alt="Oud for Glory" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Unisex · Lattafa</div>
-                  <h3>Oud for Glory</h3>
-                  <p>Azafrán, maderas finas y Oud oriental opulento.</p>
-                </div>
-                <div class="product-bottom">
-                  <span class="price">$45.000</span>
-                  <a class="small-btn order-link" data-product="Oud for Glory" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 27. Fakhar Black -->
-            <article class="product perfume-card" data-category="masculino">
-              <div class="product-photo"><img src="fakhar.png" alt="Fakhar Black" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Masculino · Lattafa</div>
-                  <h3>Fakhar Black</h3>
-                  <p>Perfume elegancia pura, aromático con manzana y salvia.</p>
-                </div>
-                <div class="product-bottom">
-                  <span class="price">$43.000</span>
-                  <a class="small-btn order-link" data-product="Fakhar Black" href="#">Consultar ↗</a>
-                </div>
-              </div>
-            </article>
+            <!-- Los perfumes iniciales y administrados dinámicamente se renderizan mediante JS -->
           </div>
         </div>
       </section>
@@ -908,33 +424,19 @@
         </div>
       </section>
 
-      <!-- 3. AIRPODS -->
+      <!-- 3. AIRPODS & TECNOLOGÍA -->
       <section id="airpods" class="main-section">
         <div>
           <div class="section-head">
             <div>
-              <div class="eyebrow">Tecnología Audio</div>
-              <h2>Auriculares AirPods</h2>
+              <div class="eyebrow">Tecnología Audio & Más</div>
+              <h2>Gadgets & Tecnología</h2>
             </div>
-            <p>Disfrutá de sonido envolvente, diseño anatómico y máxima comodidad con nuestros AirPods de 3ra Generación.</p>
+            <p>Disfrutá de sonido envolvente, diseño anatómico y la mejor calidad en nuestros productos tecnológicos seleccionados.</p>
           </div>
 
-          <div class="products" style="max-width: 400px; margin: 0 auto;">
-            <!-- AirPods 3 -->
-            <article class="product">
-              <div class="product-photo"><img src="airpods.png" alt="AirPods 3ra Gen" loading="lazy"></div>
-              <div class="product-info">
-                <div>
-                  <div class="tag">Audio · Inalámbrico</div>
-                  <h3>AirPods Pro 2</h3>
-                  <p>Diseño anatómico, audio espacial con seguimiento dinámico de la cabeza y estuche de carga Lightning/MagSafe.</p>
-                </div>
-                <div class="product-bottom">
-                  <span class="price">$26.000</span>
-                  <a class="small-btn order-link" data-product="AirPods (3ra Gen)" href="#">Encargar ↗</a>
-                </div>
-              </div>
-            </article>
+          <div class="products" id="tech-grid">
+            <!-- Renderizado dinámico -->
           </div>
         </div>
       </section>
@@ -982,14 +484,22 @@
     </div>
   </div>
 
-  <!-- CONSOLA / PANEL DE CONTROL (ADMIN) -->
+  <!-- CONSOLA / PANEL DE CONTROL (ADMIN MULTIRRUBRO) -->
   <div class="admin-modal" id="adminModal">
     <div class="admin-container">
       <div class="admin-header">
-        <h3>⚡ Panel de Control Privado (Stock & Precios)</h3>
+        <h3>⚡ Panel de Control Privado (Gestor Multirrubro)</h3>
         <button class="small-btn" onclick="closeAdminPanel()">✕ Cerrar</button>
       </div>
-      <div class="admin-body" id="adminBodyContent"></div>
+
+      <div class="admin-tabs">
+        <button class="admin-tab active" onclick="switchAdminTab('stock', this)">📦 Gestión de Stock & Precios</button>
+        <button class="admin-tab" onclick="switchAdminTab('add', this)">➕ Agregar Nuevo Producto</button>
+      </div>
+
+      <div class="admin-body" id="adminBodyContent">
+        <!-- Contenido dinámico tab 1 o 2 -->
+      </div>
     </div>
   </div>
 
@@ -998,7 +508,6 @@
       <span>© <span id="year"></span> N&G IMPORTADOS — Perfumes, Vapers & AirPods</span>
       <div>
         <span>Envío a domicilio en La Rioja</span>
-        <!-- BOTÓN SECRETO EN EL FOOTER -->
         <button class="admin-footer-btn" onclick="openAdminPanel()">⚙️ Admin</button>
       </div>
     </div>
@@ -1006,34 +515,56 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-
     const WHATSAPP_NUMBER = "5493804148332";
 
-    // TOGGLE MENÚ HAMBURGUESA DE 3 LÍNEAS
+    // MENÚ HAMBURGUESA
     const menuBtn = document.getElementById('menuBtn');
     const dropdownMenu = document.getElementById('dropdownMenu');
-
     menuBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       dropdownMenu.classList.toggle('show');
     });
+    document.addEventListener('click', () => { dropdownMenu.classList.remove('show'); });
 
-    document.addEventListener('click', () => {
-      dropdownMenu.classList.remove('show');
-    });
+    // BASES DE DATOS INICIALES COMPLETAS
 
-    // Base de datos COMPLETA de Vapers con soporte para la propiedad 'img'
+    const defaultPerfumes = [
+      { id: "p1", tag: "Unisex · Lattafa", title: "Honor and Glory", desc: "Notas cálidas, gourmand con piña, crema y especias.", price: "$45.000", img: "honor and glory.png", category: "unisex" },
+      { id: "p2", tag: "Unisex · French Avenue", title: "Liquid Brun", desc: "Una bomba avainillada, cálida, dulce y achocolatada.", price: "$45.000", img: "liquid brun.png", category: "unisex" },
+      { id: "p3", tag: "Masculino · Afnan", title: "9pm Night Out", desc: "Fragancia nocturna, seductora y de gran estela.", price: "$50.000", img: "9pm night out.png", category: "masculino" },
+      { id: "p4", tag: "Masculino · Jean Paul Gaultier", title: "Jean Paul Gaultier Le Beau Le Parfum", desc: "Perfil tropical e intenso con notas de coco y haba tonka.", price: "$55.000", img: "JPG le beau.png", category: "masculino" },
+      { id: "p5", tag: "Masculino · Jean Paul Gaultier", title: "Jean Paul Gaultier Le Male Le Parfum", desc: "Elegancia oscura con cardamomo, lavanda y iris oriental.", price: "$55.000", img: "JPG le male le parfum.png", category: "masculino" },
+      { id: "p6", tag: "Unisex · Xerjoff", title: "Erba Pura", desc: "Explosión de frutas mediterráneas, cítricos y almizcle blanco.", price: "$50.000", img: "erba pura.png", category: "unisex" },
+      { id: "p7", tag: "Masculino · Armaf", title: "Odyssey Aqua", desc: "Aroma fresco, marino y vibrante, ideal para uso diario.", price: "$40.000", img: "odyssey aqua.png", category: "masculino" },
+      { id: "p8", tag: "Masculino · Armaf", title: "Odyssey Homme", desc: "Fragancia ámbar amaderada con toque de iris y vainilla.", price: "$40.000", img: "odyssey homme.png", category: "masculino" },
+      { id: "p9", tag: "Femenino · Barara King", title: "Barara Rose", desc: "Elegante combinación floral dulce y femenina.", price: "$55.000", img: "barara rose.png", category: "femenino" },
+      { id: "p10", tag: "Masculino · Barara King", title: "Barara King Gold Edición", desc: "Perfume ostentoso, amaderado y especia dorada.", price: "$55.000", img: "bharara gold.png", category: "masculino" },
+      { id: "p11", tag: "Unisex · Lattafa", title: "Khamrah", desc: "Especias cálidas, canela, praliné y haba tonka dulce.", price: "$48.000", img: "khamrah.png", category: "unisex" },
+      { id: "p12", tag: "Unisex · Lattafa", title: "Khamrah Qahwa", desc: "Gourmand intenso con notas de café arábigo tostado.", price: "$48.000", img: "qahwa.png", category: "unisex" },
+      { id: "p13", tag: "Masculino · Armaf", title: "Odyssey Mandarín Sky", desc: "Toques cítricos dulces de mandarina, caramelo y haba tonka.", price: "$41.000", img: "mandarin sky.png", category: "masculino" },
+      { id: "p14", tag: "Masculino · Armaf", title: "Odyssey Mandarín Sky Elíxir", desc: "Versión más profunda y concentrada con acordes ambarados y especiados.", price: "$41.000", img: "mandarin sky elixir.png", category: "masculino" },
+      { id: "p15", tag: "Femenino · Armaf", title: "Odyssey Candee", desc: "Perfil dulce, frutal y jovial con notas acarameladas.", price: "$41.000", img: "candee.png", category: "femenino" },
+      { id: "p16", tag: "Masculino · Rasasi", title: "Hawas Ice", desc: "Fragancia acuática ultra helada, frutal y enérgica.", price: "$40.000", img: "hawas ice.png", category: "masculino" },
+      { id: "p17", tag: "Unisex · French Avenue", title: "Azzure Aoud", desc: "Combinación exótica de Oud con toques marinos refrescantes.", price: "$45.000", img: "azzure aoud.png", category: "unisex" },
+      { id: "p18", tag: "Femenino · Lattafa", title: "Yara", desc: "Aroma cremoso con notas de orquídea, vainilla y frutas atalcadas.", price: "$30.000", img: "yara.png", category: "femenino" },
+      { id: "p19", tag: "Unisex · Afnan", title: "9am", desc: "Fresco, cítrico y enérgico, perfecto para arrancar el día con vitalidad.", price: "$37.000", img: "9am.png", category: "unisex" },
+      { id: "p20", tag: "Unisex · Afnan", title: "9pm", desc: "Versatilidad total entre frescura diurna y toque nocturno.", price: "$37.000", img: "9pm.png", category: "unisex" },
+      { id: "p21", tag: "Unisex · Xerjoff", title: "Xerjoff Naxos", desc: "Dulce, frutal y avainillada con un fondo seductor ideal para salidas nocturnas.", price: "$55.000", img: "naxos.png", category: "unisex" },
+      { id: "p22", tag: "Masculino · Maison Alhambra", title: "Vulcan", desc: "Perfume imponente con notas de cuero, especias y madera.", price: "$47.000", img: "vulcan.png", category: "masculino" },
+      { id: "p23", tag: "Masculino · Maison Alhambra", title: "Vulcan Feu", desc: "Edición cálida e intensa con toques ahumados y resinosos.", price: "$47.000", img: "vulcan feu.png", category: "masculino" },
+      { id: "p24", tag: "Masculino · Lattafa", title: "Asad Bourbon", desc: "Notas licorosas, vainilla especiada y madera ahumada.", price: "$37.000", img: "asad bourbon.png", category: "masculino" },
+      { id: "p25", tag: "Masculino · Lattafa", title: "Asad", desc: "Especias oscuras, pimienta negra, ámbar y café.", price: "$35.000", img: "asad.png", category: "masculino" },
+      { id: "p26", tag: "Unisex · Lattafa", title: "Oud for Glory", desc: "Azafrán, maderas finas y Oud oriental opulento.", price: "$45.000", img: "oud for glory.png", category: "unisex" },
+      { id: "p27", tag: "Masculino · Lattafa", title: "Fakhar Black", desc: "Perfume elegancia pura, aromático con manzana y salvia.", price: "$43.000", img: "fakhar.png", category: "masculino" }
+    ];
+
+    const defaultTech = [
+      { id: "t1", tag: "Audio · Inalámbrico", title: "AirPods Pro 2", desc: "Diseño anatómico, audio espacial con seguimiento dinámico de la cabeza y estuche de carga Lightning/MagSafe.", price: "$26.000", img: "airpods.png" }
+    ];
+
     const defaultVapers = [
       {
-        id: "dinner-lady-20k",
-        brandName: "Dinner Lady",
-        brandKey: "dinner-lady",
-        model: "Dinner Lady LUMA 20K",
-        puffsKey: "20k",
-        puffsText: "20.000 Puffs",
-        price: "$25.000",
-        pricePromo: "2X $46.000",
-        defaultImg: "LADY.png",
+        id: "dinner-lady-20k", brandName: "Dinner Lady", brandKey: "dinner-lady", model: "Dinner Lady LUMA 20K", puffsKey: "20k", puffsText: "20.000 Puffs", price: "$25.000", pricePromo: "2X $46.000", defaultImg: "LADY.png",
         flavors: [
           { name: "Sandía Fría", soldOut: false, img: "sandia.png" },
           { name: "Menta Azul", soldOut: false, img: "menta.png" },
@@ -1052,15 +583,7 @@
         ]
       },
       {
-        id: "nikbar-10k",
-        brandName: "Nikbar",
-        brandKey: "nikbar",
-        model: "Nikbar 10K",
-        puffsKey: "10k",
-        puffsText: "10.000 Puffs",
-        price: "$22.500",
-        pricePromo: "2X $40.000",
-        defaultImg: "nikbar 10k.png",
+        id: "nikbar-10k", brandName: "Nikbar", brandKey: "nikbar", model: "Nikbar 10K", puffsKey: "10k", puffsText: "10.000 Puffs", price: "$22.500", pricePromo: "2X $40.000", defaultImg: "nikbar 10k.png",
         flavors: [
           { name: "Cherry Bomb (Cereza y Uva / Cerezas Dulces)", soldOut: true, img: "cherrybomb.png" },
           { name: "Juicy Peach (Durazno)", soldOut: false, img: "juicypeach.png" },
@@ -1082,15 +605,7 @@
         ]
       },
       {
-        id: "maskking-40k",
-        brandName: "Maskking",
-        brandKey: "maskking",
-        model: "Maskking Puff 40K",
-        puffsKey: "40k",
-        puffsText: "40.000 Puffs",
-        price: "$29.000",
-        pricePromo: "2X $55.000",
-        defaultImg: "mk 40k.png",
+        id: "maskking-40k", brandName: "Maskking", brandKey: "maskking", model: "Maskking Puff 40K", puffsKey: "40k", puffsText: "40.000 Puffs", price: "$29.000", pricePromo: "2X $55.000", defaultImg: "mk 40k.png",
         flavors: [
           { name: "Cereza Negra y Durazno", soldOut: false, img: "cerezanegradurazno.png" },
           { name: "Arándanos con Frambuesas", soldOut: true, img: "arandanosframbuesas.png" },
@@ -1113,15 +628,7 @@
         ]
       },
       {
-        id: "maskking-100k",
-        brandName: "Maskking",
-        brandKey: "maskking",
-        model: "Maskking Puff 100K",
-        puffsKey: "100k",
-        puffsText: "100.000 Puffs",
-        price: "$34.000",
-        pricePromo: "2X $62.000",
-        defaultImg: "mk 100k.png",
+        id: "maskking-100k", brandName: "Maskking", brandKey: "maskking", model: "Maskking Puff 100K", puffsKey: "100k", puffsText: "100.000 Puffs", price: "$34.000", pricePromo: "2X $62.000", defaultImg: "mk 100k.png",
         flavors: [
           { name: "Taffy Freeze (Banana Dulce Fría)", soldOut: true, img: "taffyfreeze.png" },
           { name: "Watermelon Ice (Sandía Fría)", soldOut: false, img: "watermelonicee.png" },
@@ -1141,15 +648,7 @@
         ]
       },
       {
-        id: "ignite-v155",
-        brandName: "Ignite",
-        brandKey: "ignite",
-        model: "Ignite V155",
-        puffsKey: "15k",
-        puffsText: "15.500 Puffs",
-        price: "$24.500",
-        pricePromo: "2X $46.000",
-        defaultImg: "ingnite v155.png",
+        id: "ignite-v155", brandName: "Ignite", brandKey: "ignite", model: "Ignite V155", puffsKey: "15k", puffsText: "15.500 Puffs", price: "$24.500", pricePromo: "2X $46.000", defaultImg: "ingnite v155.png",
         flavors: [
           { name: "Blueberry Ice (Arándanos Fríos)", soldOut: true, img: "blueberryiceig.png" },
           { name: "Strawberry Ice (Frutilla Fría)", soldOut: false, img: "blueberryiceig.png" },
@@ -1167,15 +666,7 @@
         ]
       },
       {
-        id: "ignite-v300",
-        brandName: "Ignite",
-        brandKey: "ignite",
-        model: "Ignite V300",
-        puffsKey: "30k",
-        puffsText: "30.000 Puffs",
-        price: "$30.000",
-        pricePromo: "2X $55.000",
-        defaultImg: "ingnite v300.png",
+        id: "ignite-v300", brandName: "Ignite", brandKey: "ignite", model: "Ignite V300", puffsKey: "30k", puffsText: "30.000 Puffs", price: "$30.000", pricePromo: "2X $55.000", defaultImg: "ingnite v300.png",
         flavors: [
           { name: "Menthol", soldOut: false, img: "igv300sab.png" },
           { name: "Mix de Sandía", soldOut: false, img: "igv300sab.png" },
@@ -1201,15 +692,7 @@
         ]
       },
       {
-        id: "ignite-ice-40k",
-        brandName: "Ignite",
-        brandKey: "ignite",
-        model: "Ignite ICE 40K",
-        puffsKey: "40k",
-        puffsText: "40.000 Puffs",
-        price: "$32.000",
-        pricePromo: "2X $58.000",
-        defaultImg: "ingnite 40 ice.png",
+        id: "ignite-ice-40k", brandName: "Ignite", brandKey: "ignite", model: "Ignite ICE 40K", puffsKey: "40k", puffsText: "40.000 Puffs", price: "$32.000", pricePromo: "2X $58.000", defaultImg: "ingnite 40 ice.png",
         flavors: [
           { name: "Grape Peach (Uva Durazno)", soldOut: false, img: "ig40ksab.png" },
           { name: "Strawberry Kiwi (Frutilla Kiwi)", soldOut: false, img: "ig40ksab.png" },
@@ -1234,15 +717,7 @@
         ]
       },
       {
-        id: "ignite-mix-40k",
-        brandName: "Ignite",
-        brandKey: "ignite",
-        model: "Ignite MIX 40K",
-        puffsKey: "40k",
-        puffsText: "40.000 Puffs",
-        price: "$33.000",
-        pricePromo: "2X $60.000",
-        defaultImg: "ingnite 40k mix.png",
+        id: "ignite-mix-40k", brandName: "Ignite", brandKey: "ignite", model: "Ignite MIX 40K", puffsKey: "40k", puffsText: "40.000 Puffs", price: "$33.000", pricePromo: "2X $60.000", defaultImg: "ingnite 40k mix.png",
         flavors: [
           { name: "Banana Ice / Strawberry (Frutilla-Banana)", soldOut: false, img: "igmix40kamarillo.png" },
           { name: "Icy Mint / Peach Grape (Menta-Durazno Uva)", soldOut: false, img: "icymintpeach.png" },
@@ -1263,15 +738,7 @@
         ]
       },
       {
-        id: "ignite-v500",
-        brandName: "Ignite",
-        brandKey: "ignite",
-        model: "Ignite V500",
-        puffsKey: "50k",
-        puffsText: "50.000 Puffs",
-        price: "$35.000",
-        pricePromo: "2X $65.000",
-        defaultImg: "ingnite v500.png",
+        id: "ignite-v500", brandName: "Ignite", brandKey: "ignite", model: "Ignite V500", puffsKey: "50k", puffsText: "50.000 Puffs", price: "$35.000", pricePromo: "2X $65.000", defaultImg: "ingnite v500.png",
         flavors: [
           { name: "Mix Sandía", soldOut: false, img: "mixsandia.png" },
           { name: "Durazno Uva", soldOut: false, img: "duraznouva.png" },
@@ -1296,15 +763,7 @@
         ]
       },
       {
-        id: "elfbar-bc15k",
-        brandName: "Elfbar",
-        brandKey: "elfbar",
-        model: "Elfbar BC15K",
-        puffsKey: "15k",
-        puffsText: "15.000 Puffs",
-        price: "$22.000",
-        pricePromo: "2X $40.000",
-        defaultImg: "eb bc15.png",
+        id: "elfbar-bc15k", brandName: "Elfbar", brandKey: "elfbar", model: "Elfbar BC15K", puffsKey: "15k", puffsText: "15.000 Puffs", price: "$22.000", pricePromo: "2X $40.000", defaultImg: "eb bc15.png",
         flavors: [
           { name: "Uva", soldOut: true, img: "uva.png" },
           { name: "Chicle de Menta", soldOut: false, img: "chiclementa.png" },
@@ -1334,15 +793,7 @@
         ]
       },
       {
-        id: "elfbar-gh23000",
-        brandName: "Elfbar",
-        brandKey: "elfbar",
-        model: "Elfbar GH23000",
-        puffsKey: "23k",
-        puffsText: "23.000 Puffs",
-        price: "$26.000",
-        pricePromo: "2X $48.000",
-        defaultImg: "eb 23.png",
+        id: "elfbar-gh23000", brandName: "Elfbar", brandKey: "elfbar", model: "Elfbar GH23000", puffsKey: "23k", puffsText: "23.000 Puffs", price: "$26.000", pricePromo: "2X $48.000", defaultImg: "eb 23.png",
         flavors: [
           { name: "Arándanos con Pera", soldOut: true, img: "arandanospera.png" },
           { name: "Pomelo con Lima", soldOut: true, img: "pomelolima.png" },
@@ -1363,15 +814,7 @@
         ]
       },
       {
-        id: "elfbar-te30k",
-        brandName: "Elfbar",
-        brandKey: "elfbar",
-        model: "Elfbar TE30K",
-        puffsKey: "30k",
-        puffsText: "30.000 Puffs",
-        price: "$25.000",
-        pricePromo: "2X $48.000",
-        defaultImg: "eb te30.png",
+        id: "elfbar-te30k", brandName: "Elfbar", brandKey: "elfbar", model: "Elfbar TE30K", puffsKey: "30k", puffsText: "30.000 Puffs", price: "$25.000", pricePromo: "2X $48.000", defaultImg: "eb te30.png",
         flavors: [
           { name: "Banana con Coco", soldOut: false, img: "bananacoco.png" },
           { name: "Bubaloo de Tuti Fruti", soldOut: false, img: "bubalootuti.png" },
@@ -1395,15 +838,7 @@
         ]
       },
       {
-        id: "elfbar-duke-35k",
-        brandName: "Elfbar",
-        brandKey: "elfbar",
-        model: "Elfbar DUKE 35K",
-        puffsKey: "35k",
-        puffsText: "35.000 Puffs",
-        price: "$28.500",
-        pricePromo: "2X $52.000",
-        defaultImg: "eb duke.png",
+        id: "elfbar-duke-35k", brandName: "Elfbar", brandKey: "elfbar", model: "Elfbar DUKE 35K", puffsKey: "35k", puffsText: "35.000 Puffs", price: "$28.500", pricePromo: "2X $52.000", defaultImg: "eb duke.png",
         flavors: [
           { name: "Ananá Fría", soldOut: false, img: "anaef.png" },
           { name: "Menta Fría", soldOut: false, img: "mentef.png" },
@@ -1423,15 +858,7 @@
         ]
       },
       {
-        id: "elfbar-trio-40k",
-        brandName: "Elfbar",
-        brandKey: "elfbar",
-        model: "Elfbar TRIO 40K",
-        puffsKey: "40k",
-        puffsText: "40.000 Puffs",
-        price: "$30.000",
-        pricePromo: "2X $55.000",
-        defaultImg: "eb trio.png",
+        id: "elfbar-trio-40k", brandName: "Elfbar", brandKey: "elfbar", model: "Elfbar TRIO 40K", puffsKey: "40k", puffsText: "40.000 Puffs", price: "$30.000", pricePromo: "2X $55.000", defaultImg: "eb trio.png",
         flavors: [
           { name: "Arándanos", soldOut: true, img: "arandanos.png" },
           { name: "Uva", soldOut: false, img: "uva.png" },
@@ -1452,15 +879,7 @@
         ]
       },
       {
-        id: "elfbar-iceking-40k",
-        brandName: "Elfbar",
-        brandKey: "elfbar",
-        model: "Elfbar Iceking 40K",
-        puffsKey: "40k",
-        puffsText: "40.000 Puffs",
-        price: "$27.500",
-        pricePromo: "2X $48.000",
-        defaultImg: "eb iceking.png",
+        id: "elfbar-iceking-40k", brandName: "Elfbar", brandKey: "elfbar", model: "Elfbar Iceking 40K", puffsKey: "40k", puffsText: "40.000 Puffs", price: "$27.500", pricePromo: "2X $48.000", defaultImg: "eb iceking.png",
         flavors: [
           { name: "Gomita dulces", soldOut: false, img: "uvaef.png" },
           { name: "Frambuesas azules", soldOut: false, img: "miamimint.png" },
@@ -1488,15 +907,7 @@
         ]
       },
       {
-        id: "elfbar-summer-40k",
-        brandName: "Elfbar",
-        brandKey: "elfbar",
-        model: "Elfbar 40K Edición Verano",
-        puffsKey: "40k",
-        puffsText: "40.000 Puffs",
-        price: "$28.000",
-        pricePromo: "2X $50.000",
-        defaultImg: "eb sum.png",
+        id: "elfbar-summer-40k", brandName: "Elfbar", brandKey: "elfbar", model: "Elfbar 40K Edición Verano", puffsKey: "40k", puffsText: "40.000 Puffs", price: "$28.000", pricePromo: "2X $50.000", defaultImg: "eb sum.png",
         flavors: [
           { name: "Maracuya", soldOut: true, img: "maracuya.png" },
           { name: "Frutos silvestres", soldOut: true, img: "frutossilvestres.png" },
@@ -1511,15 +922,7 @@
         ]
       },
       {
-        id: "ebcreate-40k",
-        brandName: "Elfbar",
-        brandKey: "elfbar",
-        model: "EBCreate 40K Puffs",
-        puffsKey: "40k",
-        puffsText: "40.000 Puffs",
-        price: "$28.000",
-        pricePromo: "2X $50.000",
-        defaultImg: "ebcreate.png",
+        id: "ebcreate-40k", brandName: "Elfbar", brandKey: "elfbar", model: "EBCreate 40K Puffs", puffsKey: "40k", puffsText: "40.000 Puffs", price: "$28.000", pricePromo: "2X $50.000", defaultImg: "ebcreate.png",
         flavors: [
           { name: "Mix de Uvas", soldOut: false, img: "uvaef.png" },
           { name: "Arándanos con Frambuesas", soldOut: false, img: "azuef.png" },
@@ -1538,15 +941,7 @@
         ]
       },
       {
-        id: "sex-addict-28k",
-        brandName: "Sex Addict",
-        brandKey: "sex-addict",
-        model: "Sex Addict (Dan Bilzerian 28K)",
-        puffsKey: "28k",
-        puffsText: "28.000 Puffs",
-        price: "$27.000",
-        pricePromo: "2X $50.000",
-        defaultImg: "sex.png",
+        id: "sex-addict-28k", brandName: "Sex Addict", brandKey: "sex-addict", model: "Sex Addict (Dan Bilzerian 28K)", puffsKey: "28k", puffsText: "28.000 Puffs", price: "$27.000", pricePromo: "2X $50.000", defaultImg: "sex.png",
         flavors: [
           { name: "Arándanos Fríos", soldOut: true, img: "arandanosfrios.png" },
           { name: "Menthol", soldOut: true, img: "menthol.png" },
@@ -1560,15 +955,7 @@
         ]
       },
       {
-        id: "blvk-bar-45k",
-        brandName: "BLVK Bar",
-        brandKey: "blvk",
-        model: "BLVK Bar 45K",
-        puffsKey: "45k",
-        puffsText: "45.000 Puffs",
-        price: "$30.000",
-        pricePromo: "2X $58.000",
-        defaultImg: "blvk.png",
+        id: "blvk-bar-45k", brandName: "BLVK Bar", brandKey: "blvk", model: "BLVK Bar 45K", puffsKey: "45k", puffsText: "45.000 Puffs", price: "$30.000", pricePromo: "2X $58.000", defaultImg: "blvk.png",
         flavors: [
           { name: "Frutilla con Kiwi", soldOut: false, img: "frutillakiwi.png" },
           { name: "Uva Fría", soldOut: false, img: "uvafria.png" },
@@ -1586,15 +973,7 @@
         ]
       },
       {
-        id: "lost-mary-20k",
-        brandName: "Lost Mary",
-        brandKey: "lost-mary",
-        model: "Lost Mary Puff 20K",
-        puffsKey: "20k",
-        puffsText: "20.000 Puffs",
-        price: "$28.000",
-        pricePromo: "2X $50.000",
-        defaultImg: "LM.png",
+        id: "lost-mary-20k", brandName: "Lost Mary", brandKey: "lost-mary", model: "Lost Mary Puff 20K", puffsKey: "20k", puffsText: "20.000 Puffs", price: "$28.000", pricePromo: "2X $50.000", defaultImg: "LM.png",
         flavors: [
           { name: "Sandía Fría", soldOut: false, img: "sandiafria.png" },
           { name: "Ananá Limón", soldOut: false, img: "ananalimon.png" },
@@ -1613,15 +992,7 @@
         ]
       },
       {
-        id: "oxbar-30k",
-        brandName: "OXBAR",
-        brandKey: "oxbar",
-        model: "OXBAR Puff 30K / Magic Mazer / G30K PRO",
-        puffsKey: "30k",
-        puffsText: "30.000 Puffs",
-        price: "$25.000",
-        pricePromo: "2X $45.000",
-        defaultImg: "oxbar.png",
+        id: "oxbar-30k", brandName: "OXBAR", brandKey: "oxbar", model: "OXBAR Puff 30K / Magic Mazer / G30K PRO", puffsKey: "30k", puffsText: "30.000 Puffs", price: "$25.000", pricePromo: "2X $45.000", defaultImg: "oxbar.png",
         flavors: [
           { name: "Arándanos Frambuesa Limón", soldOut: false, img: "arandanosframbuesalimon.png" },
           { name: "Uva Blanca Fría", soldOut: true, img: "uvablanca.png" },
@@ -1649,15 +1020,7 @@
         ]
       },
       {
-        id: "oxbar-50k",
-        brandName: "OXBAR",
-        brandKey: "oxbar",
-        model: "OXBAR 50K (3 en 1)",
-        puffsKey: "50k",
-        puffsText: "50.000 Puffs",
-        price: "$35.000",
-        pricePromo: "2X $63.000",
-        defaultImg: "oxbar 50k.png",
+        id: "oxbar-50k", brandName: "OXBAR", brandKey: "oxbar", model: "OXBAR 50K (3 en 1)", puffsKey: "50k", puffsText: "50.000 Puffs", price: "$35.000", pricePromo: "2X $63.000", defaultImg: "oxbar 50k.png",
         flavors: [
           { name: "Ananá, Kiwi y Fruta del Dragón", soldOut: true, img: "ananakiwidragon.png" },
           { name: "Uva Fría", soldOut: true, img: "uvafria.png" },
@@ -1672,15 +1035,7 @@
         ]
       },
       {
-        id: "nic-king-40k",
-        brandName: "Elfbar",
-        brandKey: "elfbar",
-        model: "Nic King 40K Puffs",
-        puffsKey: "40k",
-        puffsText: "40.000 Puffs",
-        price: "$28.000",
-        pricePromo: "2X $50.000",
-        defaultImg: "eb nk.png",
+        id: "nic-king-40k", brandName: "Elfbar", brandKey: "elfbar", model: "Nic King 40K Puffs", puffsKey: "40k", puffsText: "40.000 Puffs", price: "$28.000", pricePromo: "2X $50.000", defaultImg: "eb nk.png",
         flavors: [
           { name: "Gomitas de mora", soldOut: true, img: "gomitasmora.png" },
           { name: "Granada dulce", soldOut: true, img: "granadadulce.png" },
@@ -1703,19 +1058,29 @@
       }
     ];
 
-    // Forzamos la lectura directa de los cambios del código evitando bloqueos de caché antigua
-    let vapersProducts = defaultVapers;
+    // CARGA DESDE LOCALSTORAGE O DEFAULT
+    let perfumesProducts = JSON.parse(localStorage.getItem('ng_perfumes_data')) || defaultPerfumes;
+    let vapersProducts = JSON.parse(localStorage.getItem('ng_vapers_full_data')) || defaultVapers;
+    let techProducts = JSON.parse(localStorage.getItem('ng_tech_data')) || defaultTech;
 
-    function saveState() {
+    function saveAllState() {
+      localStorage.setItem('ng_perfumes_data', JSON.stringify(perfumesProducts));
       localStorage.setItem('ng_vapers_full_data', JSON.stringify(vapersProducts));
-      renderVapers();
+      localStorage.setItem('ng_tech_data', JSON.stringify(techProducts));
+      renderAllProducts();
     }
 
     let activeVaperFilters = { brand: 'all', puffs: 'all' };
     let currentSelectedFlavor = "";
     let currentProduct = null;
+    let currentAdminTab = 'stock';
+    let tempFlavorList = [];
+    
+    // Variables temporales para fotos subidas
+    let currentUploadedImg = "";
+    let currentUploadedFlavorImg = "";
 
-    // Filtrado de categoría principal y desplazamiento automático
+    // NAVEGACIÓN Y FILTROS CATEGORÍA
     function filterMainCategory(category, btn) {
       const parent = btn.parentElement;
       parent.querySelectorAll('button').forEach(b => b.classList.remove('active'));
@@ -1734,15 +1099,71 @@
         document.getElementById('catalogo-general').scrollIntoView({ behavior: 'smooth' });
       } else {
         const targetSection = document.getElementById(category);
-        if (targetSection) {
-          targetSection.scrollIntoView({ behavior: 'smooth' });
-        }
+        if (targetSection) targetSection.scrollIntoView({ behavior: 'smooth' });
       }
-
       dropdownMenu.classList.remove('show');
     }
 
-    // Renderizar Vapers
+    // RENDERIZADO GENERAL DE PRODUCTOS
+    function renderAllProducts() {
+      renderPerfumes();
+      renderVapers();
+      renderTech();
+    }
+
+    function renderPerfumes() {
+      const grid = document.getElementById('perfume-grid');
+      grid.innerHTML = '';
+      perfumesProducts.forEach(p => {
+        const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, N&G IMPORTADOS. Quería consultar por ' + p.title + '. ¿Tienen disponibilidad?')}`;
+        const card = document.createElement('article');
+        card.className = 'product perfume-card';
+        card.setAttribute('data-category', p.category);
+        card.innerHTML = `
+          <div class="product-photo"><img src="${p.img}" alt="${p.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80'"></div>
+          <div class="product-info">
+            <div>
+              <div class="tag">${p.tag}</div>
+              <h3>${p.title}</h3>
+              <p>${p.desc}</p>
+            </div>
+            <div class="product-bottom">
+              <span class="price">${p.price}</span>
+              <a class="small-btn" href="${waUrl}" target="_blank" rel="noopener">Consultar ↗</a>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function renderTech() {
+      const grid = document.getElementById('tech-grid');
+      grid.innerHTML = '';
+      techProducts.forEach(p => {
+        const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, N&G IMPORTADOS. Quería encargar ' + p.title + '. ¿Tienen stock?')}`;
+        const card = document.createElement('article');
+        card.className = 'product';
+        card.style.maxWidth = '400px';
+        card.style.margin = '0 auto';
+        card.innerHTML = `
+          <div class="product-photo"><img src="${p.img}" alt="${p.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=600&q=80'"></div>
+          <div class="product-info">
+            <div>
+              <div class="tag">${p.tag}</div>
+              <h3>${p.title}</h3>
+              <p>${p.desc}</p>
+            </div>
+            <div class="product-bottom">
+              <span class="price">${p.price}</span>
+              <a class="small-btn" href="${waUrl}" target="_blank" rel="noopener">Encargar ↗</a>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
     function renderVapers() {
       const grid = document.getElementById('vaper-grid');
       grid.innerHTML = '';
@@ -1756,7 +1177,7 @@
 
         card.innerHTML = `
           <div class="product-photo">
-            <img src="${p.defaultImg}" alt="${p.model}">
+            <img src="${p.defaultImg}" alt="${p.model}" onerror="this.src='https://images.unsplash.com/photo-1527661591475-527312dd65f5?auto=format&fit=crop&w=600&q=80'">
           </div>
           <div class="product-info">
             <div>
@@ -1767,7 +1188,7 @@
             <div class="product-bottom">
               <div>
                 <div class="price">${p.price}</div>
-                <div style="font-size: 0.78rem; color: #4ade80; font-weight: 600;">${p.pricePromo}</div>
+                <div style="font-size: 0.78rem; color: #16a34a; font-weight: 600;">${p.pricePromo}</div>
               </div>
               <button class="small-btn">Elegir sabor ↗</button>
             </div>
@@ -1777,6 +1198,7 @@
       });
     }
 
+    // MODAL VAPERS
     function openProductModal(p) {
       currentProduct = p;
       currentSelectedFlavor = "";
@@ -1792,9 +1214,9 @@
             </div>
           `;
         } else {
-          const flavorImgParam = f.img ? `'${f.img}'` : 'null';
+          const flavorImgParam = f.img ? `'${f.img.replace(/'/g, "\\'")}'` : 'null';
           flavorsHTML += `
-            <div class="flavor-item" id="flavor-item-${index}" onclick="selectFlavor('${f.name}', ${index}, ${flavorImgParam})">
+            <div class="flavor-item" id="flavor-item-${index}" onclick="selectFlavor('${f.name.replace(/'/g, "\\'")}', ${index}, ${flavorImgParam})">
               <span class="flavor-name">${f.name}</span>
             </div>
           `;
@@ -1809,7 +1231,7 @@
           <span class="tag">${p.brandName}</span>
           <h2 class="modal-title">${p.model}</h2>
           <p style="color:var(--muted); font-size:0.9rem; min-height:auto;">${p.puffsText}</p>
-          <div class="price">${p.price} <span style="font-size:0.85rem; color:#4ade80; font-weight:normal; margin-left:8px;">(${p.pricePromo})</span></div>
+          <div class="price">${p.price} <span style="font-size:0.85rem; color:#16a34a; font-weight:normal; margin-left:8px;">(${p.pricePromo})</span></div>
 
           <div style="margin-top: 5px;">
             <label style="font-size: 0.85rem; color: var(--muted);">Cantidad (Máx. 10):</label>
@@ -1832,14 +1254,10 @@
           </button>
         </div>
       `;
-
       modal.style.display = 'flex';
     }
 
-    function closeModal() {
-      document.getElementById('product-modal').style.display = 'none';
-    }
-
+    function closeModal() { document.getElementById('product-modal').style.display = 'none'; }
     function changeQty(amount) {
       const input = document.getElementById('qty-number');
       let val = parseInt(input.value) + amount;
@@ -1848,18 +1266,13 @@
       input.value = val;
     }
 
-    // Seleccionar sabor y cambiar la foto de forma dinámica
     function selectFlavor(name, index, flavorImg) {
       currentSelectedFlavor = name;
       const items = document.querySelectorAll('.flavor-item');
       items.forEach(item => item.classList.remove('selected'));
-      
       const selectedItem = document.getElementById(`flavor-item-${index}`);
-      if(selectedItem) {
-        selectedItem.classList.add('selected');
-      }
+      if(selectedItem) selectedItem.classList.add('selected');
 
-      // Cambiar imagen del modal de forma animada
       const modalImg = document.getElementById('modal-vaper-img');
       if (modalImg) {
         const newSrc = flavorImg ? flavorImg : (currentProduct ? currentProduct.defaultImg : '');
@@ -1880,18 +1293,16 @@
       }
       const qty = document.getElementById('qty-number').value;
       const message = `Hola, N&G IMPORTADOS. Quisiera encargar:\n- Producto: ${currentProduct.model}\n- Sabor: ${currentSelectedFlavor}\n- Cantidad: ${qty} unidad(es)\n- Precio unitario: ${currentProduct.price}`;
-      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank');
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
     }
 
     // ==========================================
-    // ⚙️ CONSOLA DE ADMINISTRACIÓN / PANEL PRIVADO
+    // ⚙️ PANEL DE CONTROL ADMINISTRADOR MULTIRRUBRO
     // ==========================================
 
     function openAdminPanel() {
-      const CONTRASEÑA_CORRECTA = "4212"; 
       const pass = prompt("🔐 Ingresa tu contraseña de creador:");
-      if (pass !== CONTRASEÑA_CORRECTA) {
+      if (pass !== "4212") {
         alert("Contraseña incorrecta.");
         return;
       }
@@ -1899,11 +1310,9 @@
       document.getElementById('adminModal').style.display = 'flex';
     }
 
-    function closeAdminPanel() {
-      document.getElementById('adminModal').style.display = 'none';
-    }
+    function closeAdminPanel() { document.getElementById('adminModal').style.display = 'none'; }
 
-    // COMBINACIÓN SECRETA DE TECLAS: Ctrl + Shift + A
+    // Teclas directas: Ctrl + Shift + A
     document.addEventListener('keydown', (e) => {
       if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
         e.preventDefault();
@@ -1911,54 +1320,372 @@
       }
     });
 
+    function switchAdminTab(tab, btn) {
+      currentAdminTab = tab;
+      document.querySelectorAll('.admin-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderAdminContent();
+    }
+
     function renderAdminContent() {
       const body = document.getElementById('adminBodyContent');
       body.innerHTML = '';
 
-      vapersProducts.forEach((p, pIdx) => {
-        let flavorRows = '';
-        p.flavors.forEach((f, fIdx) => {
-          flavorRows += `
-            <div class="flavor-row">
-              <span class="flavor-row-name">${f.name}</span>
-              <label class="switch">
-                <input type="checkbox" ${!f.soldOut ? 'checked' : ''} onchange="toggleStock(${pIdx}, ${fIdx})">
-                <span class="slider-switch"></span>
-              </label>
+      if (currentAdminTab === 'stock') {
+        // Pestaña 1: Stock y Modificaciones
+        let html = `<h4 style="color:var(--accent-color);">💨 Vapers (Stock & Precios)</h4>`;
+        vapersProducts.forEach((p, pIdx) => {
+          let flavorRows = '';
+          p.flavors.forEach((f, fIdx) => {
+            flavorRows += `
+              <div class="flavor-row">
+                <span class="flavor-row-name">${f.name}</span>
+                <label class="switch">
+                  <input type="checkbox" ${!f.soldOut ? 'checked' : ''} onchange="toggleVaperStock(${pIdx}, ${fIdx})">
+                  <span class="slider-switch"></span>
+                </label>
+              </div>
+            `;
+          });
+
+          html += `
+            <div class="admin-card">
+              <div class="admin-card-title">
+                <span>📦 ${p.model}</span>
+                <div style="display:flex; gap:8px;">
+                  <input class="input-field" value="${p.price}" onchange="updateVaperPrice(${pIdx}, 'price', this.value)" placeholder="Precio">
+                  <input class="input-field" value="${p.pricePromo}" onchange="updateVaperPrice(${pIdx}, 'pricePromo', this.value)" placeholder="Promo">
+                  <button class="small-btn" style="background:var(--danger); border-color:var(--danger); color:#fff;" onclick="deleteProduct('vaper', ${pIdx})">🗑️</button>
+                </div>
+              </div>
+              <p style="font-size:0.8rem; color:var(--muted); margin-bottom:8px;">Sabores & Stock (Verde = Disponible / Gris = Agotado):</p>
+              <div style="max-height:140px; overflow-y:auto;">${flavorRows}</div>
             </div>
           `;
         });
 
-        const card = document.createElement('div');
-        card.className = 'admin-card';
-        card.innerHTML = `
-          <div class="admin-card-title">
-            <span>📦 ${p.model} (${p.puffsText})</span>
-            <div style="display:flex; gap:8px;">
-              <input class="input-field" value="${p.price}" onchange="updatePrice(${pIdx}, 'price', this.value)" placeholder="Precio">
-              <input class="input-field" value="${p.pricePromo}" onchange="updatePrice(${pIdx}, 'pricePromo', this.value)" placeholder="Promo">
+        html += `<h4 style="color:var(--accent-color); margin-top:20px;">🧪 Perfumes (Gestión)</h4>`;
+        perfumesProducts.forEach((p, pIdx) => {
+          html += `
+            <div class="admin-card">
+              <div class="admin-card-title">
+                <span>🧪 ${p.title} (${p.category})</span>
+                <div style="display:flex; gap:8px;">
+                  <input class="input-field" value="${p.price}" onchange="updatePerfumePrice(${pIdx}, this.value)" placeholder="Precio">
+                  <button class="small-btn" style="background:var(--danger); border-color:var(--danger); color:#fff;" onclick="deleteProduct('perfume', ${pIdx})">🗑️ Eliminar</button>
+                </div>
+              </div>
+              <p style="font-size:0.82rem; color:var(--muted);">${p.desc}</p>
             </div>
-          </div>
-          <p style="font-size:0.8rem; color:var(--muted); margin-bottom:8px;">Interruptor de Stock (Verde = En Stock / Gris = Agotado):</p>
-          <div style="max-height:160px; overflow-y:auto; display:flex; flex-direction:column; gap:4px;">
-            ${flavorRows}
+          `;
+        });
+
+        html += `<h4 style="color:var(--accent-color); margin-top:20px;">🎧 Tecnología & AirPods</h4>`;
+        techProducts.forEach((p, pIdx) => {
+          html += `
+            <div class="admin-card">
+              <div class="admin-card-title">
+                <span>🎧 ${p.title}</span>
+                <div style="display:flex; gap:8px;">
+                  <input class="input-field" value="${p.price}" onchange="updateTechPrice(${pIdx}, this.value)" placeholder="Precio">
+                  <button class="small-btn" style="background:var(--danger); border-color:var(--danger); color:#fff;" onclick="deleteProduct('tech', ${pIdx})">🗑️ Eliminar</button>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+
+        body.innerHTML = html;
+
+      } else {
+        // Pestaña 2: Formulario Agregar Nuevo Producto
+        body.innerHTML = `
+          <div class="admin-card">
+            <h4 style="color:var(--accent-color); margin-bottom:15px;">➕ Añadir Nuevo Producto al Catálogo</h4>
+            
+            <div class="admin-form-group">
+              <label>Selecciona la Categoría:</label>
+              <select class="select-field" id="new-prod-type" onchange="renderNewProductFields()">
+                <option value="perfume">🧪 Perfume</option>
+                <option value="vaper">💨 Vaper</option>
+                <option value="tech">🎧 Tecnología / AirPods</option>
+              </select>
+            </div>
+
+            <div id="dynamic-add-fields"></div>
+
+            <button class="btn" style="width:100%; margin-top:15px;" onclick="saveNewProduct()">✨ Guardar y Publicar Producto</button>
           </div>
         `;
-        body.appendChild(card);
-      });
+        renderNewProductFields();
+      }
     }
 
-    function toggleStock(pIdx, fIdx) {
+    // PROCESADOR DE IMÁGENES A BASE64 (DESDE DISPOSITIVO LOCAL)
+    function handleImageUpload(inputElement, targetVarName, previewImgId) {
+      const file = inputElement.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const base64Data = e.target.result;
+          if (targetVarName === 'main') currentUploadedImg = base64Data;
+          if (targetVarName === 'flavor') currentUploadedFlavorImg = base64Data;
+
+          const preview = document.getElementById(previewImgId);
+          if (preview) {
+            preview.src = base64Data;
+            preview.style.display = 'block';
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // CAMPOS DINÁMICOS FORMULARIO CON SUBIDA DE FOTOS LOCAL
+    function renderNewProductFields() {
+      const type = document.getElementById('new-prod-type').value;
+      const container = document.getElementById('dynamic-add-fields');
+      currentUploadedImg = "";
+      currentUploadedFlavorImg = "";
+
+      if (type === 'perfume') {
+        container.innerHTML = `
+          <div class="admin-row-2">
+            <div class="admin-form-group">
+              <label>Nombre del Perfume:</label>
+              <input class="input-field" id="p-title" placeholder="Ej: Khamrah Qahwa">
+            </div>
+            <div class="admin-form-group">
+              <label>Marca / Tag:</label>
+              <input class="input-field" id="p-tag" placeholder="Ej: Unisex · Lattafa">
+            </div>
+          </div>
+          <div class="admin-row-2">
+            <div class="admin-form-group">
+              <label>Género / Categoría:</label>
+              <select class="select-field" id="p-cat">
+                <option value="masculino">Masculino</option>
+                <option value="femenino">Femenino</option>
+                <option value="unisex">Unisex</option>
+              </select>
+            </div>
+            <div class="admin-form-group">
+              <label>Precio:</label>
+              <input class="input-field" id="p-price" placeholder="$48.000">
+            </div>
+          </div>
+          <div class="admin-form-group">
+            <label>Foto del Perfume (Subir desde dispositivo):</label>
+            <div class="file-input-wrapper">
+              <label class="file-input-btn" for="p-img-file">📁 Seleccionar imagen desde Celular/PC</label>
+              <input type="file" id="p-img-file" accept="image/*" style="display:none;" onchange="handleImageUpload(this, 'main', 'p-preview')">
+              <img id="p-preview" class="file-preview">
+            </div>
+          </div>
+          <div class="admin-form-group">
+            <label>Descripción / Notas Olfativas:</label>
+            <textarea class="textarea-field" id="p-desc" placeholder="Gourmand intenso con notas de café arábigo tostado..."></textarea>
+          </div>
+        `;
+      } else if (type === 'vaper') {
+        tempFlavorList = [];
+        container.innerHTML = `
+          <div class="admin-row-2">
+            <div class="admin-form-group">
+              <label>Marca:</label>
+              <input class="input-field" id="v-brandname" placeholder="Ej: Elfbar">
+            </div>
+            <div class="admin-form-group">
+              <label>Clave Marca (Para filtros):</label>
+              <select class="select-field" id="v-brandkey">
+                <option value="elfbar">Elfbar</option>
+                <option value="ignite">Ignite</option>
+                <option value="maskking">Maskking</option>
+                <option value="dinner-lady">Dinner Lady</option>
+                <option value="nikbar">Nikbar</option>
+                <option value="blvk">BLVK</option>
+                <option value="lost-mary">Lost Mary</option>
+                <option value="oxbar">OXBAR</option>
+              </select>
+            </div>
+          </div>
+          <div class="admin-row-2">
+            <div class="admin-form-group">
+              <label>Modelo:</label>
+              <input class="input-field" id="v-model" placeholder="Ej: Elfbar GH23000">
+            </div>
+            <div class="admin-form-group">
+              <label>Puffs (Ej: 20k, 30k, 40k):</label>
+              <input class="input-field" id="v-puffskey" placeholder="23k">
+            </div>
+          </div>
+          <div class="admin-row-2">
+            <div class="admin-form-group">
+              <label>Precio Unidad:</label>
+              <input class="input-field" id="v-price" placeholder="$26.000">
+            </div>
+            <div class="admin-form-group">
+              <label>Precio Promo:</label>
+              <input class="input-field" id="v-promo" placeholder="2X $48.000">
+            </div>
+          </div>
+          <div class="admin-form-group">
+            <label>Foto Principal Vaper (Subir desde dispositivo):</label>
+            <div class="file-input-wrapper">
+              <label class="file-input-btn" for="v-img-file">📁 Seleccionar foto principal</label>
+              <input type="file" id="v-img-file" accept="image/*" style="display:none;" onchange="handleImageUpload(this, 'main', 'v-preview')">
+              <img id="v-preview" class="file-preview">
+            </div>
+          </div>
+
+          <div style="border-top: 1px solid #eae5df; padding-top: 12px; margin-top: 10px;">
+            <label style="font-weight:bold; color:var(--accent-color);">🍉 Agregar Sabores con Fotos Individuales:</label>
+            <div class="admin-form-group" style="margin-top:8px;">
+              <input class="input-field" id="flavor-name-input" placeholder="Nombre Sabor (Ej: Sandía Fría)">
+            </div>
+            <div class="admin-form-group">
+              <label>Foto para este Sabor (Opcional):</label>
+              <div class="file-input-wrapper">
+                <label class="file-input-btn" for="f-img-file">📷 Cargar foto del sabor</label>
+                <input type="file" id="f-img-file" accept="image/*" style="display:none;" onchange="handleImageUpload(this, 'flavor', 'f-preview')">
+                <img id="f-preview" class="file-preview">
+              </div>
+            </div>
+            <button class="small-btn" style="margin-top:6px; width:100%;" onclick="addFlavorToTemp()">+ Añadir Sabor a la Lista</button>
+            <div id="temp-flavors-list" style="margin-top:10px;"></div>
+          </div>
+        `;
+      } else if (type === 'tech') {
+        container.innerHTML = `
+          <div class="admin-row-2">
+            <div class="admin-form-group">
+              <label>Nombre del Dispositivo:</label>
+              <input class="input-field" id="t-title" placeholder="Ej: AirPods Max">
+            </div>
+            <div class="admin-form-group">
+              <label>Tag / Subtítulo:</label>
+              <input class="input-field" id="t-tag" placeholder="Ej: Audio · Over-Ear">
+            </div>
+          </div>
+          <div class="admin-row-2">
+            <div class="admin-form-group">
+              <label>Precio:</label>
+              <input class="input-field" id="t-price" placeholder="$85.000">
+            </div>
+            <div class="admin-form-group">
+              <label>Foto del Producto (Subir desde dispositivo):</label>
+              <div class="file-input-wrapper">
+                <label class="file-input-btn" for="t-img-file">📁 Seleccionar imagen del producto</label>
+                <input type="file" id="t-img-file" accept="image/*" style="display:none;" onchange="handleImageUpload(this, 'main', 't-preview')">
+                <img id="t-preview" class="file-preview">
+              </div>
+            </div>
+          </div>
+          <div class="admin-form-group">
+            <label>Descripción:</label>
+            <textarea class="textarea-field" id="t-desc" placeholder="Cancelación de ruido activa, audio espacial..."></textarea>
+          </div>
+        `;
+      }
+    }
+
+    function addFlavorToTemp() {
+      const name = document.getElementById('flavor-name-input').value.trim();
+      if (!name) return alert("Escribe el nombre del sabor");
+
+      tempFlavorList.push({ name, soldOut: false, img: currentUploadedFlavorImg || '' });
+      
+      document.getElementById('flavor-name-input').value = '';
+      document.getElementById('f-img-file').value = '';
+      currentUploadedFlavorImg = "";
+      const fPrev = document.getElementById('f-preview');
+      if (fPrev) fPrev.style.display = 'none';
+
+      const listDiv = document.getElementById('temp-flavors-list');
+      listDiv.innerHTML = tempFlavorList.map(f => `<div class="flavor-row"><span class="flavor-row-name">🍓 ${f.name} ${f.img ? '(Foto cargada)' : '(Sin foto ind.)'}</span></div>`).join('');
+    }
+
+    function saveNewProduct() {
+      const type = document.getElementById('new-prod-type').value;
+
+      if (type === 'perfume') {
+        const title = document.getElementById('p-title').value;
+        const tag = document.getElementById('p-tag').value;
+        const category = document.getElementById('p-cat').value;
+        const price = document.getElementById('p-price').value;
+        const desc = document.getElementById('p-desc').value;
+        const img = currentUploadedImg || 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80';
+
+        if (!title || !price) return alert("Completa los datos del perfume.");
+
+        perfumesProducts.push({
+          id: 'p_' + Date.now(), title, tag, category, price, img, desc
+        });
+      } else if (type === 'vaper') {
+        const brandName = document.getElementById('v-brandname').value;
+        const brandKey = document.getElementById('v-brandkey').value;
+        const model = document.getElementById('v-model').value;
+        const puffsKey = document.getElementById('v-puffskey').value.toLowerCase();
+        const price = document.getElementById('v-price').value;
+        const pricePromo = document.getElementById('v-promo').value;
+        const defaultImg = currentUploadedImg || 'https://images.unsplash.com/photo-1527661591475-527312dd65f5?auto=format&fit=crop&w=600&q=80';
+
+        if (!model || !price) return alert("Completa los datos del vaper.");
+
+        vapersProducts.push({
+          id: 'v_' + Date.now(),
+          brandName, brandKey, model, puffsKey,
+          puffsText: `${puffsKey.toUpperCase()} Puffs`,
+          price, pricePromo, defaultImg,
+          flavors: tempFlavorList.length ? tempFlavorList : [{ name: "Sabor Tradicional", soldOut: false, img: defaultImg }]
+        });
+      } else if (type === 'tech') {
+        const title = document.getElementById('t-title').value;
+        const tag = document.getElementById('t-tag').value;
+        const price = document.getElementById('t-price').value;
+        const desc = document.getElementById('t-desc').value;
+        const img = currentUploadedImg || 'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=600&q=80';
+
+        if (!title || !price) return alert("Completa los datos del producto tecnológico.");
+
+        techProducts.push({
+          id: 't_' + Date.now(), title, tag, price, img, desc
+        });
+      }
+
+      saveAllState();
+      alert("✅ Producto con foto guardado y publicado correctamente.");
+      switchAdminTab('stock', document.querySelectorAll('.admin-tab')[0]);
+    }
+
+    // ACCIONES ADMIN
+    function toggleVaperStock(pIdx, fIdx) {
       vapersProducts[pIdx].flavors[fIdx].soldOut = !vapersProducts[pIdx].flavors[fIdx].soldOut;
-      saveState();
+      saveAllState();
     }
-
-    function updatePrice(pIdx, field, val) {
+    function updateVaperPrice(pIdx, field, val) {
       vapersProducts[pIdx][field] = val;
-      saveState();
+      saveAllState();
+    }
+    function updatePerfumePrice(pIdx, val) {
+      perfumesProducts[pIdx].price = val;
+      saveAllState();
+    }
+    function updateTechPrice(pIdx, val) {
+      techProducts[pIdx].price = val;
+      saveAllState();
+    }
+    function deleteProduct(type, idx) {
+      if (confirm("¿Seguro que deseas eliminar este producto?")) {
+        if (type === 'vaper') vapersProducts.splice(idx, 1);
+        if (type === 'perfume') perfumesProducts.splice(idx, 1);
+        if (type === 'tech') techProducts.splice(idx, 1);
+        saveAllState();
+        renderAdminContent();
+      }
     }
 
-    // Filtrar Perfumes
+    // FILTRADO PERFUMES
     function filterPerfumes(category, btn) {
       const parent = btn.parentElement;
       parent.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
@@ -1969,7 +1696,7 @@
       });
     }
 
-    // Filtrar Vapers
+    // FILTRADO VAPERS
     function filterVapers(type, value, btn) {
       activeVaperFilters[type] = value;
       const parent = btn.parentElement;
@@ -1986,15 +1713,7 @@
       });
     }
 
-    // Enlaces directos a WhatsApp para Perfumes y AirPods
-    document.querySelectorAll('.order-link').forEach(link => {
-      const productName = link.getAttribute('data-product');
-      link.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, N&G IMPORTADOS. Quería consultar por ' + productName + '. ¿Tienen disponibilidad?')}`;
-      link.target = '_blank';
-      link.rel = 'noopener';
-    });
-
-    document.addEventListener('DOMContentLoaded', renderVapers);
+    document.addEventListener('DOMContentLoaded', renderAllProducts);
   </script>
 </body>
 </html>
